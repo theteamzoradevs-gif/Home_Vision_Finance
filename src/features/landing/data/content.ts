@@ -75,26 +75,36 @@ export const USPS = [
   },
 ] as const;
 
-export const ABOUT_WHY_STATS = [
+export const WHY_CHOOSE_ITEMS = [
   {
-    value: "₹0",
-    label: "Processing Fees",
-    description: "Zero hidden charges on all home loan applications.",
+    value: "01",
+    label: "Fast File Login",
+    description: "Your loan file gets logged in within 24–48 hours of document submission.",
   },
   {
-    value: "24–48h",
-    label: "Fast Approval",
-    description: "Quick eligibility confirmation and file login.",
+    value: "02",
+    label: "Smooth Coordination",
+    description: "End-to-end coordination between you, the bank, and the builder.",
   },
   {
-    value: "5+",
-    label: "Trusted Partners",
-    description: "Compare rates across India's leading banks.",
+    value: "03",
+    label: "Regular Updates",
+    description: "Track your loan status at every stage with proactive communication.",
   },
   {
-    value: "4.8/5",
-    label: "Customer Satisfaction",
-    description: "Rated highly by families across Delhi NCR.",
+    value: "04",
+    label: "Support Till Disbursement",
+    description: "Full support from application to final disbursement into your account.",
+  },
+  {
+    value: "05",
+    label: "Builder & Broker Assistance",
+    description: "Special support for real estate professionals with fast processing.",
+  },
+  {
+    value: "06",
+    label: "Multi-Bank Access",
+    description: "Compare rates across SBI, HDFC, ICICI, PNB & Bank of Baroda.",
   },
 ] as const;
 
