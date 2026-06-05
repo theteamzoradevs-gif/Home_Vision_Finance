@@ -58,12 +58,12 @@ function InlineLeadForm() {
   }
 
   return (
-    <div className="relative overflow-hidden rounded-[20px] border border-slate-200 bg-white p-6 shadow-card-lg">
+    <div className="relative overflow-hidden rounded-[20px] border border-slate-200 bg-white p-5 shadow-card-lg">
       <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand to-accent" />
-      <h3 className="font-heading text-lg font-bold text-navy">Get Free Consultation</h3>
-      <p className="mb-4 text-xs text-slate-500">Expert callback in minutes</p>
+      <h3 className="font-heading text-base font-bold text-navy">Get Free Consultation</h3>
+      <p className="mb-3 text-xs text-slate-500">Expert callback in minutes</p>
       
-      <form onSubmit={submit} className="space-y-3.5">
+      <form onSubmit={submit} className="space-y-3">
         <Input
           label="Full Name"
           placeholder="Enter your name"
@@ -104,7 +104,7 @@ function InlineLeadForm() {
 
         <button
           type="submit"
-          className="w-full rounded-xl bg-gradient-to-r from-accent to-emerald-700 py-3 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg"
+          className="w-full rounded-xl bg-gradient-to-r from-brand to-brand-light py-3 text-sm font-bold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:from-brand-light hover:to-brand hover:shadow-[0_8px_24px_rgba(26,79,158,0.35)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40"
         >
           Check Eligibility — Free →
         </button>
@@ -128,9 +128,9 @@ export function HeroSection() {
   const currentWord = useTypewriter(WORDS);
 
   return (
-    <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-br from-slate-50 via-brand-pale/50 to-white pt-[140px] pb-16 sm:pb-20">
+    <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-br from-slate-50 via-brand-pale/50 to-white pb-16 pt-24 sm:pb-20 sm:pt-28">
       <div className="pointer-events-none absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-brand/5" />
-      <div className="container-site relative grid items-center gap-12 lg:grid-cols-[1fr_420px] lg:gap-16">
+      <div className="container-site relative grid items-center gap-12 lg:grid-cols-[1fr_360px] lg:gap-16">
         <div>
           <div className="mb-4 inline-flex items-center gap-2 rounded-xl bg-brand px-5 py-2.5 text-sm font-bold text-white">
             {Icons.shield} SBI Authorised Channel Partner
@@ -169,13 +169,13 @@ export function HeroSection() {
               <div 
                 key={item.text} 
                 className={`flex items-center gap-3 rounded-xl border p-3.5 shadow-sm transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md ${
-                  item.isGreen 
-                    ? "border-emerald-200 bg-emerald-50/40 hover:border-emerald-300" 
+                  item.isGreen
+                    ? "border-amber-200/80 bg-amber-50/60 ring-1 ring-amber-200/50 hover:border-amber-300"
                     : "border-slate-100 bg-white hover:border-blue-200"
                 }`}
               >
                 <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${
-                  item.isGreen ? "bg-emerald-500 text-white" : "bg-blue-50 text-blue-600"
+                  item.isGreen ? "bg-amber-400 text-white" : "bg-blue-50 text-blue-600"
                 }`}>
                   <span className="h-3.5 w-3.5 flex items-center justify-center [&>svg]:h-full [&>svg]:w-full">
                     {Icons.check}
@@ -183,12 +183,12 @@ export function HeroSection() {
                 </div>
                 <div>
                   <h4 className={`text-[13px] font-bold leading-tight ${
-                    item.isGreen ? "text-emerald-600" : "text-navy"
+                    item.isGreen ? "text-amber-700" : "text-navy"
                   }`}>
                     {item.text}
                   </h4>
                   <p className={`text-[11px] mt-0.5 ${
-                    item.isGreen ? "text-emerald-500/80" : "text-slate-400"
+                    item.isGreen ? "text-amber-600/80" : "text-slate-400"
                   }`}>
                     {item.subtitle}
                   </p>

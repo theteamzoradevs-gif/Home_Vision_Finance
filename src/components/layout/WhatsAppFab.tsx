@@ -7,7 +7,7 @@ export function WhatsAppFab() {
       href={WHATSAPP_HOME}
       target="_blank"
       rel="noreferrer"
-      className="fixed bottom-20 right-5 z-[999] flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition hover:scale-110 lg:bottom-6"
+      className="fixed bottom-20 left-5 z-[999] flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition hover:scale-110 lg:bottom-6 lg:left-auto lg:right-20"
       aria-label="Chat on WhatsApp"
     >
       {Icons.wa}

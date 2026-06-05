@@ -10,6 +10,10 @@ export const WHATSAPP_HOME = `https://wa.me/91${PHONE}?text=${encodeURIComponent
 export const WHATSAPP_ABOUT = `https://wa.me/91${PHONE}?text=${encodeURIComponent("Hi, I need help with about details")}`;
 export const WHATSAPP_CONTACT = `https://wa.me/91${PHONE}?text=${encodeURIComponent("Hi, I would like to inquire about a home loan")}`;
 
+export const SOCIAL_INSTAGRAM = "#";
+export const SOCIAL_LINKEDIN = "#";
+export const SOCIAL_YOUTUBE = "#";
+
 export const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },

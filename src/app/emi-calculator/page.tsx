@@ -12,7 +12,7 @@ export const metadata = createPageMetadata(
 export default function EmiCalculatorPage() {
   return (
     <>
-      <PageHero className="mb-1"
+      <PageHero
         label="Plan Your Loan"
         title="Home Loan EMI Calculator"
         description="Get instant estimates for monthly EMI, total interest, and total repayment. Make informed decisions before you apply."

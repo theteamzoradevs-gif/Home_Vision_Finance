@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Logo } from "@/components/ui/icons";
+import { Icons, Logo } from "@/components/ui/icons";
 import {
   BRAND,
   CONSULTANT,
@@ -8,6 +8,9 @@ import {
   NAV_LINKS,
   PHONE,
   PHONE_DISPLAY,
+  SOCIAL_INSTAGRAM,
+  SOCIAL_LINKEDIN,
+  SOCIAL_YOUTUBE,
 } from "@/lib/constants";
 
 const SOCIAL = [
@@ -90,6 +93,24 @@ export function SiteFooter() {
             </li>
             <li>Delhi NCR, India</li>
           </ul>
+          <div className="mt-4 flex gap-3">
+            {[
+              { label: "Instagram", href: SOCIAL_INSTAGRAM, icon: Icons.instagram },
+              { label: "LinkedIn", href: SOCIAL_LINKEDIN, icon: Icons.linkedin },
+              { label: "YouTube", href: SOCIAL_YOUTUBE, icon: Icons.youtube },
+            ].map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={social.label}
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-slate-300 transition duration-200 hover:scale-110 hover:bg-brand hover:text-white"
+              >
+                {social.icon}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 
