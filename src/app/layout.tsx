@@ -1,0 +1,46 @@
+import type { Metadata } from "next";
+import { DM_Sans, Plus_Jakarta_Sans } from "next/font/google";
+import { PromoRibbon } from "@/components/layout/PromoRibbon";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import { WhatsAppFab } from "@/components/layout/WhatsAppFab";
+import { MobileCallBar } from "@/components/layout/MobileCallBar";
+import { BRAND } from "@/lib/constants";
+import "./globals.css";
+
+const heading = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+});
+
+const body = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  title: {
+    default: `${BRAND} | Home Loans & Mortgage Experts`,
+    template: `%s | ${BRAND}`,
+  },
+  description:
+    "SBI Authorised Channel Partner offering home loans with ₹0 processing fees, fast approval, and multi-bank comparison.",
+  metadataBase: new URL("https://homevisionfinance.com"),
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" className={`${heading.variable} ${body.variable}`}>
+      <body className="pb-16 lg:pb-0">
+        <PromoRibbon />
+        <SiteHeader />
+        <main>{children}</main>
+        <SiteFooter />
+        <WhatsAppFab />
+        <MobileCallBar />
+      </body>
+    </html>
+  );
+}
