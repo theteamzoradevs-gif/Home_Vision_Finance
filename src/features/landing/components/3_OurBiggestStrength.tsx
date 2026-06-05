@@ -10,8 +10,8 @@ export function UspSection() {
     <section className="section-padding bg-white">
       <div className="container-site">
         <SectionHeading
-          label="Why Home Vision Finance"
-          title="Our Biggest Strengths — Your Advantage"
+          label="Our Biggest Strength"
+          title="Why Choose Home Vision Finance"
           description="We provide a complete support system from your first call to final disbursement."
           centered
         />

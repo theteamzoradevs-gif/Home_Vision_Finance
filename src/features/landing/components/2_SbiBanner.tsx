@@ -6,11 +6,11 @@ import { BANKS } from "@/features/landing/data/content";
 
 export function SbiBanner() {
   return (
-    /* FIXED: Switched section background to slate tint to make the white card pop */
-    <section className="bg-slate-50/60 px-4 py-16 text-center sm:py-24">
+    /* REMOVED: Outer section background & extra huge vertical padding */
+    <div className="mx-auto max-w-5xl px-4 py-6">
       
-      {/* FIXED: Solidified inner container to pure white and enhanced elevation shadow */}
-      <div className="mx-auto max-w-5xl rounded-[32px] border border-slate-100 bg-white p-8 shadow-[0_24px_60px_-15px_rgba(15,23,42,0.08)] sm:p-16">
+      {/* Container: Spacing balanced with minimal border and shadow */}
+      <div className="mx-auto rounded-[32px] border border-slate-100 bg-white p-6 shadow-[0_20px_50px_-12px_rgba(15,23,42,0.06)] sm:p-12">
         <div className="mx-auto max-w-4xl flex flex-col items-center">
           
           {/* Main Heading */}
@@ -19,13 +19,13 @@ export function SbiBanner() {
           </h2>
 
           {/* Subtitle / Description */}
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
             Unlock priority access, exclusive institutional loan rates, and secure end-to-end processing. 
             We are your dedicated gateway to seamless financial solutions through India's most reputable banking networks.
           </p>
 
           {/* Centralised Box for Bank Images */}
-          <div className="relative mt-12 flex w-full flex-wrap items-center justify-center gap-8 rounded-2xl border border-slate-100/80 bg-slate-50/40 px-8 py-8 sm:gap-12 sm:px-12">
+          <div className="relative mt-8 flex w-full flex-wrap items-center justify-center gap-8 rounded-2xl border border-slate-100/80 bg-slate-50/40 px-6 py-6 sm:gap-12 sm:px-12">
             
             {BANKS.map((bank) => (
               <Link
@@ -58,8 +58,8 @@ export function SbiBanner() {
             ))}
           </div>
 
-          {/* Bottom Action Button with Custom Light-Up Hover Transition */}
-          <div className="mt-10">
+          {/* Bottom Action Button */}
+          <div className="mt-8">
             <Button 
               href="/contact" 
               className="rounded-2xl bg-[#004c8f] px-8 py-4 text-sm font-bold text-white transition-colors duration-300 ease-in-out hover:bg-[#1a73e8] shadow-md hover:shadow-lg"
@@ -69,6 +69,6 @@ export function SbiBanner() {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
