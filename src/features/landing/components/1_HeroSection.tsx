@@ -21,29 +21,25 @@ const AMOUNT_OPTIONS = [
 const WORDS = ["Trusted Banking Partners", "SBI Authorised Partners", "₹0 Processing Fees"];
 
 const HERO_USPS = [
-  { text: "₹0 Processing Fees — Save Thousands", bold: true },
-  { text: "Processing Support & Quick Eligibility", bold: false },
-  { text: "Builder & Broker Coordination", bold: false },
-  { text: "Rates starting from 8.50%* p.a.", bold: false },
+  { text: "₹0 Processing Fees", isGreen: true, subtitle: "Save Thousands" },
+  { text: "Processing Support & Quick Eligibility", isGreen: false, subtitle: "End-to-end documentation help" },
+  { text: "Builder & Broker Coordination", isGreen: false, subtitle: "We handle the running around" },
+  { text: "Rates starting from 8.50%* p.a.", isGreen: false, subtitle: "Best market rates compared" },
 ];
 
 const TAGS = ["Fresh Purchase", "Resale", "Balance Transfer", "Plot Loan", "Construction"];
 
-// --- INTERNAL LEAD FORM COMPONENT (with validation & compact layout) ---
+// --- INTERNAL LEAD FORM COMPONENT ---
 function InlineLeadForm() {
   const [success, setSuccess] = useState(false);
   const [form, setForm] = useState({ name: "", phone: "", amount: "", city: "" });
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    // Basic native validation check
     if (!form.name || form.phone.length !== 10 || !form.amount || !form.city) {
       alert("Please fill all fields correctly.");
       return;
     }
-
-    console.log("Lead Submitted:", form);
     setSuccess(true);
     setTimeout(() => setSuccess(false), 4000);
     setForm({ name: "", phone: "", amount: "", city: "" });
@@ -88,7 +84,6 @@ function InlineLeadForm() {
           pattern="[6-9][0-9]{9}"
         />
 
-        {/* Amount & City in 1 row */}
         <div className="grid grid-cols-2 gap-3">
           <Select
             label="Loan Amount"
@@ -156,27 +151,51 @@ export function HeroSection() {
             SBI is our authorised partner for priority support. We also compare offers across leading banks to get you the best fit.
           </p>
 
-          <div className="mt-5 flex flex-wrap gap-2">
+          {/* Ultra-compact Tags with Smooth Vibrant Blue Hover Transition */}
+          <div className="mt-6 flex flex-wrap gap-2">
             {TAGS.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-sm font-semibold text-slate-700 transition hover:border-brand hover:bg-brand-pale hover:text-brand"
+                className="cursor-pointer rounded-full bg-[#004094] px-3 py-1 text-xs font-bold text-white transition-all duration-200 ease-in-out hover:bg-[#2563eb] shadow-[0_4px_10px_rgba(0,64,148,0.3)] hover:shadow-[0_4px_12px_rgba(37,99,235,0.45)]"
               >
                 {tag}
               </span>
             ))}
           </div>
 
-          <ul className="mt-6 space-y-2.5">
+          {/* Re-designed Smaller USPs Cards */}
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             {HERO_USPS.map((item) => (
-              <li key={item.text} className="flex items-center gap-2.5 text-[15px] text-slate-700">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-accent-pale text-accent">
-                  {Icons.check}
-                </span>
-                {item.bold ? <strong className="text-accent">{item.text}</strong> : <span>{item.text}</span>}
-              </li>
+              <div 
+                key={item.text} 
+                className={`flex items-center gap-3 rounded-xl border p-3.5 shadow-sm transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md ${
+                  item.isGreen 
+                    ? "border-emerald-200 bg-emerald-50/40 hover:border-emerald-300" 
+                    : "border-slate-100 bg-white hover:border-blue-200"
+                }`}
+              >
+                <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${
+                  item.isGreen ? "bg-emerald-500 text-white" : "bg-blue-50 text-blue-600"
+                }`}>
+                  <span className="h-3.5 w-3.5 flex items-center justify-center [&>svg]:h-full [&>svg]:w-full">
+                    {Icons.check}
+                  </span>
+                </div>
+                <div>
+                  <h4 className={`text-[13px] font-bold leading-tight ${
+                    item.isGreen ? "text-emerald-600" : "text-navy"
+                  }`}>
+                    {item.text}
+                  </h4>
+                  <p className={`text-[11px] mt-0.5 ${
+                    item.isGreen ? "text-emerald-500/80" : "text-slate-400"
+                  }`}>
+                    {item.subtitle}
+                  </p>
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
 
           <div className="mt-8 flex flex-wrap gap-3">
             <Button href="/contact" variant="green" size="lg">
@@ -184,30 +203,27 @@ export function HeroSection() {
             </Button>
 
             <div className="relative inline-block group">
-              {/* Tooltip Popup (Upar aur halka Right me - Jaise image_c59ec2.png me hai) */}
+              {/* Tooltip Popup */}
               <span className="absolute bottom-full left-1/2 mb-2 z-10 scale-0 opacity-0 bg-blue-600 text-white text-lg font-semibold px-3 py-1.5 rounded-lg shadow-md transition-all duration-200 origin-bottom center group-hover:scale-100 group-hover:opacity-100 whitespace-nowrap">
                 Call Now
-                {/* Tooltip Arrow */}
                 <span className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-blue-600"></span>
               </span>
 
-              {/* Icon Button (Original lg size, borders hataye gaye hain) */}
+              {/* Icon Button */}
               <Button 
                 href={`tel:${PHONE}`} 
                 variant="ghost" 
                 className="flex h-12 w-12 items-center justify-center rounded-full bg-[#f8fafc] p-0 text-[#2563eb] hover:bg-[#f1f5f9] transition-colors focus:ring-0 focus-visible:ring-0 shadow-sm"
-                >
-                {/* Icon ko bada karne ke liye h-6 w-6 ya scale use karein */}
+              >
                 <span className="h-6 w-6 flex items-center justify-center [&>svg]:h-full [&>svg]:w-full">
                   {Icons.phone}
                 </span>
               </Button>
             </div>
-            
           </div>
         </div>
 
-        {/* Render merged compact form component */}
+        {/* Render merged form component */}
         <InlineLeadForm />
       </div>
     </section>
