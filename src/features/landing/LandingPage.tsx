@@ -1,8 +1,8 @@
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { StatsGrid } from "@/components/sections/StatsGrid";
 import { WhyChooseGrid } from "@/components/sections/WhyChooseGrid";
-import { HeroSection } from "./components/HeroSection";
-import { SbiBanner } from "./components/SbiBanner";
+import { HeroSection } from "./components/1_HeroSection";
+import { SbiBanner } from "./components/2_SbiBanner";
 import { UspSection } from "./components/UspSection";
 import { ServicesPreview } from "./components/ServicesPreview";
 import { ProcessSection } from "./components/ProcessSection";

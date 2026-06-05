@@ -1,35 +1,80 @@
-export type EmiResult = {
-  emi: number;
+export interface SchedulePeriod {
+  period: number; // Month number or Year number
+  principalPaid: number;
+  interestPaid: number;
   totalPayment: number;
-  totalInterest: number;
-  principalPercent: number;
-  interestPercent: number;
-};
+  remainingBalance: number;
+}
 
-export function calculateEmi(
-  principal: number,
-  annualRate: number,
-  tenureYears: number
-): EmiResult {
-  const monthlyRate = annualRate / 12 / 100;
-  const months = tenureYears * 12;
+export interface YearlySchedule extends SchedulePeriod {
+  months: SchedulePeriod[];
+}
 
-  const emi =
-    monthlyRate > 0
-      ? (principal * monthlyRate * Math.pow(1 + monthlyRate, months)) /
-        (Math.pow(1 + monthlyRate, months) - 1)
-      : principal / months;
+export function calculateEmi(amount: number, rate: number, tenureYears: number) {
+  const monthlyRate = rate / 12 / 100;
+  const totalMonths = tenureYears * 12;
+  
+  // Monthly EMI Calculation
+  const emi = monthlyRate === 0 
+    ? amount / totalMonths 
+    : (amount * monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) / (Math.pow(1 + monthlyRate, totalMonths) - 1);
 
-  const totalPayment = emi * months;
-  const totalInterest = totalPayment - principal;
-  const principalPercent = totalPayment > 0 ? (principal / totalPayment) * 100 : 0;
-  const interestPercent = totalPayment > 0 ? (totalInterest / totalPayment) * 100 : 0;
+  const totalPayment = emi * totalMonths;
+  const totalInterest = totalPayment - amount;
+
+  // Generate Schedule Logic
+  let currentBalance = amount;
+  const yearlySchedule: YearlySchedule[] = [];
+  let currentYearMonths: SchedulePeriod[] = [];
+  
+  let yearlyPrincipal = 0;
+  let yearlyInterest = 0;
+  let yearlyTotal = 0;
+
+  for (let month = 1; month <= totalMonths; month++) {
+    const interestPaid = currentBalance * monthlyRate;
+    const principalPaid = emi - interestPaid;
+    currentBalance = Math.max(0, currentBalance - principalPaid);
+
+    const monthData: SchedulePeriod = {
+      period: month,
+      principalPaid,
+      interestPaid,
+      totalPayment: emi,
+      remainingBalance: currentBalance,
+    };
+    currentYearMonths.push(monthData);
+
+    yearlyPrincipal += principalPaid;
+    yearlyInterest += interestPaid;
+    yearlyTotal += emi;
+
+    // Har 12 mahine baad ya loan khatam hone par ek saal complete karo
+    if (month % 12 === 0 || month === totalMonths) {
+      const yearNumber = Math.ceil(month / 12);
+      yearlySchedule.push({
+        period: yearNumber,
+        principalPaid: yearlyPrincipal,
+        interestPaid: yearlyInterest,
+        totalPayment: yearlyTotal,
+        remainingBalance: currentBalance,
+        months: currentYearMonths,
+      });
+
+      // Reset yearly accumulators
+      yearlyPrincipal = 0;
+      yearlyInterest = 0;
+      yearlyTotal = 0;
+      currentYearMonths = [];
+    }
+  }
 
   return {
     emi,
     totalPayment,
     totalInterest,
-    principalPercent: Number(principalPercent.toFixed(1)),
-    interestPercent: Number(interestPercent.toFixed(1)),
+    principalPercent: Math.round((amount / totalPayment) * 100),
+    interestPercent: Math.round((totalInterest / totalPayment) * 100),
+    schedule: yearlySchedule,
   };
 }
