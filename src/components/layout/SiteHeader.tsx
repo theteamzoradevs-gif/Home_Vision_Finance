@@ -40,7 +40,7 @@ export function SiteHeader() {
     <>
       <header
         className={cn(
-          "fixed left-0 right-0 top-[52px] z-[1000] border-b border-slate-200 bg-white/95 backdrop-blur-md transition-shadow duration-300",
+          "fixed left-0 right-0 top-0 z-[1000] border-b border-slate-200 bg-white/95 backdrop-blur-md transition-shadow duration-300",
           scrolled && "shadow-card"
         )}
       >

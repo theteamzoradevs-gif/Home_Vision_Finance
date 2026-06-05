@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { DM_Sans, Plus_Jakarta_Sans } from "next/font/google";
-import { PromoRibbon } from "@/components/layout/PromoRibbon";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { WhatsAppFab } from "@/components/layout/WhatsAppFab";
 import { MobileCallBar } from "@/components/layout/MobileCallBar";
+import { FloatingActionBar } from "@/components/layout/FloatingActionBar";
 import { BRAND } from "@/lib/constants";
 import "./globals.css";
 
@@ -34,10 +34,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${heading.variable} ${body.variable}`}>
       <body className="pb-16 lg:pb-0">
-        <PromoRibbon />
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />
+        <FloatingActionBar />
         <WhatsAppFab />
         <MobileCallBar />
       </body>

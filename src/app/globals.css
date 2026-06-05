@@ -20,4 +20,35 @@
   .section-padding {
     @apply py-16 sm:py-20 lg:py-24;
   }
+
+  .marquee-track {
+    animation: marquee 30s linear infinite;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  .blog-card-premium {
+    @apply transition-all duration-300;
+  }
+
+  .blog-card-premium:hover {
+    @apply -translate-y-2 border-brand/50 bg-brand-pale/30 shadow-[0_16px_48px_rgba(26,79,158,0.18)] ring-2 ring-brand/20;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
 }

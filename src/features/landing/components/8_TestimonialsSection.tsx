@@ -10,22 +10,19 @@ export function TestimonialsSection() {
         <SectionHeading label="Client Testimonials" title="Trusted by Families Across India" centered />
         <div className="grid gap-6 md:grid-cols-3">
           {REVIEWS.map((review) => (
-            <Card key={review.name}>
-              <div className="mb-3 flex gap-0.5 text-amber-400">
+            <Card key={review.name} className="hover:-translate-y-2 hover:shadow-card-lg">
+              <h3 className="font-heading text-lg font-bold text-navy">{review.name}</h3>
+              <p className="mt-0.5 text-xs text-slate-400">{review.city}</p>
+              <div className="mt-3 flex gap-0.5 text-amber-400">
                 {Array.from({ length: review.rating }).map((_, i) => (
-                  <span key={i}>{Icons.star}</span>
+                  <span key={i} className="[&>svg]:fill-amber-400">
+                    {Icons.star}
+                  </span>
                 ))}
               </div>
-              <p className="mb-5 text-[15px] italic leading-relaxed text-slate-600">&ldquo;{review.text}&rdquo;</p>
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-pale font-bold text-brand">
-                  {review.name[0]}
-                </div>
-                <div>
-                  <div className="text-sm font-semibold text-navy">{review.name}</div>
-                  <div className="text-xs text-slate-400">{review.city}</div>
-                </div>
-              </div>
+              <p className="mt-4 text-[15px] leading-relaxed text-slate-600">
+                &ldquo;{review.text}&rdquo;
+              </p>
             </Card>
           ))}
         </div>

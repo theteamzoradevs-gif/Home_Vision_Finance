@@ -14,11 +14,11 @@ export const BANKS = [
     imageUrl: "https://imgs.search.brave.com/3c9UOissBcJ5OtR1ag3di_wa6WeqppVSvpfRHnaxqXc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2FlL2M3/LzM2L2FlYzczNjdl/ZWQ1N2JhOGNmOGU3/OGRkYTQ1N2NlNGUz/LmpwZw" 
   },
   { 
-    name: "ICICI Bank", 
-    full: "ICICI Bank Ltd.", 
+    name: "Central Bank Of India", 
+    full: "Central Bank Of India", 
     color: "#f37021", 
     priority: false, 
-    imageUrl: "https://imgs.search.brave.com/O-r13BDxoLZVWW0q--U4naZBCBSZhwEwAuPRp7w3sDI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvcHJl/dmlld3MvMDIwLzE5/MC80MzUvbm9uXzJ4/L2ljaWNpLWxvZ28t/aWNpY2ktaWNvbi1m/cmVlLWZyZWUtdmVj/dG9yLmpwZw" 
+    imageUrl: "https://imgs.search.brave.com/LG3X5TD8P6j1sL5Vq8sm5NiIfQ2-wJtaPSEvCPDHLuc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc2Vla2xvZ28u/Y29tL2xvZ28tcG5n/LzI0LzEvY2VudHJh/bC1iYW5rLW9mLWlu/ZGlhLTE5MTEtbG9n/by1wbmdfc2Vla2xv/Z28tMjQ4NTI1LnBu/Zw" 
   },
   { 
     name: "PNB", 
@@ -75,36 +75,36 @@ export const USPS = [
   },
 ] as const;
 
-export const WHY_CHOOSE = [
+export const WHY_CHOOSE_ITEMS = [
   {
-    title: "Fast File Login",
-    description:
-      "Your loan file gets logged in within 24–48 hours of document submission.",
+    value: "01",
+    label: "Fast File Login",
+    description: "Your loan file gets logged in within 24–48 hours of document submission.",
   },
   {
-    title: "Smooth Coordination",
-    description:
-      "End-to-end coordination between you, the bank, and the builder.",
+    value: "02",
+    label: "Smooth Coordination",
+    description: "End-to-end coordination between you, the bank, and the builder.",
   },
   {
-    title: "Regular Updates",
-    description:
-      "Track your loan status at every stage with proactive communication.",
+    value: "03",
+    label: "Regular Updates",
+    description: "Track your loan status at every stage with proactive communication.",
   },
   {
-    title: "Support Till Disbursement",
-    description:
-      "Full support from application to final disbursement into your account.",
+    value: "04",
+    label: "Support Till Disbursement",
+    description: "Full support from application to final disbursement into your account.",
   },
   {
-    title: "Builder & Broker Assistance",
-    description:
-      "Special support for real estate professionals with fast processing.",
+    value: "05",
+    label: "Builder & Broker Assistance",
+    description: "Special support for real estate professionals with fast processing.",
   },
   {
-    title: "Multi-Bank Access",
-    description:
-      "Compare rates across SBI, HDFC, ICICI, PNB & Bank of Baroda.",
+    value: "06",
+    label: "Multi-Bank Access",
+    description: "Compare rates across SBI, HDFC, ICICI, PNB & Bank of Baroda.",
   },
 ] as const;
 
