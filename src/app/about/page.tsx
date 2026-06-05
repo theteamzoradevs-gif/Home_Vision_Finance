@@ -24,7 +24,7 @@ export default function AboutPage() {
       <MissionVisionCards />
       <WhyChooseGrid />
 
-      <section className="section-padding bg-slate-50">
+      <section className="section-padding pt-5 bg-slate-50">
         <div className="container-site">
           <SectionHeading label="Our Impact" title="Numbers That Speak for Us" centered />
           <StatsGrid />

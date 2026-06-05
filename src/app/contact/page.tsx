@@ -20,7 +20,7 @@ export default function ContactPage() {
         description="Reach out for home loan assistance, eligibility checks, or partnership inquiries. Our team responds within 24 hours."
       />
 
-      <section className="section-padding bg-white">
+      <section className="section-padding pt-5 bg-white">
         <div className="container-site grid gap-12 lg:grid-cols-[1fr_1fr]">
           <div>
             <h2 className="font-heading text-2xl font-bold text-navy">Contact Information</h2>

@@ -15,7 +15,7 @@ export function BrokerSection() {
         </div>
         <div className="flex flex-wrap gap-3">
           <Button href={`tel:${PHONE}`} variant="white">
-            📞 Call Abhishek
+            📞 Call Now
           </Button>
           <Button href={WHATSAPP_HOME} variant="green" external>
             💬 WhatsApp Now

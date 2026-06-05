@@ -18,13 +18,16 @@ export default function ServicesPage() {
         title="Complete Home Loan Solutions"
         description="From fresh purchases to balance transfers — we compare top banks and deliver ₹0 processing fee support end to end."
       />
-      <section className="section-padding bg-white">
+      
+      {/* section-padding ke sath pt-0 add kiya hai top margin/padding zero karne ke liye */}
+      <section className="section-padding pt-5 bg-white">
         <div className="container-site space-y-20 sm:space-y-24">
           {PAGE_SERVICES.map((service, i) => (
             <ServiceDetailBlock key={service.slug} service={service} reverse={i % 2 === 1} />
           ))}
         </div>
       </section>
+
       <CtaBanner
         layout="split"
         title="Ready to Find the Best Loan for You?"
