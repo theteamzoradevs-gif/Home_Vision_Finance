@@ -24,7 +24,7 @@ export function ServicesPreview() {
                 <h3 className="font-heading text-lg font-semibold text-navy">{service.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-slate-500">{service.description}</p>
                 <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand">
-                  Learn more {Icons.arrow}
+                  Apply Now
                 </span>
               </Card>
             </Link>

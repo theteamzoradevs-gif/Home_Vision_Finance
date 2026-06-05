@@ -17,7 +17,7 @@ export default function EmiCalculatorPage() {
         title="Home Loan EMI Calculator"
         description="Get instant estimates for monthly EMI, total interest, and total repayment. Make informed decisions before you apply."
       />
-      <section className="pt-6 pb-20 bg-white">
+      <section className="pt-5 pb-20 bg-white">
         <div className="container-site">
           {/* DEDICATED PAGE: schedule dikhane ke liye true pass kiya */}
           <EmiCalculatorWidget showScheduleInline={true} />

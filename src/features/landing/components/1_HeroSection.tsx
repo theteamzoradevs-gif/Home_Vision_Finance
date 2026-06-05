@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image"; 
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
@@ -58,7 +59,7 @@ function InlineLeadForm() {
   }
 
   return (
-    <div className="relative overflow-hidden rounded-[20px] border border-slate-200 bg-white p-5 shadow-card-lg">
+    <div className="relative overflow-hidden rounded-[20px] border border-slate-200 bg-white/95 backdrop-blur-sm p-5 shadow-card-lg">
       <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand to-accent" />
       <h3 className="font-heading text-base font-bold text-navy">Get Free Consultation</h3>
       <p className="mb-3 text-xs text-slate-500">Expert callback in minutes</p>
@@ -128,11 +129,33 @@ export function HeroSection() {
   const currentWord = useTypewriter(WORDS);
 
   return (
-    <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-br from-slate-50 via-brand-pale/50 to-white pb-16 pt-24 sm:pb-20 sm:pt-28">
-      <div className="pointer-events-none absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-brand/5" />
-      <div className="container-site relative grid items-center gap-12 lg:grid-cols-[1fr_360px] lg:gap-16">
+    // Fixed: Standardized relative stacking context
+    <section className="relative overflow-hidden border-b border-slate-200 pb-16 pt-24 sm:pb-20 sm:pt-28 min-h-[600px] flex items-center w-full">
+      
+      {/* 1. Background Image Layer - Reset pointer events to avoid text blocking */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Image
+          src="/hero-bg.jpg" 
+          alt="Happy Family Dream Home Vision Finance"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center transform scale-100"
+        />
+      </div>
+
+      {/* 2. Light Blue Vibrant Overlay Layer - Changed opacity ratios and gradient distribution for bright rendering */}
+      {/* <div className="absolute inset-0 z-10 bg-gradient-to-r from-slate-50/90 via-blue-50/75 to-blue-100/40 mix-blend-normal" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-t from-white/95 via-transparent to-transparent" /> */}
+
+      {/* 2. Light Blue Radiant/Vibrant Overlay Layer — Super Light Version */}
+<div className="absolute inset-0 z-10 bg-gradient-to-r from-white/10 via-blue-20/20 to-transparent" />
+<div className="absolute inset-0 z-10 bg-gradient-to-t from-white via-transparent to-transparent opacity-90" />
+
+      {/* 3. Real Layout Content Container */}
+      <div className="container-site relative z-20 grid items-center gap-12 lg:grid-cols-[1fr_360px] lg:gap-16 w-full">
         <div>
-          <div className="mb-4 inline-flex items-center gap-2 rounded-xl bg-brand px-5 py-2.5 text-sm font-bold text-white">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-xl bg-brand px-5 py-2.5 text-sm font-bold text-white shadow-sm">
             {Icons.shield} SBI Authorised Channel Partner
           </div>
           
@@ -147,31 +170,31 @@ export function HeroSection() {
             </span>
           </h1>
 
-          <p className="mt-4 max-w-lg text-base leading-relaxed text-slate-600 sm:text-lg">
+          <p className="mt-4 max-w-lg text-base leading-relaxed text-slate-700 sm:text-lg font-semibold">
             SBI is our authorised partner for priority support. We also compare offers across leading banks to get you the best fit.
           </p>
 
-          {/* Ultra-compact Tags with Smooth Vibrant Blue Hover Transition */}
+          {/* Ultra-compact Tags */}
           <div className="mt-6 flex flex-wrap gap-2">
             {TAGS.map((tag) => (
               <span
                 key={tag}
-                className="cursor-pointer rounded-full bg-[#004094] px-3 py-1 text-xs font-bold text-white transition-all duration-200 ease-in-out hover:bg-[#2563eb] shadow-[0_4px_10px_rgba(0,64,148,0.3)] hover:shadow-[0_4px_12px_rgba(37,99,235,0.45)]"
+                className="cursor-pointer rounded-full bg-[#004094] px-3 py-1 text-xs font-bold text-white transition-all duration-200 ease-in-out hover:bg-[#2563eb] shadow-[0_4px_10px_rgba(0,64,148,0.25)] hover:shadow-[0_4px_12px_rgba(37,99,235,0.4)]"
               >
                 {tag}
               </span>
             ))}
           </div>
 
-          {/* Re-designed Smaller USPs Cards */}
+          {/* Smaller USPs Cards */}
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             {HERO_USPS.map((item) => (
               <div 
                 key={item.text} 
                 className={`flex items-center gap-3 rounded-xl border p-3.5 shadow-sm transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md ${
                   item.isGreen
-                    ? "border-amber-200/80 bg-amber-50/60 ring-1 ring-amber-200/50 hover:border-amber-300"
-                    : "border-slate-100 bg-white hover:border-blue-200"
+                    ? "border-amber-200/80 bg-white/95 ring-1 ring-amber-200/50 hover:border-amber-300"
+                    : "border-slate-200/60 bg-white/95 hover:border-blue-200"
                 }`}
               >
                 <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${
@@ -188,7 +211,7 @@ export function HeroSection() {
                     {item.text}
                   </h4>
                   <p className={`text-[11px] mt-0.5 ${
-                    item.isGreen ? "text-amber-600/80" : "text-slate-400"
+                    item.isGreen ? "text-amber-600/80" : "text-slate-500"
                   }`}>
                     {item.subtitle}
                   </p>
@@ -198,7 +221,7 @@ export function HeroSection() {
           </div>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button href="/contact" variant="green" size="lg">
+            <Button href="/contact" variant="green" size="lg" className="shadow-md">
               Get Free Consultation →
             </Button>
 
@@ -213,7 +236,7 @@ export function HeroSection() {
               <Button 
                 href={`tel:${PHONE}`} 
                 variant="ghost" 
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-[#f8fafc] p-0 text-[#2563eb] hover:bg-[#f1f5f9] transition-colors focus:ring-0 focus-visible:ring-0 shadow-sm"
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-white p-0 text-[#2563eb] hover:bg-[#f1f5f9] transition-colors focus:ring-0 focus-visible:ring-0 shadow-sm border border-slate-200/60"
               >
                 <span className="h-6 w-6 flex items-center justify-center [&>svg]:h-full [&>svg]:w-full">
                   {Icons.phone}
