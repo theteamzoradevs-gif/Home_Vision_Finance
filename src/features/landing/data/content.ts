@@ -1,9 +1,39 @@
 export const BANKS = [
-  { name: "SBI", full: "State Bank of India", color: "#1a4f9e", priority: true },
-  { name: "HDFC Bank", full: "HDFC Bank Ltd.", color: "#004c8f", priority: false },
-  { name: "ICICI Bank", full: "ICICI Bank Ltd.", color: "#f37021", priority: false },
-  { name: "PNB", full: "Punjab National Bank", color: "#b71c1c", priority: false },
-  { name: "Bank of Baroda", full: "Bank of Baroda", color: "#f26522", priority: false },
+  { 
+    name: "SBI", 
+    full: "State Bank of India", 
+    color: "#1a4f9e", 
+    priority: true, 
+    imageUrl: "https://imgs.search.brave.com/oVAMs0BnPVMu49_02ZkxNK1Jlyr5cfmz7uxL4g-Yl14/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9sb2dv/d2lrLmNvbS9jb250/ZW50L3VwbG9hZHMv/aW1hZ2VzL3N0YXRl/LWJhbmstb2YtaW5k/aWE0OTg4LmxvZ293/aWsuY29tLndlYnA" 
+  },
+  { 
+    name: "HDFC Bank", 
+    full: "HDFC Bank Ltd.", 
+    color: "#004c8f", 
+    priority: false, 
+    imageUrl: "https://imgs.search.brave.com/3c9UOissBcJ5OtR1ag3di_wa6WeqppVSvpfRHnaxqXc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2FlL2M3/LzM2L2FlYzczNjdl/ZWQ1N2JhOGNmOGU3/OGRkYTQ1N2NlNGUz/LmpwZw" 
+  },
+  { 
+    name: "ICICI Bank", 
+    full: "ICICI Bank Ltd.", 
+    color: "#f37021", 
+    priority: false, 
+    imageUrl: "https://imgs.search.brave.com/O-r13BDxoLZVWW0q--U4naZBCBSZhwEwAuPRp7w3sDI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvcHJl/dmlld3MvMDIwLzE5/MC80MzUvbm9uXzJ4/L2ljaWNpLWxvZ28t/aWNpY2ktaWNvbi1m/cmVlLWZyZWUtdmVj/dG9yLmpwZw" 
+  },
+  { 
+    name: "PNB", 
+    full: "Punjab National Bank", 
+    color: "#b71c1c", 
+    priority: false, 
+    imageUrl: "https://imgs.search.brave.com/-FNQFzuUunF3_ag-1UPlySsHsQToZD9xTNcMDtvJNTk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvcHJl/dmlld3MvMDIwLzE5/MC83MTIvbm9uXzJ4/L3B1bmphYi1uYXRp/b25hbC1iYW5rLXBu/Yi1iYW5rLWxvZ28t/ZnJlZS1mcmVlLXZl/Y3Rvci5qcGc" 
+  },
+  { 
+    name: "Bank of Baroda", 
+    full: "Bank of Baroda", 
+    color: "#f26522", 
+    priority: false, 
+    imageUrl: "https://imgs.search.brave.com/2xNzHpk5CkwWItVmg45c-EOL8bHSv9Ajw9PLyVlPMEM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzE3Lzg3/LzVjLzE3ODc1YzBk/NTZkNjk4M2IxMzY4/MmJlZjE3NDY0ZDIy/LmpwZw" 
+  },
 ] as const;
 
 export const USPS = [

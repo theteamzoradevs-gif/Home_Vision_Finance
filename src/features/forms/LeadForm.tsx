@@ -58,7 +58,12 @@ export function LeadForm({
           label="Full Name"
           placeholder="Enter your name"
           value={form.name}
-          onChange={(e) => setForm({ ...form, name: e.target.value })}
+          // Yahan changes kiye hain: sirf letters aur spaces allow honge
+          pattern="^[a-zA-Z\s]+$"
+          onChange={(e) => {
+            const onlyLetters = e.target.value.replace(/[^a-zA-Z\s]/g, "");
+            setForm({ ...form, name: onlyLetters });
+          }}
           required
         />
         <Input

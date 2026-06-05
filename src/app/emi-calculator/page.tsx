@@ -12,14 +12,15 @@ export const metadata = createPageMetadata(
 export default function EmiCalculatorPage() {
   return (
     <>
-      <PageHero
+      <PageHero className="mb-1"
         label="Plan Your Loan"
         title="Home Loan EMI Calculator"
         description="Get instant estimates for monthly EMI, total interest, and total repayment. Make informed decisions before you apply."
       />
-      <section className="section-padding bg-white">
+      <section className="pt-6 pb-20 bg-white">
         <div className="container-site">
-          <EmiCalculatorWidget />
+          {/* DEDICATED PAGE: schedule dikhane ke liye true pass kiya */}
+          <EmiCalculatorWidget showScheduleInline={true} />
         </div>
       </section>
       <CtaBanner title="Found Your Ideal EMI?" description="Apply now and let our experts find you the best rate across leading banks." />
