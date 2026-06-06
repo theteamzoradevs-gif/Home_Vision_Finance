@@ -1,73 +1,98 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import { Textarea } from "@/components/ui/Textarea";
+// 🌟 Linked real integration handler from contactService
+import { submitContactForm } from "@/lib/api/contactService";
 
+// ─── DATABASE ALIGNED FORM STATE TYPE ───
 type FormState = {
-  name: string;
+  fullName: string;
   email: string;
   phone: string;
-  subject: string;
+  serviceType: string;
   message: string;
 };
 
 type FormErrors = Partial<Record<keyof FormState, string>>;
 
-const SUBJECT_OPTIONS = [
+// 🌟 EXACT SCHEMA ENUM MATCHING OPTIONS
+const SERVICE_OPTIONS = [
   { value: "", label: "Select inquiry type" },
-  { value: "home-loan", label: "Home Loan" },
+  { value: "home loan", label: "Home Loan" },
+  { value: "loan against property", label: "Loan Against Property" },
   { value: "balance-transfer", label: "Balance Transfer" },
-  { value: "lap", label: "Loan Against Property" },
   { value: "other", label: "Other" },
 ];
 
 function validate(values: FormState): FormErrors {
   const errors: FormErrors = {};
-  if (!values.name.trim()) errors.name = "Name is required";
+  
+  if (!values.fullName.trim()) errors.fullName = "Full name is required";
+  
   if (!values.email.trim()) {
     errors.email = "Email is required";
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
     errors.email = "Enter a valid email address";
   }
+  
   if (!values.phone.trim()) {
     errors.phone = "Phone number is required";
   } else if (!/^[0-9]{10}$/.test(values.phone)) {
     errors.phone = "Enter a valid 10-digit mobile number";
   }
-  if (!values.subject) errors.subject = "Please select an inquiry type";
-  if (!values.message.trim()) errors.message = "Message is required";
-  else if (values.message.trim().length < 10) errors.message = "Message must be at least 10 characters";
+  
+  if (!values.serviceType) errors.serviceType = "Please select an inquiry type";
+  
+  if (!values.message.trim()) {
+    errors.message = "Message is required";
+  } else if (values.message.trim().length < 10) {
+    errors.message = "Message must be at least 10 characters";
+  }
+  
   return errors;
 }
 
 export function ContactForm() {
+  // 🌟 State initialized with real backend Mongoose keys
   const [values, setValues] = useState<FormState>({
-    name: "",
+    fullName: "",
     email: "",
     phone: "",
-    subject: "",
+    serviceType: "",
     message: "",
   });
+  
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError("");
+    
     const nextErrors = validate(values);
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
 
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 600));
-    console.log("Contact:", values);
-    setLoading(false);
-    setSubmitted(true);
-    setValues({ name: "", email: "", phone: "", subject: "", message: "" });
-    setTimeout(() => setSubmitted(false), 5000);
+    try {
+      // 🚀 REST API LAYER CALL: Transmitting exact structured payload to /home/apply
+      await submitContactForm(values);
+      
+      setSubmitted(true);
+      setValues({ fullName: "", email: "", phone: "", serviceType: "", message: "" });
+      setTimeout(() => setSubmitted(false), 5000);
+    } catch (err: any) {
+      console.error("Form transmission failed:", err);
+      setSubmitError(err.message || "Failed to submit inquiry. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
@@ -88,13 +113,20 @@ export function ContactForm() {
       <h3 className="font-heading text-xl font-bold text-navy">Send an Inquiry</h3>
       <p className="mb-5 text-sm text-slate-500">Fill in your details and we&apos;ll respond promptly.</p>
 
+      {submitError && (
+        <div className="mb-4 p-3 bg-red-50 text-red-600 rounded-xl text-xs font-medium">
+          {submitError}
+        </div>
+      )}
+
       <Input
         label="Full Name"
-        value={values.name}
-        onChange={(e) => setValues({ ...values, name: e.target.value })}
-        error={errors.name}
+        value={values.fullName}
+        onChange={(e) => setValues({ ...values, fullName: e.target.value })}
+        error={errors.fullName}
         required
       />
+      
       <Input
         label="Email Address"
         type="email"
@@ -103,6 +135,7 @@ export function ContactForm() {
         error={errors.email}
         required
       />
+      
       <Input
         label="Mobile Number"
         type="tel"
@@ -112,14 +145,16 @@ export function ContactForm() {
         error={errors.phone}
         required
       />
+      
       <Select
         label="Inquiry Type"
-        options={SUBJECT_OPTIONS}
-        value={values.subject}
-        onChange={(e) => setValues({ ...values, subject: e.target.value })}
-        error={errors.subject}
+        options={SERVICE_OPTIONS}
+        value={values.serviceType}
+        onChange={(e) => setValues({ ...values, serviceType: e.target.value })}
+        error={errors.serviceType}
         required
       />
+      
       <Textarea
         label="Message"
         value={values.message}
@@ -127,6 +162,7 @@ export function ContactForm() {
         error={errors.message}
         required
       />
+      
       <Button type="submit" className="w-full justify-center" disabled={loading}>
         {loading ? "Sending..." : "Send Inquiry"}
       </Button>
