@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { Icons } from "@/components/ui/icons";
 import { PHONE, WHATSAPP_HOME } from "@/lib/constants";
 
 export function BrokerSection() {
@@ -9,16 +10,16 @@ export function BrokerSection() {
           <h2 className="font-heading text-2xl font-bold sm:text-3xl">
             Builders, Brokers & CAs — Let&apos;s Work Together
           </h2>
-          <p className="mt-3 text-white/80 leading-relaxed">
+          <p className="mt-3 leading-relaxed text-white/80">
             Attractive payout and fast coordination support. We prioritize your clients&apos; files for quick processing.
           </p>
         </div>
         <div className="flex flex-wrap gap-3">
           <Button href={`tel:${PHONE}`} variant="white">
-            📞 Call Now
+            {Icons.phone} Call Now
           </Button>
-          <Button href={WHATSAPP_HOME} variant="green" external>
-            💬 WhatsApp Now
+          <Button href={WHATSAPP_HOME} variant="white" external>
+            {Icons.wa} WhatsApp Now
           </Button>
         </div>
       </div>

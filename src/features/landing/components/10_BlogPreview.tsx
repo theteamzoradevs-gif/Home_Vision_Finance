@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BlogCard } from "@/features/blogs/BlogCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { BLOG_POSTS } from "@/features/landing/data/content";
 
@@ -6,7 +7,7 @@ export function BlogPreview() {
   const posts = BLOG_POSTS.slice(0, 3);
 
   return (
-    <section className="section-padding bg-slate-50">
+    <section className="section-padding section-gradient-neutral">
       <div className="container-site">
         <SectionHeading
           label="Resources"
@@ -14,22 +15,15 @@ export function BlogPreview() {
           description="Tips, guides, and insights for smarter home loan decisions."
           centered
         />
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="card-grid-equal gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
-            <Link
-              key={post.slug}
-              href="/blogs"
-              className="rounded-2xl border border-slate-200 bg-white p-6 transition hover:-translate-y-1 hover:shadow-card-lg"
-            >
-              <span className="inline-block rounded-full bg-brand-pale px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-brand">
-                {post.tag}
-              </span>
-              <h3 className="mt-3 font-heading text-lg font-semibold leading-snug text-navy">{post.title}</h3>
-              <p className="mt-2 text-xs text-slate-400">
-                {post.date} · {post.readTime}
-              </p>
-            </Link>
+            <BlogCard key={post.slug} post={post} />
           ))}
+        </div>
+        <div className="mt-10 text-center">
+          <Link href="/blogs" className="text-sm font-semibold text-brand hover:underline">
+            View all articles
+          </Link>
         </div>
       </div>
     </section>

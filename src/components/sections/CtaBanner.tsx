@@ -16,7 +16,7 @@ export function CtaBanner({
   const isSplit = layout === "split";
 
   return (
-    <section className="border-t border-slate-200 bg-gradient-to-br from-white via-brand-pale/60 to-brand-pale px-4 py-16 sm:py-20">
+    <section className="border-t border-slate-200 bg-gradient-to-br from-white via-brand-pale/80 to-brand-pale px-4 py-16 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] sm:py-20">
       <div className={cn("container-site", isSplit ? "" : "text-center")}>
         {isSplit ? (
           <div className="flex flex-col items-start gap-6 lg:flex-row lg:items-center lg:justify-between">

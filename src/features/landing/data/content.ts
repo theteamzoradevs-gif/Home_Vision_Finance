@@ -145,7 +145,19 @@ export const DOCUMENTS = [
   "Passport Size Photos",
 ] as const;
 
-export const BLOG_POSTS = [
+export type BlogPost = {
+  slug: string;
+  title: string;
+  tag: string;
+  date: string;
+  readTime: string;
+  featured: boolean;
+  excerpt: string;
+  author: string;
+  content: string[];
+};
+
+export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "sbi-home-loan-rates-2026",
     title: "SBI Home Loan Interest Rates 2026 — Complete Guide",
@@ -155,6 +167,13 @@ export const BLOG_POSTS = [
     featured: true,
     excerpt:
       "Everything you need to know about SBI home loan rates, eligibility, and how to get the best deal.",
+    author: "Home Vision Finance",
+    content: [
+      "State Bank of India continues to be one of the most preferred lenders for home loans in India. As an SBI Authorised Channel Partner, Home Vision Finance helps borrowers access priority processing and competitive rates.",
+      "Current SBI home loan rates typically start from 8.50% p.a. for salaried individuals, though the final rate depends on your credit profile, loan amount, and property type. Women borrowers may qualify for additional concessions.",
+      "To maximise your chances of approval, maintain a CIBIL score above 750, keep your debt-to-income ratio below 50%, and ensure all income documents are consistent across salary slips, Form 16, and bank statements.",
+      "Working with a channel partner can reduce processing time significantly. We coordinate directly with bank officials, track your file status, and ensure documentation is complete before submission — helping avoid delays and repeated visits.",
+    ],
   },
   {
     slug: "balance-transfer-guide",
@@ -165,6 +184,13 @@ export const BLOG_POSTS = [
     featured: false,
     excerpt:
       "Learn when balance transfer makes financial sense and how much you can save on EMI.",
+    author: "Home Vision Finance",
+    content: [
+      "A home loan balance transfer allows you to move your outstanding loan to another bank offering a lower interest rate. Even a 0.50% rate reduction on a ₹50 lakh loan can save lakhs over the loan tenure.",
+      "Balance transfer makes sense when you have completed at least 12 months of repayments, your credit score has improved since the original loan, or competing banks are offering significantly lower rates.",
+      "Consider processing fees, legal charges, and the remaining tenure before switching. A detailed cost-benefit analysis should account for both upfront costs and long-term EMI savings.",
+      "Home Vision Finance compares offers across SBI, HDFC, PNB, and other leading banks to find the optimal transfer option — often with zero processing fees through our partner network.",
+    ],
   },
   {
     slug: "documents-checklist",
@@ -175,6 +201,13 @@ export const BLOG_POSTS = [
     featured: false,
     excerpt:
       "A complete checklist to prepare your documents for faster loan approval.",
+    author: "Home Vision Finance",
+    content: [
+      "Having your documents ready before applying can cut approval time from weeks to days. Banks require identity proof, income verification, and property-related paperwork.",
+      "Identity documents include PAN card, Aadhaar card, and passport-size photographs. For salaried applicants, provide the last 3–6 months' salary slips, Form 16, and bank statements.",
+      "Self-employed borrowers should submit ITRs for the last 2–3 years, business proof, and GST returns where applicable. Property documents include the sale agreement, chain of title, and approved building plans.",
+      "Our team reviews your document set before bank submission, flagging gaps early so your file moves through eligibility and sanction stages without unnecessary back-and-forth.",
+    ],
   },
   {
     slug: "emi-planning-tips",
@@ -185,7 +218,15 @@ export const BLOG_POSTS = [
     featured: false,
     excerpt:
       "Smart strategies to plan your EMI and avoid financial stress after purchase.",
+    author: "Home Vision Finance",
+    content: [
+      "Your home loan EMI will likely be your largest monthly commitment. Planning ahead ensures you enjoy homeownership without financial strain.",
+      "Rule of thumb: keep total EMIs (including any existing loans) below 40–50% of net monthly income. Use our EMI calculator to model different loan amounts, rates, and tenures before committing.",
+      "Build a 6-month emergency fund covering EMIs and living expenses. This buffer protects you during job transitions or unexpected expenses without risking default.",
+      "Consider a slightly longer tenure for lower EMIs, but make periodic prepayments when possible to reduce total interest. Even one extra EMI per year can significantly shorten your loan duration.",
+      "Compare rates across multiple banks rather than accepting the first offer. A dedicated advisor can negotiate on your behalf and identify schemes with processing fee waivers.",
+    ],
   },
-] as const;
+];
 
 export const BLOG_CATEGORIES = ["All", "Interest Rates", "Balance Transfer", "Guide", "EMI"] as const;

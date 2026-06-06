@@ -11,7 +11,7 @@ export function PageHero({ label, title, description, className }: PageHeroProps
   return (
     <section
       className={cn(
-        "flex min-h-[300px] items-center border-b border-slate-200 bg-gradient-to-br from-slate-50 via-brand-pale/40 to-white pb-16 pt-24 sm:min-h-[340px] sm:pb-20 sm:pt-28",
+        "flex min-h-[260px] items-center border-b border-slate-200 bg-gradient-to-br from-slate-50 via-brand-pale/50 to-white pb-12 pt-24 sm:min-h-[300px] sm:pb-16 sm:pt-28 lg:min-h-[340px]",
         className
       )}
     >
@@ -19,8 +19,8 @@ export function PageHero({ label, title, description, className }: PageHeroProps
         {label && (
           <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">{label}</p>
         )}
-        <h1 className="font-heading text-3xl font-extrabold text-navy sm:text-4xl lg:text-5xl">{title}</h1>
-        <p className="mt-4 max-w-2xl text-lg leading-relaxed text-slate-600">{description}</p>
+        <h1 className="font-heading text-2xl font-extrabold text-navy sm:text-4xl lg:text-5xl">{title}</h1>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">{description}</p>
       </div>
     </section>
   );

@@ -23,7 +23,7 @@ export function SectionHeading({
         <p
           className={cn(
             "mb-2 text-xs font-bold uppercase tracking-[0.2em]",
-            light ? "text-accent-light" : "text-brand"
+            light ? "text-brand-light" : "text-brand"
           )}
         >
           {label}

@@ -2,7 +2,7 @@ import { PageHero } from "@/components/sections/PageHero";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { ContactForm } from "@/features/forms/ContactForm";
 import { Icons } from "@/components/ui/icons";
-import { ADDRESS, CONSULTANT, EMAIL, HOURS, PHONE, PHONE_DISPLAY, WHATSAPP_CONTACT } from "@/lib/constants";
+import { ADDRESS, CONSULTANT_ROLE, EMAIL, HOURS, PHONE, PHONE_DISPLAY, WHATSAPP_CONTACT } from "@/lib/constants";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata(
@@ -20,11 +20,13 @@ export default function ContactPage() {
         description="Reach out for home loan assistance, eligibility checks, or partnership inquiries. Our team responds within 24 hours."
       />
 
-      <section className="section-padding pt-5 bg-white">
+      <section className="section-padding bg-white pt-5">
         <div className="container-site grid gap-12 lg:grid-cols-[1fr_1fr]">
           <div>
             <h2 className="font-heading text-2xl font-bold text-navy">Contact Information</h2>
-            <p className="mt-2 text-slate-600">Speak directly with {CONSULTANT} or send an inquiry below.</p>
+            <p className="mt-2 text-slate-600">
+              Speak directly with our {CONSULTANT_ROLE.toLowerCase()} or send an inquiry below.
+            </p>
 
             <ul className="mt-8 space-y-5">
               <li className="flex gap-4 rounded-xl border border-slate-200 bg-slate-50 p-5">
@@ -59,7 +61,7 @@ export default function ContactPage() {
               href={WHATSAPP_CONTACT}
               target="_blank"
               rel="noreferrer"
-              className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#25D366] px-6 py-3 font-semibold text-white transition hover:opacity-90"
+              className="mt-6 inline-flex items-center gap-2 rounded-xl border-2 border-brand bg-transparent px-6 py-3 font-semibold text-brand transition hover:bg-brand hover:text-white"
             >
               {Icons.wa} Chat on WhatsApp
             </a>
@@ -78,7 +80,7 @@ export default function ContactPage() {
             aria-label="Map placeholder"
           >
             <div className="text-center">
-              <span className="text-4xl">📍</span>
+              <span className="flex justify-center text-brand">{Icons.map}</span>
               <p className="mt-2 text-sm">Google Map — Delhi NCR</p>
               <p className="text-xs text-slate-400">Embed your map iframe here</p>
             </div>

@@ -72,8 +72,8 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="rounded-2xl border border-accent/30 bg-accent-pale p-10 text-center" role="status">
-        <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-accent text-2xl text-white">
+      <div className="form-card p-10 text-center" role="status">
+        <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-brand text-2xl text-white">
           ✓
         </div>
         <h3 className="font-heading text-xl font-bold text-navy">Message Sent!</h3>
@@ -83,7 +83,11 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-2xl border border-slate-200 bg-white p-8 shadow-card" noValidate>
+    <form onSubmit={handleSubmit} className="form-card p-8" noValidate>
+      <div className="form-card-accent" />
+      <h3 className="font-heading text-xl font-bold text-navy">Send an Inquiry</h3>
+      <p className="mb-5 text-sm text-slate-500">Fill in your details and we&apos;ll respond promptly.</p>
+
       <Input
         label="Full Name"
         value={values.name}
@@ -124,7 +128,7 @@ export function ContactForm() {
         required
       />
       <Button type="submit" className="w-full justify-center" disabled={loading}>
-        {loading ? "Sending..." : "Send Inquiry →"}
+        {loading ? "Sending..." : "Send Inquiry"}
       </Button>
     </form>
   );

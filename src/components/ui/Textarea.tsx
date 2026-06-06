@@ -1,3 +1,4 @@
+import { useId } from "react";
 import { cn } from "@/lib/utils";
 import type { TextareaHTMLAttributes } from "react";
 
@@ -7,7 +8,8 @@ type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
 };
 
 export function Textarea({ label, error, className, id, ...props }: TextareaProps) {
-  const textareaId = id ?? label.toLowerCase().replace(/\s+/g, "-");
+  const generatedId = useId();
+  const textareaId = id ?? `${generatedId}-${label.toLowerCase().replace(/\s+/g, "-")}`;
 
   return (
     <div className="mb-4">
@@ -18,7 +20,7 @@ export function Textarea({ label, error, className, id, ...props }: TextareaProp
         id={textareaId}
         rows={4}
         className={cn(
-          "w-full resize-y rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-[15px] text-slate-800 outline-none transition focus:border-brand focus:bg-white focus:ring-2 focus:ring-brand/15",
+          "min-h-[120px] w-full resize-y rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-base text-slate-800 outline-none transition focus:border-brand focus:bg-white focus:ring-2 focus:ring-brand/15 active:border-brand sm:text-[15px]",
           error && "border-red-500 focus:border-red-500 focus:ring-red-500/15",
           className
         )}

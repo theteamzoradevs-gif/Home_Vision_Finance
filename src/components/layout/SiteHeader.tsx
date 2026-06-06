@@ -52,7 +52,7 @@ export function SiteHeader() {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-7 lg:flex" aria-label="Main navigation">
+          <nav className="hidden items-center gap-6 lg:flex" aria-label="Main navigation">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
@@ -131,7 +131,7 @@ export function SiteHeader() {
           <Button href={`tel:${PHONE}`} className="w-full justify-center">
             Call {BRAND}
           </Button>
-          <Button href="/contact" variant="green" className="w-full justify-center">
+          <Button href="/contact" className="w-full justify-center">
             Apply Now
           </Button>
         </div>

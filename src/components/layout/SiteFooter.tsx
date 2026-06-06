@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Icons, Logo } from "@/components/ui/icons";
 import {
   BRAND,
-  CONSULTANT,
+  CONSULTANT_ROLE,
   EMAIL,
   FOOTER_SERVICES,
   NAV_LINKS,
@@ -14,9 +14,9 @@ import {
 } from "@/lib/constants";
 
 const SOCIAL = [
-  { label: "WhatsApp", href: `https://wa.me/91${PHONE}`, icon: "💬" },
-  { label: "Call", href: `tel:${PHONE}`, icon: "📞" },
-  { label: "Email", href: `mailto:${EMAIL}`, icon: "✉️" },
+  { label: "WhatsApp", href: `https://wa.me/91${PHONE}`, icon: Icons.wa },
+  { label: "Call", href: `tel:${PHONE}`, icon: Icons.phone },
+  { label: "Email", href: `mailto:${EMAIL}`, icon: Icons.mail },
 ];
 
 export function SiteFooter() {
@@ -32,7 +32,9 @@ export function SiteFooter() {
             Your trusted home loan partner. SBI Authorised Channel Partner helping families get the best deals with ₹0 processing fees.
           </p>
           <p className="mt-4 text-sm text-white">
-            <span className="font-semibold">{CONSULTANT}</span>
+            <span className="font-semibold">{CONSULTANT_ROLE}</span>
+            <br />
+            SBI Authorised Channel Partner
             <br />
             {PHONE_DISPLAY}
           </p>
@@ -41,12 +43,14 @@ export function SiteFooter() {
               <a
                 key={s.label}
                 href={s.href}
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-lg transition hover:bg-brand hover:text-white"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-brand-light transition hover:bg-brand hover:text-white"
                 aria-label={s.label}
                 target={s.href.startsWith("http") ? "_blank" : undefined}
                 rel={s.href.startsWith("http") ? "noreferrer" : undefined}
               >
-                {s.icon}
+                <span className="flex h-5 w-5 items-center justify-center [&>svg]:h-full [&>svg]:w-full">
+                  {s.icon}
+                </span>
               </a>
             ))}
           </div>

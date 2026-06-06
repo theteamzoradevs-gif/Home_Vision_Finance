@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Icons } from "@/components/ui/icons";
+
+const CALLBACK_INPUT_ID = "callback-mobile-number";
 
 type CallbackModalProps = {
   open: boolean;
@@ -16,18 +18,101 @@ function validatePhone(phone: string) {
   return undefined;
 }
 
+function lockBodyScroll(scrollY: number) {
+  document.body.style.position = "fixed";
+  document.body.style.top = `-${scrollY}px`;
+  document.body.style.left = "0";
+  document.body.style.right = "0";
+  document.body.style.width = "100%";
+  document.body.style.overflow = "hidden";
+}
+
+function unlockBodyScroll(scrollY: number) {
+  document.body.style.position = "";
+  document.body.style.top = "";
+  document.body.style.left = "";
+  document.body.style.right = "";
+  document.body.style.width = "";
+  document.body.style.overflow = "";
+  window.scrollTo({ top: scrollY, left: 0, behavior: "auto" });
+}
+
 export function CallbackModal({ open, onClose }: CallbackModalProps) {
   const [phone, setPhone] = useState("");
   const [error, setError] = useState<string | undefined>();
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const scrollYRef = useRef(0);
+
   useEffect(() => {
     if (!open) return;
 
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    scrollYRef.current = window.scrollY;
+
+    // #region agent log
+    fetch("http://127.0.0.1:7773/ingest/70187406-a2fe-413e-a354-c324290141b0", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "f9f9bf" },
+      body: JSON.stringify({
+        sessionId: "f9f9bf",
+        runId: "post-fix",
+        hypothesisId: "A",
+        location: "CallbackModal.tsx:open",
+        message: "Modal opening - duplicate id check",
+        data: {
+          scrollY: window.scrollY,
+          duplicateMobileIds: document.querySelectorAll("#mobile-number").length,
+          callbackInputExists: !!document.getElementById(CALLBACK_INPUT_ID),
+        },
+        timestamp: Date.now(),
+      }),
+    }).catch(() => {});
+    // #endregion
+
+    lockBodyScroll(scrollYRef.current);
+
+    const onScroll = () => {
+      // #region agent log
+      fetch("http://127.0.0.1:7773/ingest/70187406-a2fe-413e-a354-c324290141b0", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "f9f9bf" },
+        body: JSON.stringify({
+          sessionId: "f9f9bf",
+          runId: "post-fix",
+          hypothesisId: "C",
+          location: "CallbackModal.tsx:scrollEvent",
+          message: "Scroll detected while modal open",
+          data: { scrollY: window.scrollY, savedScrollY: scrollYRef.current },
+          timestamp: Date.now(),
+        }),
+      }).catch(() => {});
+      // #endregion
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+
     window.setTimeout(() => {
-      document.getElementById("mobile-number")?.focus();
+      const input = document.getElementById(CALLBACK_INPUT_ID);
+      input?.focus({ preventScroll: true });
+      // #region agent log
+      fetch("http://127.0.0.1:7773/ingest/70187406-a2fe-413e-a354-c324290141b0", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "f9f9bf" },
+        body: JSON.stringify({
+          sessionId: "f9f9bf",
+          runId: "post-fix",
+          hypothesisId: "A",
+          location: "CallbackModal.tsx:afterFocus",
+          message: "After callback input focus",
+          data: {
+            scrollY: window.scrollY,
+            savedScrollY: scrollYRef.current,
+            focusedId: document.activeElement?.id,
+            focusedIsCallback: document.activeElement?.id === CALLBACK_INPUT_ID,
+          },
+          timestamp: Date.now(),
+        }),
+      }).catch(() => {});
+      // #endregion
     }, 50);
 
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -36,7 +121,28 @@ export function CallbackModal({ open, onClose }: CallbackModalProps) {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("scroll", onScroll);
+      const scrollBeforeRestore = window.scrollY;
+      unlockBodyScroll(scrollYRef.current);
+      // #region agent log
+      fetch("http://127.0.0.1:7773/ingest/70187406-a2fe-413e-a354-c324290141b0", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "f9f9bf" },
+        body: JSON.stringify({
+          sessionId: "f9f9bf",
+          runId: "post-fix",
+          hypothesisId: "B",
+          location: "CallbackModal.tsx:cleanup",
+          message: "Modal closing - scroll restore",
+          data: {
+            scrollBeforeRestore,
+            targetScrollY: scrollYRef.current,
+            scrollAfterRestore: window.scrollY,
+          },
+          timestamp: Date.now(),
+        }),
+      }).catch(() => {});
+      // #endregion
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [open, onClose]);
@@ -123,7 +229,7 @@ export function CallbackModal({ open, onClose }: CallbackModalProps) {
 
             <form onSubmit={handleSubmit} className="mt-6">
               <Input
-                id="mobile-number"
+                id={CALLBACK_INPUT_ID}
                 label="Mobile Number"
                 type="tel"
                 placeholder="10-digit mobile number"

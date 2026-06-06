@@ -28,7 +28,7 @@ export function DocumentsSection() {
           </div>
 
           <Button href="/contact" variant="primary" size="lg" className="mt-8">
-            Apply Now →
+            Apply Now
           </Button>
         </Card>
       </div>
