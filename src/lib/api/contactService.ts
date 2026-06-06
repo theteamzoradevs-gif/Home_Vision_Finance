@@ -1,9 +1,6 @@
 const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000/api";
 
-/**
- * 🚀 SUBMIT NEW CONTACT ENQUIRY (POST)
- * Target Endpoint Path: POST /api/home/apply
- */
+
 export const submitContactForm = async (plainFormDataObject: any) => {
   try {
     const res = await fetch(`${BASE_URL}/loan/apply`, {
