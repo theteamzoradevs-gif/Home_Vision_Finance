@@ -3,7 +3,7 @@ import { EmiCalculatorWidget } from "@/features/emi/EmiCalculatorWidget";
 
 export function EmiPreview() {
   return (
-    <section className="section-padding bg-slate-50">
+    <section className="section-padding section-gradient-neutral">
       <div className="container-site">
         <SectionHeading
           label="Plan Your Loan"

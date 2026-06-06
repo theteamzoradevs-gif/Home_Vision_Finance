@@ -20,7 +20,7 @@ function PartnerMarquee() {
             className="relative flex shrink-0 items-center justify-center rounded-lg p-2 transition-all duration-200 hover:scale-110"
           >
             {bank.priority && (
-              <span className="absolute -top-7 left-1/2 z-10 flex -translate-x-1/2 items-center gap-0.5 whitespace-nowrap rounded-full bg-emerald-600 px-2.5 py-0.5 text-[10px] font-bold text-white shadow-sm">
+              <span className="absolute -top-7 left-1/2 z-10 flex -translate-x-1/2 items-center gap-0.5 whitespace-nowrap rounded-full bg-brand px-2.5 py-0.5 text-[10px] font-bold text-white shadow-sm">
                 ★ Partner
               </span>
             )}
@@ -49,7 +49,7 @@ function PartnerMarquee() {
             className="relative flex items-center justify-center rounded-lg p-2 transition-all duration-200 hover:scale-110"
           >
             {bank.priority && (
-              <span className="absolute -top-7 left-1/2 z-10 flex -translate-x-1/2 items-center gap-0.5 whitespace-nowrap rounded-full bg-emerald-600 px-2.5 py-0.5 text-[10px] font-bold text-white shadow-sm">
+              <span className="absolute -top-7 left-1/2 z-10 flex -translate-x-1/2 items-center gap-0.5 whitespace-nowrap rounded-full bg-brand px-2.5 py-0.5 text-[10px] font-bold text-white shadow-sm">
                 ★ Partner
               </span>
             )}
@@ -85,7 +85,7 @@ export function SbiBanner() {
 
         <div className="mt-10">
           <Button href="/contact" variant="primary" size="lg">
-            Compare Rates Across Banks →
+            Compare Rates Across Banks
           </Button>
         </div>
       </div>

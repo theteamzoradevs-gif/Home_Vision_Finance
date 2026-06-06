@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply bg-white font-body text-slate-800 antialiased;
+    @apply overflow-x-hidden bg-white font-body text-slate-800 antialiased;
   }
 }
 
@@ -19,6 +19,22 @@
 
   .section-padding {
     @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .section-gradient-light {
+    @apply bg-gradient-to-b from-white via-brand-pale/30 to-white;
+  }
+
+  .section-gradient-neutral {
+    @apply bg-gradient-to-b from-white via-slate-50/50 to-white;
+  }
+
+  .card-grid-equal {
+    @apply grid items-stretch;
+  }
+
+  .card-grid-equal > * {
+    @apply h-full;
   }
 
   .marquee-track {
@@ -35,6 +51,14 @@
 
   .blog-card-premium:hover {
     @apply -translate-y-2 border-brand/50 bg-brand-pale/30 shadow-[0_16px_48px_rgba(26,79,158,0.18)] ring-2 ring-brand/20;
+  }
+
+  .form-card {
+    @apply relative overflow-hidden rounded-[20px] border border-slate-200 bg-white shadow-card-lg;
+  }
+
+  .form-card-accent {
+    @apply absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand to-brand-light;
   }
 }
 

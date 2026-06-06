@@ -49,7 +49,7 @@ export function calculateEmi(amount: number, rate: number, tenureYears: number) 
     yearlyInterest += interestPaid;
     yearlyTotal += emi;
 
-    // Har 12 mahine baad ya loan khatam hone par ek saal complete karo
+    // Complete a year every 12 months or at loan end
     if (month % 12 === 0 || month === totalMonths) {
       const yearNumber = Math.ceil(month / 12);
       yearlySchedule.push({

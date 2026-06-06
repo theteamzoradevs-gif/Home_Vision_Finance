@@ -45,7 +45,7 @@ export function SectionHeadingHighlight({
         <p
           className={cn(
             "mb-2 text-xs font-bold uppercase tracking-[0.2em]",
-            light ? "text-accent-light" : "text-brand"
+            light ? "text-brand-light" : "text-brand"
           )}
         >
           {label}
@@ -60,15 +60,14 @@ export function SectionHeadingHighlight({
       >
         {parts[0]}
         <span className="relative inline-block">
-          <span className="relative z-10">{highlightText}</span>
           <span
             className={cn(
-              "absolute inset-0 -mx-1 rounded-md bg-brand/25 motion-reduce:scale-x-100",
-              "origin-left scale-x-0 transition-transform duration-500 ease-out",
-              isVisible && "scale-x-100"
+              "relative z-10 inline-block rounded-md px-2 py-0.5 transition-all duration-500 ease-out",
+              isVisible ? "bg-brand text-white" : "text-navy"
             )}
-            aria-hidden
-          />
+          >
+            {highlightText}
+          </span>
         </span>
         {parts[1]}
       </h2>

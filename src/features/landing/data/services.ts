@@ -60,7 +60,7 @@ export const LANDING_SERVICES: ServiceItem[] = [
     title: "Top-Up Loan",
     description:
       "Get extra funds on your existing home loan at competitive rates with quick processing.",
-    icon: Icons.zap,
+    icon: Icons.trendingUp,
     slug: "top-up-loan",
     imageUrl: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
     highlights: ["Quick processing", "Competitive rates", "Minimal documentation"],

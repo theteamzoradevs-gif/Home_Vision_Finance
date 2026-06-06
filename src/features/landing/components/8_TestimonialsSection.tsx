@@ -5,12 +5,12 @@ import { REVIEWS } from "@/features/landing/data/content";
 
 export function TestimonialsSection() {
   return (
-    <section className="section-padding bg-slate-50">
+    <section className="section-padding section-gradient-neutral">
       <div className="container-site">
         <SectionHeading label="Client Testimonials" title="Trusted by Families Across India" centered />
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="card-grid-equal gap-6 md:grid-cols-3">
           {REVIEWS.map((review) => (
-            <Card key={review.name} className="hover:-translate-y-2 hover:shadow-card-lg">
+            <Card key={review.name} equalHeight className="hover:-translate-y-2 hover:shadow-card-lg">
               <h3 className="font-heading text-lg font-bold text-navy">{review.name}</h3>
               <p className="mt-0.5 text-xs text-slate-400">{review.city}</p>
               <div className="mt-3 flex gap-0.5 text-amber-400">
@@ -20,7 +20,7 @@ export function TestimonialsSection() {
                   </span>
                 ))}
               </div>
-              <p className="mt-4 text-[15px] leading-relaxed text-slate-600">
+              <p className="mt-4 flex-1 text-[15px] leading-relaxed text-slate-600">
                 &ldquo;{review.text}&rdquo;
               </p>
             </Card>

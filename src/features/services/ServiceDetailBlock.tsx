@@ -58,7 +58,7 @@ export function ServiceDetailBlock({ service, reverse = false }: ServiceDetailBl
         )}
         
         <Button href="/contact" variant="primary" size="lg" className="mt-8 w-fit">
-          Apply Now →
+          Apply Now
         </Button>
       </Card>
 

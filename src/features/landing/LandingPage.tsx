@@ -32,7 +32,7 @@ export function LandingPage() {
       <DocumentsSection />
       <BlogPreview />
       <ContactPreview />
-      <WhyChooseGrid light />
+      <WhyChooseGrid />
       <CtaBanner />
     </>
   );

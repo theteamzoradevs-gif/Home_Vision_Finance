@@ -17,13 +17,15 @@ export default function EmiCalculatorPage() {
         title="Home Loan EMI Calculator"
         description="Get instant estimates for monthly EMI, total interest, and total repayment. Make informed decisions before you apply."
       />
-      <section className="pt-5 pb-20 bg-white">
+      <section className="section-padding section-gradient-light pt-5">
         <div className="container-site">
-          {/* DEDICATED PAGE: schedule dikhane ke liye true pass kiya */}
           <EmiCalculatorWidget showScheduleInline={true} />
         </div>
       </section>
-      <CtaBanner title="Found Your Ideal EMI?" description="Apply now and let our experts find you the best rate across leading banks." />
+      <CtaBanner
+        title="Found Your Ideal EMI?"
+        description="Apply now and let our experts find you the best rate across leading banks."
+      />
     </>
   );
 }

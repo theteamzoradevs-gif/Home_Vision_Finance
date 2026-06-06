@@ -4,14 +4,12 @@ import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 const variants = {
   primary:
-    "bg-brand text-white shadow-md hover:bg-brand-light hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2",
-  green:
-    "bg-accent text-white shadow-md hover:bg-accent-light hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2",
+    "bg-brand text-white shadow-md hover:bg-brand-light hover:-translate-y-0.5 active:translate-y-0 active:bg-navy active:shadow-sm focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2",
   outline:
-    "border-2 border-brand bg-transparent text-brand hover:bg-brand hover:text-white focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2",
+    "border-2 border-brand bg-transparent text-brand hover:bg-brand hover:text-white active:bg-navy active:border-navy focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2",
   white:
-    "border border-slate-200 bg-white text-navy shadow-card hover:-translate-y-0.5 hover:shadow-card-lg focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2",
-  ghost: "bg-transparent text-slate-600 hover:text-brand",
+    "border border-slate-200 bg-white text-navy shadow-card hover:-translate-y-0.5 hover:shadow-card-lg active:translate-y-0 active:shadow-sm focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2",
+  ghost: "bg-transparent text-slate-600 hover:text-brand active:text-navy",
 };
 
 const sizes = {
