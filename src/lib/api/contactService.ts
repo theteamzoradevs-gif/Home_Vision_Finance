@@ -2,7 +2,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000/a
 
 /**
  * 🚀 SUBMIT NEW CONTACT ENQUIRY (POST)
- * Target Endpoint Path: POST /api/home/apply
+ * T
  */
 export const submitContactForm = async (plainFormDataObject: any) => {
   try {
