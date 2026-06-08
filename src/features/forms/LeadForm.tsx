@@ -119,7 +119,7 @@ export function LeadForm({
       <p className={cn("text-slate-500", isCompact ? "mb-3 text-xs" : "mb-5 text-sm")}>{subtitle}</p>
       
       {submitError && (
-        <div className="mb-4 p-2.5 bg-red-50 text-red-600 rounded-xl text-[11px] font-medium text-center">
+        <div role="alert" className="mb-4 rounded-xl bg-red-50 p-2.5 text-center text-xs font-medium text-red-600">
           {submitError}
         </div>
       )}
@@ -200,7 +200,7 @@ export function LeadForm({
           or
         </p>
         
-        <Button href={WHATSAPP_HOME} variant="outline" className="w-full justify-center" external>
+        <Button href={WHATSAPP_HOME} variant="whatsapp" className="w-full justify-center" external>
           {Icons.wa} WhatsApp Instant Response
         </Button>
         

@@ -21,7 +21,7 @@ function PartnerMarquee() {
           >
             {bank.priority && (
               <span className="absolute -top-7 left-1/2 z-10 flex -translate-x-1/2 items-center gap-0.5 whitespace-nowrap rounded-full bg-brand px-2.5 py-0.5 text-[10px] font-bold text-white shadow-sm">
-                ★ Partner
+                Partner
               </span>
             )}
 
@@ -50,7 +50,7 @@ function PartnerMarquee() {
           >
             {bank.priority && (
               <span className="absolute -top-7 left-1/2 z-10 flex -translate-x-1/2 items-center gap-0.5 whitespace-nowrap rounded-full bg-brand px-2.5 py-0.5 text-[10px] font-bold text-white shadow-sm">
-                ★ Partner
+                Partner
               </span>
             )}
             <div className="relative flex h-14 w-28 items-center justify-center overflow-hidden">

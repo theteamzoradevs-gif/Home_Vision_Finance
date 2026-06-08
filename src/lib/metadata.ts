@@ -6,11 +6,12 @@ export function createPageMetadata(
   description: string,
   path: string
 ): Metadata {
+  const resolvedTitle = title || BRAND;
   return {
-    title: `${title} | ${BRAND}`,
+    title: resolvedTitle,
     description,
     openGraph: {
-      title: `${title} | ${BRAND}`,
+      title: resolvedTitle,
       description,
       type: "website",
     },

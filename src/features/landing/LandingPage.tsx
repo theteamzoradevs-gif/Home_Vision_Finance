@@ -10,7 +10,6 @@ import { EmiPreview } from "./components/6_EmiPreview";
 import { TestimonialsSection } from "./components/8_TestimonialsSection";
 import { DocumentsSection } from "./components/9_DocumentsSection";
 import { BlogPreview } from "./components/10_BlogPreview";
-import { ContactPreview } from "./components/11_ContactPreview";
 import { BrokerSection } from "./components/7_BrokerSection";
 
 export function LandingPage() {
@@ -31,7 +30,6 @@ export function LandingPage() {
       <TestimonialsSection />
       <DocumentsSection />
       <BlogPreview />
-      <ContactPreview />
       <WhyChooseGrid />
       <CtaBanner />
     </>

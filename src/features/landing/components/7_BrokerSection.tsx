@@ -18,7 +18,7 @@ export function BrokerSection() {
           <Button href={`tel:${PHONE}`} variant="white">
             {Icons.phone} Call Now
           </Button>
-          <Button href={WHATSAPP_HOME} variant="white" external>
+          <Button href={WHATSAPP_HOME} variant="whatsapp" external>
             {Icons.wa} WhatsApp Now
           </Button>
         </div>

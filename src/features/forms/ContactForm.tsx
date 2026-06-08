@@ -114,7 +114,7 @@ export function ContactForm() {
       <p className="mb-5 text-sm text-slate-500">Fill in your details and we&apos;ll respond promptly.</p>
 
       {submitError && (
-        <div className="mb-4 p-3 bg-red-50 text-red-600 rounded-xl text-xs font-medium">
+        <div role="alert" className="mb-4 rounded-xl bg-red-50 p-3 text-xs font-medium text-red-600">
           {submitError}
         </div>
       )}

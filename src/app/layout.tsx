@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${heading.variable} ${body.variable}`}>
-      <body className="pb-16 lg:pb-0">
+      <body className="pb-16 text-[15px] sm:text-base lg:pb-0">
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />

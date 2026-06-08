@@ -11,7 +11,7 @@ export function EmiPreview() {
           description="Estimate your monthly EMI instantly. Adjust values to plan your finances better."
           centered
         />
-        <EmiCalculatorWidget />
+        <EmiCalculatorWidget collapsibleSchedule />
       </div>
     </section>
   );

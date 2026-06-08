@@ -10,15 +10,18 @@ import { EmiRepaymentSchedule } from "./EmiRepaymentSchedule";
 interface EmiCalculatorWidgetProps {
   showCta?: boolean;
   showScheduleInline?: boolean;
+  collapsibleSchedule?: boolean;
 }
 
 export function EmiCalculatorWidget({
   showCta = true,
   showScheduleInline = false,
+  collapsibleSchedule = false,
 }: EmiCalculatorWidgetProps) {
   const [amount, setAmount] = useState(5_000_000);
   const [rate, setRate] = useState(8.5);
   const [tenure, setTenure] = useState(20);
+  const [scheduleOpen, setScheduleOpen] = useState(false);
 
   const result = useMemo(() => calculateEmi(amount, rate, tenure), [amount, rate, tenure]);
   const rad = 45;
@@ -173,6 +176,27 @@ export function EmiCalculatorWidget({
 
       {showScheduleInline && (
         <EmiRepaymentSchedule schedule={result.schedule} integrated />
+      )}
+
+      {collapsibleSchedule && (
+        <>
+          <div className="mt-8 flex justify-center sm:mt-10">
+            <Button
+              type="button"
+              size="sm"
+              onClick={() => setScheduleOpen((prev) => !prev)}
+              aria-expanded={scheduleOpen}
+              aria-controls="emi-repayment-schedule"
+            >
+              {scheduleOpen ? "Hide Repayment Schedule" : "Repayment Schedule"}
+            </Button>
+          </div>
+          {scheduleOpen && (
+            <div id="emi-repayment-schedule">
+              <EmiRepaymentSchedule schedule={result.schedule} integrated />
+            </div>
+          )}
+        </>
       )}
     </div>
   );

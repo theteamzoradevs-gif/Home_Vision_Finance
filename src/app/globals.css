@@ -18,7 +18,7 @@
   }
 
   .section-padding {
-    @apply py-16 sm:py-20 lg:py-24;
+    @apply py-12 sm:py-20 lg:py-24;
   }
 
   .section-gradient-light {
@@ -45,12 +45,20 @@
     animation-play-state: paused;
   }
 
+  .card-premium {
+    @apply rounded-2xl border border-slate-200/80 bg-white shadow-card ring-1 ring-brand/[0.08] transition-all duration-300 motion-reduce:transform-none;
+  }
+
+  .card-premium:hover {
+    @apply -translate-y-1 border-brand/30 bg-brand-pale shadow-card-lg ring-brand/15 motion-reduce:transform-none;
+  }
+
   .blog-card-premium {
-    @apply transition-all duration-300;
+    @apply rounded-2xl border border-slate-200/80 bg-white shadow-card ring-1 ring-brand/[0.08] transition-all duration-300 motion-reduce:transform-none;
   }
 
   .blog-card-premium:hover {
-    @apply -translate-y-2 border-brand/50 bg-brand-pale/30 shadow-[0_16px_48px_rgba(26,79,158,0.18)] ring-2 ring-brand/20;
+    @apply -translate-y-1 border-brand/30 bg-brand-pale shadow-card-lg ring-brand/15 motion-reduce:transform-none;
   }
 
   .form-card {
@@ -60,6 +68,28 @@
   .form-card-accent {
     @apply absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand to-brand-light;
   }
+
+  .btn-whatsapp {
+    @apply bg-whatsapp text-white transition-all duration-200 hover:bg-whatsapp-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-whatsapp focus-visible:ring-offset-2;
+  }
+
+  .btn-whatsapp-outline {
+    @apply border-2 border-whatsapp bg-transparent text-whatsapp transition-all duration-200 hover:bg-whatsapp/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-whatsapp focus-visible:ring-offset-2 active:bg-whatsapp/15;
+  }
+
+  .hero-blue-slide {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(26, 79, 158, 0.08) 25%,
+      rgba(26, 79, 158, 0.22) 50%,
+      rgba(26, 79, 158, 0.08) 75%,
+      transparent 100%
+    );
+    animation: hero-slide 14s ease-in-out infinite;
+    will-change: transform;
+  }
+
 }
 
 @keyframes marquee {
@@ -71,8 +101,18 @@
   }
 }
 
+@keyframes hero-slide {
+  0% {
+    transform: translateX(-60%);
+  }
+  100% {
+    transform: translateX(60%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track {
+  .marquee-track,
+  .hero-blue-slide {
     animation: none;
   }
 }
