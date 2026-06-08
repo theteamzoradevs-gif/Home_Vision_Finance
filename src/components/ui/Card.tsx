@@ -19,11 +19,12 @@ export function Card({
   return (
     <div
       className={cn(
-        "cursor-pointer rounded-2xl border border-slate-200 bg-white p-7 transition-all duration-300 motion-reduce:transform-none",
+        "card-premium cursor-pointer rounded-2xl border border-slate-200/80 bg-white p-7 shadow-card ring-1 ring-brand/[0.08] transition-all duration-300 motion-reduce:transform-none",
         hover &&
-          "hover:-translate-y-1.5 hover:scale-[1.02] hover:border-brand/30 hover:shadow-card-lg motion-reduce:hover:scale-100",
-        highlight && "border-brand/40 bg-gradient-to-br from-brand-pale to-white",
-        equalHeight && "h-full flex flex-col",
+          "hover:-translate-y-1 hover:border-brand/30 hover:bg-brand-pale hover:shadow-card-lg hover:ring-brand/15 motion-reduce:hover:translate-y-0",
+        highlight &&
+          "border-brand/50 bg-gradient-to-br from-brand-pale/90 via-white to-brand-pale/50 ring-brand/15",
+        equalHeight && "flex h-full flex-col",
         className
       )}
       {...props}

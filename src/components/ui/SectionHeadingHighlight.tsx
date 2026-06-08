@@ -61,9 +61,17 @@ export function SectionHeadingHighlight({
         {parts[0]}
         <span className="relative inline-block">
           <span
+            aria-hidden
             className={cn(
-              "relative z-10 inline-block rounded-md px-2 py-0.5 transition-all duration-500 ease-out",
-              isVisible ? "bg-brand text-white" : "text-navy"
+              "absolute inset-0 rounded-lg bg-brand transition-transform duration-500 ease-out",
+              isVisible ? "scale-x-100" : "scale-x-0"
+            )}
+            style={{ transformOrigin: "left center" }}
+          />
+          <span
+            className={cn(
+              "relative z-10 inline-block rounded-lg px-3 py-1 transition-colors duration-500 ease-out sm:px-4",
+              isVisible ? "text-white" : "text-navy"
             )}
           >
             {highlightText}

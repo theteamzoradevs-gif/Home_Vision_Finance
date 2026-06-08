@@ -1,8 +1,8 @@
 import { PageHero } from "@/components/sections/PageHero";
-import { CtaBanner } from "@/components/sections/CtaBanner";
+import { WhyChooseGrid } from "@/components/sections/WhyChooseGrid";
 import { ContactForm } from "@/features/forms/ContactForm";
 import { Icons } from "@/components/ui/icons";
-import { ADDRESS, CONSULTANT_ROLE, EMAIL, HOURS, PHONE, PHONE_DISPLAY, WHATSAPP_CONTACT } from "@/lib/constants";
+import { ADDRESS, CONSULTANT_ROLE, EMAIL, HOURS, PHONE, WHATSAPP_CONTACT } from "@/lib/constants";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata(
@@ -34,7 +34,7 @@ export default function ContactPage() {
                 <div>
                   <p className="text-xs font-semibold uppercase text-slate-500">Phone</p>
                   <a href={`tel:${PHONE}`} className="font-semibold text-navy hover:text-brand">
-                    {PHONE_DISPLAY}
+                    Call Now
                   </a>
                 </div>
               </li>
@@ -61,7 +61,7 @@ export default function ContactPage() {
               href={WHATSAPP_CONTACT}
               target="_blank"
               rel="noreferrer"
-              className="mt-6 inline-flex items-center gap-2 rounded-xl border-2 border-brand bg-transparent px-6 py-3 font-semibold text-brand transition hover:bg-brand hover:text-white"
+              className="btn-whatsapp-outline mt-6 inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold sm:text-base"
             >
               {Icons.wa} Chat on WhatsApp
             </a>
@@ -88,7 +88,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <CtaBanner />
+      <WhyChooseGrid />
     </>
   );
 }

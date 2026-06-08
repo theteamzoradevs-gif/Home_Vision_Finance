@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Icons } from "@/components/ui/icons";
+import { submitContactForm } from "@/lib/api/contactService";
 
 const CALLBACK_INPUT_ID = "callback-mobile-number";
 
@@ -49,70 +50,11 @@ export function CallbackModal({ open, onClose }: CallbackModalProps) {
 
     scrollYRef.current = window.scrollY;
 
-    // #region agent log
-    fetch("http://127.0.0.1:7773/ingest/70187406-a2fe-413e-a354-c324290141b0", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "f9f9bf" },
-      body: JSON.stringify({
-        sessionId: "f9f9bf",
-        runId: "post-fix",
-        hypothesisId: "A",
-        location: "CallbackModal.tsx:open",
-        message: "Modal opening - duplicate id check",
-        data: {
-          scrollY: window.scrollY,
-          duplicateMobileIds: document.querySelectorAll("#mobile-number").length,
-          callbackInputExists: !!document.getElementById(CALLBACK_INPUT_ID),
-        },
-        timestamp: Date.now(),
-      }),
-    }).catch(() => {});
-    // #endregion
-
     lockBodyScroll(scrollYRef.current);
-
-    const onScroll = () => {
-      // #region agent log
-      fetch("http://127.0.0.1:7773/ingest/70187406-a2fe-413e-a354-c324290141b0", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "f9f9bf" },
-        body: JSON.stringify({
-          sessionId: "f9f9bf",
-          runId: "post-fix",
-          hypothesisId: "C",
-          location: "CallbackModal.tsx:scrollEvent",
-          message: "Scroll detected while modal open",
-          data: { scrollY: window.scrollY, savedScrollY: scrollYRef.current },
-          timestamp: Date.now(),
-        }),
-      }).catch(() => {});
-      // #endregion
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
 
     window.setTimeout(() => {
       const input = document.getElementById(CALLBACK_INPUT_ID);
       input?.focus({ preventScroll: true });
-      // #region agent log
-      fetch("http://127.0.0.1:7773/ingest/70187406-a2fe-413e-a354-c324290141b0", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "f9f9bf" },
-        body: JSON.stringify({
-          sessionId: "f9f9bf",
-          runId: "post-fix",
-          hypothesisId: "A",
-          location: "CallbackModal.tsx:afterFocus",
-          message: "After callback input focus",
-          data: {
-            scrollY: window.scrollY,
-            savedScrollY: scrollYRef.current,
-            focusedId: document.activeElement?.id,
-            focusedIsCallback: document.activeElement?.id === CALLBACK_INPUT_ID,
-          },
-          timestamp: Date.now(),
-        }),
-      }).catch(() => {});
-      // #endregion
     }, 50);
 
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -121,28 +63,7 @@ export function CallbackModal({ open, onClose }: CallbackModalProps) {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      const scrollBeforeRestore = window.scrollY;
       unlockBodyScroll(scrollYRef.current);
-      // #region agent log
-      fetch("http://127.0.0.1:7773/ingest/70187406-a2fe-413e-a354-c324290141b0", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "f9f9bf" },
-        body: JSON.stringify({
-          sessionId: "f9f9bf",
-          runId: "post-fix",
-          hypothesisId: "B",
-          location: "CallbackModal.tsx:cleanup",
-          message: "Modal closing - scroll restore",
-          data: {
-            scrollBeforeRestore,
-            targetScrollY: scrollYRef.current,
-            scrollAfterRestore: window.scrollY,
-          },
-          timestamp: Date.now(),
-        }),
-      }).catch(() => {});
-      // #endregion
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [open, onClose]);
@@ -175,11 +96,23 @@ export function CallbackModal({ open, onClose }: CallbackModalProps) {
     if (nextError) return;
 
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 600));
-    console.log("Callback request:", phone);
-    setLoading(false);
-    setSubmitted(true);
-    setPhone("");
+    try {
+      await submitContactForm({
+        fullName: "Callback Request",
+        email: `callback${Date.now()}@homevision.com`,
+        phone,
+        loanAmount: 0,
+        city: "N/A",
+        serviceType: "home loan",
+        message: "Instant callback request submitted via floating action bar.",
+      });
+      setSubmitted(true);
+      setPhone("");
+    } catch (err: any) {
+      setError(err?.message || "Failed to submit callback request. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (!open) return null;

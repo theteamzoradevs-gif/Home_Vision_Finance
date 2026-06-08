@@ -1,16 +1,41 @@
+import Image from "next/image";
 import { Card } from "@/components/ui/Card";
 import { SectionHeadingHighlight } from "@/components/ui/SectionHeadingHighlight";
 import { Icons } from "@/components/ui/icons";
-import { USPS } from "@/features/landing/data/content";
+import { SBI_LOGO_URL, USPS } from "@/features/landing/data/content";
+import type { ReactNode } from "react";
 
-const ICONS = [
+const USP_ICONS: ReactNode[] = [
   Icons.wallet,
-  Icons.trendingUp,
-  Icons.shield,
+  Icons.timer,
+  "sbi-logo",
   Icons.fileCheck,
   Icons.handshake,
   Icons.bell,
 ];
+
+function UspIcon({ icon, title }: { icon: ReactNode; title: string }) {
+  if (icon === "sbi-logo") {
+    return (
+      <div className="mb-3 flex h-10 w-14 items-center justify-center rounded-xl bg-white sm:mb-4 sm:h-12 sm:w-16">
+        <Image
+          src={SBI_LOGO_URL}
+          alt={`${title} logo`}
+          width={64}
+          height={32}
+          className="h-7 w-auto object-contain contrast-125 mix-blend-multiply sm:h-8"
+          unoptimized
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-pale/80 text-brand ring-1 ring-brand/10 transition-transform duration-300 group-hover:scale-110 sm:mb-4 sm:h-12 sm:w-12">
+      {icon}
+    </div>
+  );
+}
 
 export function UspSection() {
   return (
@@ -23,24 +48,17 @@ export function UspSection() {
           description="We provide a complete support system from your first call to final disbursement."
           centered
         />
-        <div className="card-grid-equal gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="card-grid-equal grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
           {USPS.map((usp, i) => (
             <Card
               key={usp.title}
               highlight={usp.highlight}
               equalHeight
-              className="group hover:bg-brand-pale/50"
+              className="group flex h-full min-h-[180px] flex-col p-4 sm:min-h-[220px] sm:p-7"
             >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-brand-pale text-brand transition-transform duration-300 group-hover:scale-110">
-                {ICONS[i]}
-              </div>
-              <h3 className="font-heading text-lg font-semibold text-navy">{usp.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">{usp.description}</p>
-              {usp.highlight && (
-                <span className="mt-3 inline-block rounded-full bg-brand px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white">
-                  Biggest USP
-                </span>
-              )}
+              <UspIcon icon={USP_ICONS[i]} title={usp.title} />
+              <h3 className="font-heading text-sm font-semibold text-navy sm:text-lg">{usp.title}</h3>
+              <p className="mt-2 flex-1 text-xs leading-relaxed text-slate-500 sm:text-sm">{usp.description}</p>
             </Card>
           ))}
         </div>

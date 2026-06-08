@@ -1,36 +1,88 @@
 import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
 import { Icons } from "@/components/ui/icons";
+import { LeadForm } from "@/features/forms/LeadForm";
+import { CONSULTANT_ROLE, HOURS, PHONE, WHATSAPP_HOME } from "@/lib/constants";
 import { DOCUMENTS } from "@/features/landing/data/content";
 
 export function DocumentsSection() {
   return (
     <section className="section-padding bg-white">
       <div className="container-site">
-        <Card hover={false} className="mx-auto max-w-4xl rounded-3xl p-8 sm:p-10">
-          <h2 className="font-heading text-2xl font-bold text-navy sm:text-3xl">Documents You&apos;ll Need</h2>
-          <p className="mt-2 text-sm text-slate-500">
-            Keep these basic documents ready for quick and smooth loan processing.
-          </p>
+        <div className="grid items-start gap-8 lg:grid-cols-[1fr_minmax(300px,380px)] lg:gap-12">
+          {/* Left: documents checklist */}
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand">Documentation</p>
+            <h2 className="mt-2 font-heading text-2xl font-bold text-navy sm:text-3xl">
+              Documents You&apos;ll Need
+            </h2>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">
+              Keep these documents ready for faster eligibility checks and smoother bank processing.
+            </p>
 
-          <div className="mt-8 space-y-3">
-            {DOCUMENTS.map((doc) => (
-              <div
-                key={doc}
-                className="flex cursor-pointer items-center gap-3.5 rounded-xl border border-slate-100 bg-slate-50/50 px-5 py-3.5 transition-all duration-200 hover:border-brand/30 hover:bg-brand-pale/20"
-              >
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-pale text-brand">
-                  {Icons.fileCheck}
-                </span>
-                <span className="text-[15px] font-medium text-slate-700">{doc}</span>
-              </div>
-            ))}
+            <ul className="mt-8 space-y-3">
+              {DOCUMENTS.map((doc) => (
+                <li
+                  key={doc}
+                  className="flex items-center gap-3.5 rounded-xl border border-slate-100 bg-slate-50/80 px-4 py-3.5 sm:px-5"
+                >
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-pale text-brand">
+                    {Icons.fileCheck}
+                  </span>
+                  <span className="text-sm font-medium text-slate-700 sm:text-[15px]">{doc}</span>
+                </li>
+              ))}
+            </ul>
+
+            <Button href="/contact" size="sm" className="mt-6">
+              Apply Now
+            </Button>
           </div>
 
-          <Button href="/contact" variant="primary" size="lg" className="mt-8">
-            Apply Now
-          </Button>
-        </Card>
+          {/* Right: consultation form */}
+          <LeadForm title="Get Free Consultation" subtitle="Quick details — expert callback in minutes" />
+        </div>
+
+        {/* Below both columns: contact shortcuts */}
+        <div className="mt-10 grid gap-4 border-t border-slate-100 pt-8 sm:grid-cols-3 sm:gap-5">
+          <a
+            href={`tel:${PHONE}`}
+            className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-card ring-1 ring-brand/[0.08] transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/30 hover:bg-brand-pale hover:shadow-card-lg"
+          >
+            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand text-white">
+              {Icons.phone}
+            </span>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Call Directly</p>
+              <p className="font-heading text-base font-bold text-navy">Call Now</p>
+            </div>
+          </a>
+
+          <a
+            href={WHATSAPP_HOME}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-card ring-1 ring-brand/[0.08] transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/30 hover:bg-brand-pale hover:shadow-card-lg"
+          >
+            <span className="btn-whatsapp-outline flex h-10 w-10 items-center justify-center rounded-lg">
+              {Icons.wa}
+            </span>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">WhatsApp</p>
+              <p className="font-heading text-base font-bold text-navy">Instant Response</p>
+            </div>
+          </a>
+
+          <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-card ring-1 ring-brand/[0.08] transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/30 hover:bg-brand-pale hover:shadow-card-lg">
+            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-pale text-brand">
+              {Icons.shield}
+            </span>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{CONSULTANT_ROLE}</p>
+              <p className="text-sm font-medium text-navy">SBI Authorised Partner</p>
+              <p className="text-xs text-slate-500">{HOURS}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

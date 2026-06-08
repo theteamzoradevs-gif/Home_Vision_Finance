@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Icons, Logo } from "@/components/ui/icons";
+import { BrandLogo } from "@/components/ui/BrandLogo";
+import { Icons } from "@/components/ui/icons";
 import {
   BRAND,
   CONSULTANT_ROLE,
@@ -7,7 +8,6 @@ import {
   FOOTER_SERVICES,
   NAV_LINKS,
   PHONE,
-  PHONE_DISPLAY,
   SOCIAL_INSTAGRAM,
   SOCIAL_LINKEDIN,
   SOCIAL_YOUTUBE,
@@ -24,9 +24,8 @@ export function SiteFooter() {
     <footer className="border-t border-slate-200 bg-navy text-slate-300">
       <div className="container-site grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="mb-4 flex items-center gap-2.5">
-            <Logo size={32} />
-            <span className="font-heading text-lg font-bold text-white">{BRAND}</span>
+          <div className="mb-4">
+            <BrandLogo height={56} className="brightness-0 invert max-w-[420px]" />
           </div>
           <p className="text-sm leading-relaxed">
             Your trusted home loan partner. SBI Authorised Channel Partner helping families get the best deals with ₹0 processing fees.
@@ -35,8 +34,6 @@ export function SiteFooter() {
             <span className="font-semibold">{CONSULTANT_ROLE}</span>
             <br />
             SBI Authorised Channel Partner
-            <br />
-            {PHONE_DISPLAY}
           </p>
           <div className="mt-4 flex gap-3">
             {SOCIAL.map((s) => (
@@ -87,7 +84,7 @@ export function SiteFooter() {
           <ul className="space-y-2.5 text-sm text-slate-400">
             <li>
               <a href={`tel:${PHONE}`} className="transition hover:text-white">
-                {PHONE_DISPLAY}
+                Call Us
               </a>
             </li>
             <li>

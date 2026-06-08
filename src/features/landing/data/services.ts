@@ -33,7 +33,7 @@ export const LANDING_SERVICES: ServiceItem[] = [
     title: "Loan Against Property",
     description:
       "Unlock the value of your property for business, education, or personal needs at attractive rates.",
-    icon: Icons.rupee,
+    icon: Icons.briefcase,
     slug: "loan-against-property",
     imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
     highlights: ["Residential & commercial", "Flexible tenure", "Quick eligibility check"],
@@ -60,7 +60,7 @@ export const LANDING_SERVICES: ServiceItem[] = [
     title: "Top-Up Loan",
     description:
       "Get extra funds on your existing home loan at competitive rates with quick processing.",
-    icon: Icons.trendingUp,
+    icon: Icons.circlePlus,
     slug: "top-up-loan",
     imageUrl: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
     highlights: ["Quick processing", "Competitive rates", "Minimal documentation"],

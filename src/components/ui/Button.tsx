@@ -5,17 +5,21 @@ import type { ButtonHTMLAttributes, ReactNode } from "react";
 const variants = {
   primary:
     "bg-brand text-white shadow-md hover:bg-brand-light hover:-translate-y-0.5 active:translate-y-0 active:bg-navy active:shadow-sm focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2",
+  navy:
+    "bg-navy text-white shadow-md hover:bg-navy-light hover:-translate-y-0.5 active:translate-y-0 active:bg-navy-light active:shadow-sm focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2",
   outline:
     "border-2 border-brand bg-transparent text-brand hover:bg-brand hover:text-white active:bg-navy active:border-navy focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2",
+  whatsapp:
+    "border-2 border-whatsapp bg-transparent text-whatsapp hover:bg-whatsapp/10 active:bg-whatsapp/15 focus-visible:ring-2 focus-visible:ring-whatsapp focus-visible:ring-offset-2",
   white:
     "border border-slate-200 bg-white text-navy shadow-card hover:-translate-y-0.5 hover:shadow-card-lg active:translate-y-0 active:shadow-sm focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2",
   ghost: "bg-transparent text-slate-600 hover:text-brand active:text-navy",
 };
 
 const sizes = {
-  sm: "px-5 py-2.5 text-sm",
-  md: "px-7 py-3.5 text-[15px]",
-  lg: "px-9 py-4 text-base",
+  sm: "px-4 py-2 text-xs sm:px-5 sm:py-2.5 sm:text-sm",
+  md: "px-5 py-2.5 text-sm sm:px-7 sm:py-3.5 sm:text-[15px]",
+  lg: "px-6 py-3 text-sm sm:px-9 sm:py-4 sm:text-base",
 };
 
 type Variant = keyof typeof variants;
@@ -37,6 +41,7 @@ type ButtonAsButton = SharedProps &
 type ButtonAsLink = SharedProps & {
   href: string;
   external?: boolean;
+  "aria-label"?: string;
 };
 
 export function Button({
@@ -46,6 +51,7 @@ export function Button({
   children,
   href,
   external = false,
+  "aria-label": ariaLabel,
   ...props
 }: ButtonAsButton | ButtonAsLink) {
   const classes = cn(
@@ -56,15 +62,23 @@ export function Button({
   );
 
   if (href) {
+    const isNativeLink = href.startsWith("tel:") || href.startsWith("mailto:");
     if (external) {
       return (
-        <a href={href} className={classes} target="_blank" rel="noreferrer">
+        <a href={href} className={classes} target="_blank" rel="noreferrer" aria-label={ariaLabel}>
+          {children}
+        </a>
+      );
+    }
+    if (isNativeLink) {
+      return (
+        <a href={href} className={classes} aria-label={ariaLabel}>
           {children}
         </a>
       );
     }
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} className={classes} aria-label={ariaLabel}>
         {children}
       </Link>
     );

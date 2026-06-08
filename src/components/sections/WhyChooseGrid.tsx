@@ -1,3 +1,4 @@
+import { Card } from "@/components/ui/Card";
 import { WHY_CHOOSE_ITEMS } from "@/features/landing/data/content";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { cn } from "@/lib/utils";
@@ -19,36 +20,46 @@ export function WhyChooseGrid({ light = false }: { light?: boolean }) {
           light={light}
         />
 
-        <div className="card-grid-equal gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="card-grid-equal grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
           {WHY_CHOOSE_ITEMS.map((item) => (
-            <div
+            <Card
               key={item.value}
+              equalHeight
               className={cn(
-                "flex h-full flex-col rounded-2xl border p-7 text-left transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-lg motion-reduce:transform-none",
-                light
-                  ? "border-white/10 bg-white/5 hover:border-brand-light/30 hover:bg-white/10"
-                  : "border-slate-200 bg-white text-navy shadow-card hover:border-brand/30"
+                "p-4 sm:p-7",
+                light &&
+                  "border-white/10 bg-white/5 text-white ring-white/10 hover:border-brand-light/30 hover:bg-white/10 hover:ring-brand-light/20"
               )}
             >
               <div
                 className={cn(
-                  "font-heading text-4xl font-extrabold opacity-20 sm:text-5xl",
-                  light ? "text-brand-light" : "text-brand"
+                  "font-heading text-2xl font-extrabold sm:text-4xl",
+                  light ? "text-white" : "text-navy"
                 )}
               >
                 {item.value}
               </div>
 
-              <div className={cn("mt-4 text-base font-bold", light ? "text-white" : "text-navy")}>
+              <div
+                className={cn(
+                  "mt-3 text-sm font-bold sm:mt-4 sm:text-base",
+                  light ? "text-white" : "text-navy"
+                )}
+              >
                 {item.label}
               </div>
 
               {item.description && (
-                <p className={cn("mt-2 flex-1 text-sm leading-relaxed", light ? "text-white/70" : "text-slate-500")}>
+                <p
+                  className={cn(
+                    "mt-2 flex-1 text-xs leading-relaxed sm:text-sm",
+                    light ? "text-white/70" : "text-slate-500"
+                  )}
+                >
                   {item.description}
                 </p>
               )}
-            </div>
+            </Card>
           ))}
         </div>
       </div>

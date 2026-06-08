@@ -35,6 +35,9 @@ export function HeroSection() {
       </div>
 
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-white/70 via-brand-pale/60 to-transparent" />
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-hidden>
+        <div className="hero-blue-slide absolute inset-y-0 left-0 w-[200%]" />
+      </div>
       <div className="absolute inset-0 z-10 bg-gradient-to-t from-white via-transparent to-transparent opacity-90" />
 
       <div className="container-site relative z-20 grid w-full items-center gap-10 lg:grid-cols-[1fr_360px] lg:gap-16">
@@ -102,6 +105,7 @@ export function HeroSection() {
               <Button
                 href={`tel:${PHONE}`}
                 variant="white"
+                aria-label="Call now"
                 className="flex h-11 w-11 items-center justify-center rounded-full p-0"
               >
                 <span className="flex h-5 w-5 items-center justify-center text-brand [&>svg]:h-full [&>svg]:w-full">

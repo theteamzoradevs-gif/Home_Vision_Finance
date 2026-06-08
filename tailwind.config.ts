@@ -19,6 +19,10 @@ const config: Config = {
           light: "#22c55e",
           pale: "#f0fdf4",
         },
+        whatsapp: {
+          DEFAULT: "#25D366",
+          dark: "#128C7E",
+        },
       },
       fontFamily: {
         heading: ["var(--font-heading)", "system-ui", "sans-serif"],
