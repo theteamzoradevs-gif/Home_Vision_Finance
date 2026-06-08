@@ -103,15 +103,15 @@ export function HeroSection() {
               </span>
 
               <Button
-                href={`tel:${PHONE}`}
-                variant="white"
-                aria-label="Call now"
-                className="flex h-11 w-11 items-center justify-center rounded-full p-0"
-              >
-                <span className="flex h-5 w-5 items-center justify-center text-brand [&>svg]:h-full [&>svg]:w-full">
-                  {Icons.phone}
-                </span>
-              </Button>
+  href={`tel:${PHONE}`}
+  variant="white"
+  aria-label="Call now"
+  className="flex h-11 w-11 items-center justify-center rounded-full p-0 text-brand"
+>
+  <span className="text-brand [&_svg]:h-6 [&_svg]:w-6 [&_svg]:stroke-brand [&_svg]:text-brand">
+    {Icons.phone}
+  </span>
+</Button>
             </div>
           </div>
         </div>

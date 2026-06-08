@@ -6,12 +6,19 @@ import { DOCUMENTS } from "@/features/landing/data/content";
 
 export function DocumentsSection() {
   return (
-    <section className="section-padding bg-white">
+    // 'section-padding' ko hata kar top padding 'pt-16 md:pt-20' rakhi h
+    // Aur bottom padding ko drastically kam karke 'pb-6 md:pb-8' kar diya h taaki space kam ho jaye
+    <section className="pt-16 md:pt-20 pb-6 md:pb-8 bg-white">
+      <div className="flex justify-center">
+  <p className="text-xs font-bold uppercase tracking-[0.2em] mb-10 text-brand">
+    Documentation
+  </p>
+</div>
       <div className="container-site">
         <div className="grid items-start gap-8 lg:grid-cols-[1fr_minmax(300px,380px)] lg:gap-12">
           {/* Left: documents checklist */}
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand">Documentation</p>
+            {/* <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand">Documentation</p> */}
             <h2 className="mt-2 font-heading text-2xl font-bold text-navy sm:text-3xl">
               Documents You&apos;ll Need
             </h2>
@@ -43,6 +50,7 @@ export function DocumentsSection() {
         </div>
 
         {/* Below both columns: contact shortcuts */}
+        {/* Yahan 'mt-10 pt-8' spacing upar ke blocks ke liye standard lag rahi hai */}
         <div className="mt-10 grid gap-4 border-t border-slate-100 pt-8 sm:grid-cols-3 sm:gap-5">
           <a
             href={`tel:${PHONE}`}
