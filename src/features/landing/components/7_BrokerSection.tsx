@@ -14,11 +14,18 @@ export function BrokerSection() {
             Attractive payout and fast coordination support. We prioritize your clients&apos; files for quick processing.
           </p>
         </div>
+
         <div className="flex flex-wrap gap-3">
           <Button href={`tel:${PHONE}`} variant="white">
             {Icons.phone} Call Now
           </Button>
-          <Button href={WHATSAPP_HOME} variant="whatsapp" external>
+
+          <Button
+            href={WHATSAPP_HOME}
+            variant="whatsapp"
+            className="bg-green-600 text-white border-green-600 hover:bg-green-700 hover:border-green-700 [&_svg]:text-white"
+            external
+          >
             {Icons.wa} WhatsApp Now
           </Button>
         </div>

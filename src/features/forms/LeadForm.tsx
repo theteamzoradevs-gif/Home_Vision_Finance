@@ -200,9 +200,14 @@ export function LeadForm({
           or
         </p>
         
-        <Button href={WHATSAPP_HOME} variant="whatsapp" className="w-full justify-center" external>
-          {Icons.wa} WhatsApp Instant Response
-        </Button>
+        <Button
+  href={WHATSAPP_HOME}
+  variant="whatsapp"
+  className="w-full justify-center bg-green-600 text-white hover:bg-green-700 border-green-600"
+  external
+>
+  {Icons.wa} WhatsApp Instant Response
+</Button>
         
         <p
           className={cn(

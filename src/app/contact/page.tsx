@@ -61,7 +61,7 @@ export default function ContactPage() {
               href={WHATSAPP_CONTACT}
               target="_blank"
               rel="noreferrer"
-              className="btn-whatsapp-outline mt-6 inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold sm:text-base"
+              className="mt-6 inline-flex items-center gap-2 rounded-xl bg-whatsapp px-6 py-3 text-sm font-semibold text-white transition duration-200 hover:bg-whatsapp-dark sm:text-base"
             >
               {Icons.wa} Chat on WhatsApp
             </a>

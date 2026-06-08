@@ -160,7 +160,7 @@ export function ContactForm() {
         value={values.message}
         onChange={(e) => setValues({ ...values, message: e.target.value })}
         error={errors.message}
-        required
+        
       />
       
       <Button type="submit" className="w-full justify-center" disabled={loading}>

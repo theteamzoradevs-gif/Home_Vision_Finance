@@ -31,6 +31,7 @@ export function EmiCalculatorWidget({
   return (
     <div className="space-y-0">
       <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
+        {/* Left Side: Inputs */}
         <div className="rounded-[20px] border border-slate-200 bg-white p-6 shadow-card sm:p-8">
           <h3 className="mb-8 font-heading text-xl font-bold text-navy">Calculate Your EMI</h3>
 
@@ -104,14 +105,16 @@ export function EmiCalculatorWidget({
           )}
         </div>
 
-        <div className="rounded-[20px] border border-brand/20 bg-gradient-to-br from-brand-pale/60 via-white to-white p-6 shadow-card sm:p-8">
-          <p className="text-xs font-bold uppercase tracking-wider text-brand">Monthly Payment</p>
-          <div className="mt-2 font-heading text-4xl font-extrabold text-brand sm:text-5xl">
+        {/* Right Side: Output Results Container */}
+        <div className="rounded-[20px] border border-slate-200 bg-white p-6 shadow-card sm:p-8">
+          <p className="text-xs font-bold uppercase tracking-wider text-slate-400">MONTHLY PAYMENT</p>
+          <div className="mt-1 font-heading text-4xl font-extrabold text-brand sm:text-5xl">
             {formatCurrency(result.emi)}
           </div>
-          <p className="mb-6 text-sm text-slate-500">Estimated EMI per month</p>
+          <p className="mb-6 text-sm text-slate-400">Estimated EMI per month</p>
 
-          <div className="mb-6 flex flex-col items-center gap-6 rounded-xl border border-slate-200/80 bg-white/80 p-5 sm:flex-row">
+          <div className="mb-6 flex flex-col items-center gap-6 rounded-xl border border-slate-100 p-5 sm:flex-row">
+            {/* Clean empty donut circle container matching image */}
             <div className="relative h-[130px] w-[130px] shrink-0">
               <svg width="130" height="130" viewBox="0 0 120 120" className="-rotate-90" aria-hidden>
                 <circle cx="60" cy="60" r={rad} fill="none" stroke="#e2e8f0" strokeWidth="10" />
@@ -126,14 +129,12 @@ export function EmiCalculatorWidget({
                   strokeLinecap="round"
                 />
               </svg>
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-                <small className="text-[10px] text-slate-400">Total</small>
-                <strong className="text-xs font-bold text-navy">{formatCurrency(result.totalPayment)}</strong>
-              </div>
             </div>
+            
+            {/* Label badges on the side */}
             <div className="w-full space-y-3 text-sm">
-              <div className="flex items-center gap-3 rounded-lg bg-brand-pale/50 p-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand text-white">
+              <div className="flex items-center gap-3 rounded-lg bg-slate-50 p-3">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#1a4f9e] text-white">
                   {Icons.rupee}
                 </span>
                 <div>
@@ -144,7 +145,7 @@ export function EmiCalculatorWidget({
                 </div>
               </div>
               <div className="flex items-center gap-3 rounded-lg bg-slate-50 p-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-300 text-navy">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-200 text-slate-600">
                   {Icons.percent}
                 </span>
                 <div>
@@ -157,18 +158,19 @@ export function EmiCalculatorWidget({
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-3 border-t border-slate-200 pt-5 sm:grid-cols-3">
-            <div className="rounded-xl bg-white/70 p-3 text-center sm:text-left">
-              <span className="text-xs uppercase tracking-wide text-slate-500">Total Interest</span>
-              <strong className="mt-1 block text-navy">{formatCurrency(result.totalInterest)}</strong>
+          {/* Bottom Breakdown Metric Grid */}
+          <div className="grid grid-cols-1 gap-3 border-t border-slate-100 pt-5 sm:grid-cols-3">
+            <div className="p-3 text-center sm:text-left">
+              <span className="text-xs uppercase tracking-wide text-slate-400">TOTAL INTEREST</span>
+              <strong className="mt-1 block text-navy font-bold text-lg">{formatCurrency(result.totalInterest)}</strong>
             </div>
-            <div className="rounded-xl bg-white/70 p-3 text-center sm:text-left">
-              <span className="text-xs uppercase tracking-wide text-slate-500">Total Repayment</span>
-              <strong className="mt-1 block text-navy">{formatCurrency(result.totalPayment)}</strong>
+            <div className="p-3 text-center sm:text-left">
+              <span className="text-xs uppercase tracking-wide text-slate-400">TOTAL REPAYMENT</span>
+              <strong className="mt-1 block text-navy font-bold text-lg">{formatCurrency(result.totalPayment)}</strong>
             </div>
-            <div className="rounded-xl bg-white/70 p-3 text-center sm:text-left">
-              <span className="text-xs uppercase tracking-wide text-slate-500">Principal</span>
-              <strong className="mt-1 block text-navy">{formatCurrency(amount)}</strong>
+            <div className="p-3 text-center sm:text-left">
+              <span className="text-xs uppercase tracking-wide text-slate-400">PRINCIPAL</span>
+              <strong className="mt-1 block text-navy font-bold text-lg">{formatCurrency(amount)}</strong>
             </div>
           </div>
         </div>
