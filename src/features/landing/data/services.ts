@@ -14,56 +14,56 @@ export const LANDING_SERVICES: ServiceItem[] = [
   {
     title: "Home Purchase Loan",
     description:
-      "Buy your dream home — flat, villa, or independent house with competitive rates from SBI and leading banks.",
+      "Acquire your ideal property with bespoke financing structures and competitive rates from India’s premier financial institutions.",
     icon: Icons.home,
     slug: "home-loan",
     imageUrl: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
-    highlights: ["Multi-bank rate comparison", "₹0 processing fees", "End-to-end documentation support"],
+    highlights: ["Institutional rate comparison", "Zero institutional processing fees", "End-to-end documentation advisory"],
   },
   {
     title: "Balance Transfer",
     description:
-      "Transfer your existing home loan to a lower interest rate and save lakhs over the remaining tenure.",
+      "Optimize your financial liabilities by seamlessly transitioning your existing portfolio to preferential interest rates.",
     icon: Icons.transfer,
     slug: "balance-transfer",
     imageUrl: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-    highlights: ["Lower EMI savings", "Seamless lender switch", "Expert negotiation support"],
+    highlights: ["Substantial long-term interest savings", "Seamless institutional transition", "Bespoke rate restructuring"],
   },
   {
     title: "Loan Against Property",
     description:
-      "Unlock the value of your property for business, education, or personal needs at attractive rates.",
+      "Unlock liquidity from your real estate assets to fund enterprise growth, higher education, or strategic investments.",
     icon: Icons.briefcase,
     slug: "loan-against-property",
     imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
-    highlights: ["Residential & commercial", "Flexible tenure", "Quick eligibility check"],
+    highlights: ["Residential & commercial portfolios", "Tailored capital repayment structures", "Expedited eligibility assessment"],
   },
   {
     title: "Construction Loan",
     description:
-      "Build your own home with stage-wise disbursement linked to construction milestones.",
+      "Finance bespoke residential builds with structured disbursements precisely aligned to structural milestones.",
     icon: Icons.building,
     slug: "construction-loan",
     imageUrl: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80",
-    highlights: ["Milestone-based disbursement", "Builder coordination", "Stage-wise approvals"],
+    highlights: ["Milestone-linked disbursement tranches", "Dedicated architect & builder liaison", "Phased compliance oversight"],
   },
   {
     title: "Plot Loan",
     description:
-      "Finance a residential plot with flexible repayment options up to 15 years.",
+      "Secure premier residential land with flexible capital structures and long-term repayment architecture.",
     icon: Icons.doc,
     slug: "plot-loan",
     imageUrl: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80",
-    highlights: ["Residential plot financing", "Up to 15-year tenure", "Lender selection guidance"],
+    highlights: ["Premium land acquisition financing", "Extended tenure architectural options", "Comprehensive title-deed advisory"],
   },
   {
     title: "Top-Up Loan",
     description:
-      "Get extra funds on your existing home loan at competitive rates with quick processing.",
+      "Access supplemental capital utilizing your existing mortgage equity with expedited institutional processing.",
     icon: Icons.circlePlus,
     slug: "top-up-loan",
     imageUrl: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
-    highlights: ["Quick processing", "Competitive rates", "Minimal documentation"],
+    highlights: ["Priority liquidity access", "Preferential interest structures", "Streamlined, minimal documentation"],
   },
 ];
 
@@ -71,55 +71,55 @@ export const PAGE_SERVICES: ServiceItem[] = [
   {
     title: "Home Loan",
     description:
-      "End-to-end support for fresh home purchases with multi-bank comparison and zero processing fees.",
+      "Comprehensive advisory for new property acquisitions, featuring multi-bank optimization and zero processing fees.",
     icon: Icons.home,
     slug: "home-loan",
     imageUrl: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
-    highlights: ["Multi-bank rate comparison", "₹0 processing fees", "Priority SBI channel support"],
+    highlights: ["Multi-lender rate optimization", "Zero processing charges", "Priority institutional channel access"],
   },
   {
     title: "Balance Transfer",
     description:
-      "Reduce your EMI burden by shifting to a lower-rate lender with seamless documentation support.",
+      "Mitigate your recurring debt liabilities by transitioning your asset portfolio to premium, lower-yield lenders.",
     icon: Icons.transfer,
     slug: "balance-transfer",
     imageUrl: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
-    highlights: ["Save lakhs on interest", "Hassle-free transfer", "Expert lender negotiation"],
+    highlights: ["Significant interest yield reduction", "White-glove portfolio transfer", "Bespoke bank negotiation"],
   },
   {
     title: "Loan Against Property",
     description:
-      "Leverage residential or commercial property equity for flexible funding at competitive rates.",
+      "Leverage the equity of your residential or commercial real estate for highly flexible, low-cost capital distribution.",
     icon: Icons.rupee,
     slug: "loan-against-property",
     imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
-    highlights: ["Flexible fund usage", "Attractive interest rates", "Quick eligibility assessment"],
+    highlights: ["Unrestricted capital deployment", "Highly competitive asset-backed rates", "Streamlined valuation processing"],
   },
   {
     title: "Construction Loan",
     description:
-      "Structured disbursements aligned to construction stages with expert bank coordination.",
+      "Capital provisioning engineered to flow in tandem with physical project milestones and construction phases.",
     icon: Icons.building,
     slug: "construction-loan",
     imageUrl: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80",
-    highlights: ["Stage-wise disbursement", "Builder liaison support", "Milestone tracking"],
+    highlights: ["Tranche-based milestone capital", "Developer & contractor coordination", "Rigorous stage-gate compliance"],
   },
   {
     title: "Plot Loan",
     description:
-      "Dedicated plot financing with guidance on eligibility, documentation, and lender selection.",
+      "Bespoke financing models designed specifically for land acquisition, complete with thorough legal vetting guidance.",
     icon: Icons.doc,
     slug: "plot-loan",
     imageUrl: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80",
-    highlights: ["Residential plot focus", "Flexible repayment", "Documentation guidance"],
+    highlights: ["Exclusive land procurement capital", "Tailored amortization structures", "Regulatory & paperwork advisory"],
   },
   {
     title: "Business Loan",
     description:
-      "Working capital and business expansion loans backed by property or income assessment.",
+      "High-value working capital and strategic corporate expansion funding backed by robust financial profiling.",
     icon: Icons.handshake,
     slug: "business-loan",
     imageUrl: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
-    highlights: ["Working capital support", "Property-backed options", "Fast file processing"],
+    highlights: ["Strategic working capital reserves", "Asset-backed corporate structures", "Connoisseur-level financial underwriting"],
   },
 ];

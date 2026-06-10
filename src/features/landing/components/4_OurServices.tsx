@@ -29,7 +29,11 @@ export function ServicesPreview() {
           ))}
         </div>
         <div className="mt-8 text-center sm:mt-10">
-          <Button href="/services" size="md">
+          <Button
+            href="/services"
+            size="md"
+            className="rounded-full bg-brand-pale px-6 py-2 text-sm font-semibold text-brand transition hover:bg-brand hover:text-white"
+          >
             View All Services
           </Button>
         </div>
