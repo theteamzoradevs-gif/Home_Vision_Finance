@@ -17,7 +17,7 @@ function ReviewCard({ review }: { review: any }) {
       <h3 className="font-heading text-base font-bold text-navy sm:text-lg">
         {review?.clientName || "Anonymous User"}
       </h3>
-      {/* 2. City */}
+      
       <p className="mt-0.5 text-xs text-slate-400">
         {review?.location}
       </p>
