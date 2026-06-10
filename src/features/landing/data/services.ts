@@ -83,7 +83,7 @@ export const PAGE_SERVICES: ServiceItem[] = [
       "Mitigate your recurring debt liabilities by transitioning your asset portfolio to premium, lower-yield lenders.",
     icon: Icons.transfer,
     slug: "balance-transfer",
-    imageUrl: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
+    imageUrl: "/services_images/BT.jpeg",
     highlights: ["Significant interest yield reduction", "White-glove portfolio transfer", "Bespoke bank negotiation"],
   },
   {
@@ -92,7 +92,7 @@ export const PAGE_SERVICES: ServiceItem[] = [
       "Leverage the equity of your residential or commercial real estate for highly flexible, low-cost capital distribution.",
     icon: Icons.rupee,
     slug: "loan-against-property",
-    imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
+    imageUrl: "/services_images/LAP.jpeg",
     highlights: ["Unrestricted capital deployment", "Highly competitive asset-backed rates", "Streamlined valuation processing"],
   },
   {
@@ -101,7 +101,7 @@ export const PAGE_SERVICES: ServiceItem[] = [
       "Capital provisioning engineered to flow in tandem with physical project milestones and construction phases.",
     icon: Icons.building,
     slug: "construction-loan",
-    imageUrl: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80",
+    imageUrl: "/services_images/CL.jpeg",
     highlights: ["Tranche-based milestone capital", "Developer & contractor coordination", "Rigorous stage-gate compliance"],
   },
   {
@@ -110,7 +110,7 @@ export const PAGE_SERVICES: ServiceItem[] = [
       "Bespoke financing models designed specifically for land acquisition, complete with thorough legal vetting guidance.",
     icon: Icons.doc,
     slug: "plot-loan",
-    imageUrl: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80",
+    imageUrl: "/services_images/PL.jpeg",
     highlights: ["Exclusive land procurement capital", "Tailored amortization structures", "Regulatory & paperwork advisory"],
   },
   {
@@ -119,7 +119,7 @@ export const PAGE_SERVICES: ServiceItem[] = [
       "High-value working capital and strategic corporate expansion funding backed by robust financial profiling.",
     icon: Icons.handshake,
     slug: "business-loan",
-    imageUrl: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
+    imageUrl: "/services_images/BL.jpeg",
     highlights: ["Strategic working capital reserves", "Asset-backed corporate structures", "Connoisseur-level financial underwriting"],
   },
 ];
