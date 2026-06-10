@@ -22,12 +22,7 @@ export function ServicesPreview() {
               </div>
               <h3 className="font-heading text-sm font-semibold text-navy sm:text-lg">{service.title}</h3>
               <p className="mt-2 flex-1 text-xs leading-relaxed text-slate-500 sm:text-sm">{service.description}</p>
-              <Button
-                href="/contact"
-                variant="white"
-                size="sm"
-                className="mt-4 w-fit self-start px-3 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm"
-              >
+              <Button href="/contact" size="sm" className="mt-4 w-fit self-start">
                 Apply Now
               </Button>
             </Card>

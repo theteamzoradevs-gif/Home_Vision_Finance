@@ -11,6 +11,8 @@ const variants = {
     "border-2 border-brand bg-transparent text-brand hover:bg-brand hover:text-white active:bg-navy active:border-navy focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2",
   whatsapp:
     "border-2 border-whatsapp bg-transparent text-whatsapp hover:bg-whatsapp/10 active:bg-whatsapp/15 focus-visible:ring-2 focus-visible:ring-whatsapp focus-visible:ring-offset-2",
+  whatsappSolid:
+    "bg-whatsapp text-white shadow-md hover:bg-whatsapp-dark hover:-translate-y-0.5 active:translate-y-0 active:bg-[#128C7E] active:shadow-sm focus-visible:ring-2 focus-visible:ring-whatsapp focus-visible:ring-offset-2",
   white:
     "border border-slate-200 bg-white text-navy shadow-card hover:-translate-y-0.5 hover:shadow-card-lg active:translate-y-0 active:shadow-sm focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2",
   ghost: "bg-transparent text-slate-600 hover:text-brand active:text-navy",

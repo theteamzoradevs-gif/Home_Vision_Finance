@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Icons } from "@/components/ui/icons";
 import { calculateEmi } from "@/lib/emi";
@@ -21,8 +22,6 @@ export function EmiCalculatorWidget({
   const [amount, setAmount] = useState(5_000_000);
   const [rate, setRate] = useState(8.5);
   const [tenure, setTenure] = useState(20);
-  const [scheduleOpen, setScheduleOpen] = useState(false);
-
   const result = useMemo(() => calculateEmi(amount, rate, tenure), [amount, rate, tenure]);
   const rad = 45;
   const circ = 2 * Math.PI * rad;
@@ -106,17 +105,25 @@ export function EmiCalculatorWidget({
         </div>
 
         {/* Right Side: Output Results Container */}
-        <div className="rounded-[20px] border border-slate-200 bg-white p-6 shadow-card sm:p-8">
-          <p className="text-xs font-bold uppercase tracking-wider text-slate-400">MONTHLY PAYMENT</p>
-          <div className="mt-1 font-heading text-4xl font-extrabold text-brand sm:text-5xl">
+        <div className="rounded-[20px] border border-slate-200 bg-white p-5 shadow-card sm:p-8">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 sm:text-xs">
+            Monthly Payment
+          </p>
+          <div className="mt-1 font-heading text-3xl font-extrabold text-brand sm:text-5xl">
             {formatCurrency(result.emi)}
           </div>
-          <p className="mb-6 text-sm text-slate-400">Estimated EMI per month</p>
+          <p className="mb-5 text-xs text-slate-400 sm:mb-6 sm:text-sm">Estimated EMI per month</p>
 
-          <div className="mb-6 flex flex-col items-center gap-6 rounded-xl border border-slate-100 p-5 sm:flex-row">
-            {/* Clean empty donut circle container matching image */}
-            <div className="relative h-[130px] w-[130px] shrink-0">
-              <svg width="130" height="130" viewBox="0 0 120 120" className="-rotate-90" aria-hidden>
+          {/* Chart + Principal/Interest — horizontal on all breakpoints */}
+          <div className="mb-5 flex items-center gap-3 rounded-xl border border-slate-100 p-3 sm:mb-6 sm:gap-5 sm:p-5">
+            <div className="relative h-[88px] w-[88px] shrink-0 sm:h-[130px] sm:w-[130px]">
+              <svg
+                width="100%"
+                height="100%"
+                viewBox="0 0 120 120"
+                className="-rotate-90"
+                aria-hidden
+              >
                 <circle cx="60" cy="60" r={rad} fill="none" stroke="#e2e8f0" strokeWidth="10" />
                 <circle
                   cx="60"
@@ -130,27 +137,26 @@ export function EmiCalculatorWidget({
                 />
               </svg>
             </div>
-            
-            {/* Label badges on the side */}
-            <div className="w-full space-y-3 text-sm">
-              <div className="flex items-center gap-3 rounded-lg bg-slate-50 p-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#1a4f9e] text-white">
+
+            <div className="min-w-0 flex-1 space-y-2 sm:space-y-3">
+              <div className="flex items-center gap-2 rounded-lg bg-slate-50 p-2 sm:gap-3 sm:p-3">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand text-white sm:h-8 sm:w-8">
                   {Icons.rupee}
                 </span>
-                <div>
-                  <div className="font-semibold text-navy">Principal</div>
-                  <div className="text-slate-500">
+                <div className="min-w-0">
+                  <div className="text-xs font-semibold text-navy sm:text-sm">Principal</div>
+                  <div className="truncate text-[11px] text-slate-500 sm:text-sm">
                     {formatCurrency(amount)} ({result.principalPercent}%)
                   </div>
                 </div>
               </div>
-              <div className="flex items-center gap-3 rounded-lg bg-slate-50 p-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-200 text-slate-600">
+              <div className="flex items-center gap-2 rounded-lg bg-slate-50 p-2 sm:gap-3 sm:p-3">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-slate-200 text-slate-600 sm:h-8 sm:w-8">
                   {Icons.percent}
                 </span>
-                <div>
-                  <div className="font-semibold text-navy">Interest</div>
-                  <div className="text-slate-500">
+                <div className="min-w-0">
+                  <div className="text-xs font-semibold text-navy sm:text-sm">Interest</div>
+                  <div className="truncate text-[11px] text-slate-500 sm:text-sm">
                     {formatCurrency(result.totalInterest)} ({result.interestPercent}%)
                   </div>
                 </div>
@@ -159,46 +165,46 @@ export function EmiCalculatorWidget({
           </div>
 
           {/* Bottom Breakdown Metric Grid */}
-          <div className="grid grid-cols-1 gap-3 border-t border-slate-100 pt-5 sm:grid-cols-3">
-            <div className="p-3 text-center sm:text-left">
-              <span className="text-xs uppercase tracking-wide text-slate-400">TOTAL INTEREST</span>
-              <strong className="mt-1 block text-navy font-bold text-lg">{formatCurrency(result.totalInterest)}</strong>
+          <div className="grid grid-cols-3 gap-1.5 border-t border-slate-100 pt-4 sm:gap-3 sm:pt-5">
+            <div className="rounded-lg bg-slate-50/60 p-2 text-center sm:bg-transparent sm:p-3 sm:text-left">
+              <span className="block text-[9px] font-semibold uppercase tracking-wide text-slate-400 sm:text-xs">
+                Total Interest
+              </span>
+              <strong className="mt-1 block text-xs font-bold leading-tight text-navy sm:text-lg">
+                {formatCurrency(result.totalInterest)}
+              </strong>
             </div>
-            <div className="p-3 text-center sm:text-left">
-              <span className="text-xs uppercase tracking-wide text-slate-400">TOTAL REPAYMENT</span>
-              <strong className="mt-1 block text-navy font-bold text-lg">{formatCurrency(result.totalPayment)}</strong>
+            <div className="rounded-lg bg-slate-50/60 p-2 text-center sm:bg-transparent sm:p-3 sm:text-left">
+              <span className="block text-[9px] font-semibold uppercase tracking-wide text-slate-400 sm:text-xs">
+                Total Payment
+              </span>
+              <strong className="mt-1 block text-xs font-bold leading-tight text-navy sm:text-lg">
+                {formatCurrency(result.totalPayment)}
+              </strong>
             </div>
-            <div className="p-3 text-center sm:text-left">
-              <span className="text-xs uppercase tracking-wide text-slate-400">PRINCIPAL</span>
-              <strong className="mt-1 block text-navy font-bold text-lg">{formatCurrency(amount)}</strong>
+            <div className="rounded-lg bg-slate-50/60 p-2 text-center sm:bg-transparent sm:p-3 sm:text-left">
+              <span className="block text-[9px] font-semibold uppercase tracking-wide text-slate-400 sm:text-xs">
+                Monthly EMI
+              </span>
+              <strong className="mt-1 block text-xs font-bold leading-tight text-brand sm:text-lg">
+                {formatCurrency(result.emi)}
+              </strong>
             </div>
           </div>
         </div>
       </div>
 
-      {showScheduleInline && (
-        <EmiRepaymentSchedule schedule={result.schedule} integrated />
-      )}
+      {showScheduleInline && <EmiRepaymentSchedule schedule={result.schedule} integrated />}
 
       {collapsibleSchedule && (
-        <>
-          <div className="mt-8 flex justify-center sm:mt-10">
-            <Button
-              type="button"
-              size="sm"
-              onClick={() => setScheduleOpen((prev) => !prev)}
-              aria-expanded={scheduleOpen}
-              aria-controls="emi-repayment-schedule"
-            >
-              {scheduleOpen ? "Hide Repayment Schedule" : "Repayment Schedule"}
-            </Button>
-          </div>
-          {scheduleOpen && (
-            <div id="emi-repayment-schedule">
-              <EmiRepaymentSchedule schedule={result.schedule} integrated />
-            </div>
-          )}
-        </>
+        <div className="mt-16 flex justify-center border-t border-slate-100 pt-10 sm:mt-20 sm:pt-12 lg:mt-24">
+          <Link
+            href="/emi-calculator#repayment-schedule"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand px-5 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-light active:translate-y-0 active:bg-navy active:shadow-sm focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+          >
+            Repayment Schedule
+          </Link>
+        </div>
       )}
     </div>
   );

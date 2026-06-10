@@ -45,8 +45,8 @@ export function SiteHeader() {
           scrolled && "shadow-card"
         )}
       >
-        <div className="container-site flex h-[88px] items-center justify-between">
-          <BrandLogo height={60} priority className="max-w-[220px] sm:max-w-[280px]" />
+        <div className="container-site flex h-[72px] items-center justify-between sm:h-[76px]">
+          <BrandLogo height={64} priority className="max-w-[230px] sm:max-w-[300px]" />
 
           <nav className="hidden items-center gap-6 lg:flex" aria-label="Main navigation">
             {NAV_LINKS.map((link) => (

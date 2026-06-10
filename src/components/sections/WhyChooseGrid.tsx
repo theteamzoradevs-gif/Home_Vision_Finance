@@ -33,7 +33,7 @@ export function WhyChooseGrid({ light = false }: { light?: boolean }) {
             >
               <div
                 className={cn(
-                  "font-heading text-2xl font-extrabold sm:text-4xl",
+                  "font-heading text-5xl font-extrabold leading-none sm:text-4xl",
                   light ? "text-white" : "text-navy"
                 )}
               >
@@ -42,7 +42,7 @@ export function WhyChooseGrid({ light = false }: { light?: boolean }) {
 
               <div
                 className={cn(
-                  "mt-3 text-sm font-bold sm:mt-4 sm:text-base",
+                  "mt-3 text-sm font-bold leading-tight sm:mt-4 sm:text-base",
                   light ? "text-white" : "text-navy"
                 )}
               >
@@ -52,7 +52,7 @@ export function WhyChooseGrid({ light = false }: { light?: boolean }) {
               {item.description && (
                 <p
                   className={cn(
-                    "mt-2 flex-1 text-xs leading-relaxed sm:text-sm",
+                    "mt-2 line-clamp-2 max-w-full flex-1 text-xs leading-snug sm:text-sm lg:line-clamp-1 lg:max-w-[280px]",
                     light ? "text-white/70" : "text-slate-500"
                   )}
                 >
