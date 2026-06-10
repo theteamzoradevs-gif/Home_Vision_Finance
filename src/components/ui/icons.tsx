@@ -30,11 +30,16 @@ import {
   X,
   type LucideIcon,
 } from "lucide-react";
+import { FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
 
 type IconSize = 16 | 18 | 20 | 22 | 24;
 
 function icon(Icon: LucideIcon, size: IconSize = 20) {
   return <Icon size={size} strokeWidth={1.75} aria-hidden />;
+}
+
+function brandIcon(Icon: typeof FaInstagram, size: IconSize = 20) {
+  return <Icon size={size} aria-hidden />;
 }
 
 export function Logo({ size = 40 }: { size?: number }) {
@@ -82,26 +87,9 @@ export const Icons = {
   landmark: icon(Landmark, 22),
   piggyBank: icon(PiggyBank, 22),
   circleDollar: icon(CircleDollarSign, 22),
-  instagram: (
-    <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} aria-hidden>
-      <rect x="2" y="2" width="20" height="20" rx="5" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-    </svg>
-  ),
-  linkedin: (
-    <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} aria-hidden>
-      <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-13h4v2" strokeLinecap="round" strokeLinejoin="round" />
-      <rect x="2" y="9" width="4" height="12" />
-      <circle cx="4" cy="4" r="2" />
-    </svg>
-  ),
-  youtube: (
-    <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} aria-hidden>
-      <path d="M22 8.5c-.2-1.2-.9-2.1-2-2.3C17.5 5.5 12 5.5 12 5.5s-5.5 0-8 .7c-1.1.2-1.8 1.1-2 2.3C1 10.8 1 12 1 12s0 1.2.1 3.5c.2 1.2.9 2.1 2 2.3 2.5.7 8 .7 8 .7s5.5 0 8-.7c1.1-.2 1.8-1.1 2-2.3.1-2.3.1-3.5.1-3.5s0-1.2-.1-3.5z" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M9.75 15.02l5.75-3.02-5.75-3.02v6.04z" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  ),
+  instagram: brandIcon(FaInstagram, 18),
+  linkedin: brandIcon(FaLinkedin, 18),
+  youtube: brandIcon(FaYoutube, 18),
   wallet: icon(Wallet, 22),
   fileCheck: icon(FileCheck, 20),
   bell: icon(Clock, 22),

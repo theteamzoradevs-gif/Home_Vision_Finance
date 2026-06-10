@@ -26,16 +26,18 @@ export function DocumentsSection() {
               Keep these documents ready for faster eligibility checks and smoother bank processing.
             </p>
 
-            <ul className="mt-8 space-y-3">
+            <ul className="mt-8 grid grid-cols-2 gap-2.5 sm:gap-3">
               {DOCUMENTS.map((doc) => (
                 <li
                   key={doc}
-                  className="flex items-center gap-3.5 rounded-xl border border-slate-100 bg-slate-50/80 px-4 py-3.5 sm:px-5"
+                  className="flex items-center gap-2.5 rounded-xl border border-slate-100 bg-slate-50/80 px-3 py-3 sm:gap-3 sm:px-4 sm:py-3.5"
                 >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-pale text-brand">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-pale text-brand sm:h-9 sm:w-9">
                     {Icons.fileCheck}
                   </span>
-                  <span className="text-sm font-medium text-slate-700 sm:text-[15px]">{doc}</span>
+                  <span className="min-w-0 text-xs font-medium leading-snug text-slate-700 sm:text-sm">
+                    {doc}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -46,7 +48,11 @@ export function DocumentsSection() {
           </div>
 
           {/* Right: consultation form */}
-          <LeadForm title="Get Free Consultation" subtitle="Quick details — expert callback in minutes" />
+          <LeadForm
+            variant="compact"
+            title="Get Free Consultation"
+            subtitle="Quick details — expert callback in minutes"
+          />
         </div>
 
         {/* Below both columns: contact shortcuts */}

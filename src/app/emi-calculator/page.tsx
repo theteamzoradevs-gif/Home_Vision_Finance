@@ -1,5 +1,6 @@
 import { PageHero } from "@/components/sections/PageHero";
 import { CtaBanner } from "@/components/sections/CtaBanner";
+import { ScrollToHash } from "@/components/layout/ScrollToHash";
 import { EmiCalculatorWidget } from "@/features/emi/EmiCalculatorWidget";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -12,6 +13,7 @@ export const metadata = createPageMetadata(
 export default function EmiCalculatorPage() {
   return (
     <>
+      <ScrollToHash />
       <PageHero
         label="Plan Your Loan"
         title="Home Loan EMI Calculator"

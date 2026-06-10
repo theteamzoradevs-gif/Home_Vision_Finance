@@ -22,7 +22,7 @@ export function HeroSection() {
   const currentWord = useTypewriter(WORDS);
 
   return (
-    <section className="relative flex min-h-[480px] w-full items-center overflow-hidden border-b border-slate-200 pb-12 pt-24 sm:min-h-[560px] sm:pb-16 sm:pt-28 lg:min-h-[600px]">
+    <section className="relative flex min-h-[480px] w-full items-center overflow-x-hidden border-b border-slate-200 pb-12 pt-24 sm:min-h-[560px] sm:pb-16 sm:pt-28 lg:min-h-[600px]">
       <div className="pointer-events-none absolute inset-0 z-0">
         <Image
           src="/hero-bg2.jpeg"
@@ -96,22 +96,22 @@ export function HeroSection() {
               Get Free Consultation
             </Button>
 
-            <div className="group relative inline-block translate-y-0.5">
-              <span className="absolute bottom-full left-1/2 z-10 mb-2 origin-bottom -translate-x-1/2 scale-0 whitespace-nowrap rounded-lg bg-brand px-3 py-1.5 text-sm font-semibold text-white opacity-0 shadow-md transition-all duration-200 group-hover:scale-100 group-hover:opacity-100">
+            <div className="group/call relative inline-block translate-y-0.5">
+              <span className="pointer-events-none absolute bottom-full left-1/2 z-30 mb-2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-brand px-3 py-1.5 text-sm font-semibold text-white opacity-0 shadow-md transition-all duration-200 group-hover/call:translate-y-0 group-hover/call:opacity-100">
                 Call Now
                 <span className="absolute left-1/2 top-full -mt-1 -translate-x-1/2 border-4 border-transparent border-t-brand" />
               </span>
 
               <Button
-  href={`tel:${PHONE}`}
-  variant="white"
-  aria-label="Call now"
-  className="flex h-11 w-11 items-center justify-center rounded-full p-0 text-brand"
->
-  <span className="text-brand [&_svg]:h-6 [&_svg]:w-6 [&_svg]:stroke-brand [&_svg]:text-brand">
-    {Icons.phone}
-  </span>
-</Button>
+                href={`tel:${PHONE}`}
+                variant="white"
+                aria-label="Call now"
+                className="flex h-11 w-11 items-center justify-center rounded-full p-0 text-brand transition-transform duration-200 group-hover/call:scale-105"
+              >
+                <span className="text-brand [&_svg]:h-6 [&_svg]:w-6 [&_svg]:stroke-brand [&_svg]:text-brand">
+                  {Icons.phone}
+                </span>
+              </Button>
             </div>
           </div>
         </div>

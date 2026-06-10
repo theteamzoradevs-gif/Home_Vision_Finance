@@ -3,7 +3,6 @@ import { DM_Sans, Plus_Jakarta_Sans } from "next/font/google";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { WhatsAppFab } from "@/components/layout/WhatsAppFab";
-import { MobileCallBar } from "@/components/layout/MobileCallBar";
 import { FloatingActionBar } from "@/components/layout/FloatingActionBar";
 import { BRAND } from "@/lib/constants";
 import "./globals.css";
@@ -33,13 +32,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${heading.variable} ${body.variable}`}>
-      <body className="pb-16 text-[15px] sm:text-base lg:pb-0">
+      <body className="text-[15px] sm:text-base">
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />
         <FloatingActionBar />
         <WhatsAppFab />
-        <MobileCallBar />
       </body>
     </html>
   );

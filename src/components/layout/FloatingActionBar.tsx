@@ -28,35 +28,37 @@ export function FloatingActionBar() {
   const [callbackOpen, setCallbackOpen] = useState(false);
 
   const actionItemClass = cn(
-    "flex flex-col items-center gap-1 transition-colors duration-200 hover:bg-brand-pale hover:text-brand",
-    "w-14 px-1.5 py-2.5 sm:w-[80px] sm:px-3 sm:py-3"
+    "flex min-h-[44px] flex-col items-center justify-center transition-colors duration-200 hover:bg-brand-pale hover:text-brand",
+    "w-[54px] gap-0.5 px-1 py-2",
+    "sm:w-[60px] sm:gap-0.5 sm:px-1.5 sm:py-2.5",
+    "lg:w-[68px] lg:gap-0 lg:px-2 lg:py-2"
   );
 
-  const labelClass = "text-center text-[9px] font-semibold leading-tight text-navy sm:text-[11px]";
+  const labelClass = cn(
+    "text-center font-semibold text-navy",
+    "text-[8px] leading-tight sm:text-[9px]",
+    "lg:text-[10px] lg:leading-[1.1]"
+  );
+
+  const iconClass = "flex h-4 w-4 shrink-0 items-center justify-center text-brand sm:h-[18px] sm:w-[18px] [&>svg]:h-full [&>svg]:w-full";
 
   return (
     <>
       <aside
-        className="fixed right-0 top-1/2 z-[997] flex -translate-y-1/2 flex-col gap-2 overflow-visible sm:gap-0 sm:overflow-hidden sm:rounded-l-2xl sm:border sm:border-r-0 sm:border-slate-200 sm:bg-white sm:shadow-card-lg"
+        className="fixed right-0 top-1/2 z-[997] flex -translate-y-1/2 flex-col overflow-hidden rounded-l-xl border border-r-0 border-slate-200 bg-white shadow-card-lg lg:rounded-l-2xl"
         aria-label="Quick actions"
       >
         {ACTIONS.map((action, index) => (
           <Link
             key={action.id}
             href={action.href}
-            className={cn(
-              actionItemClass,
-              "rounded-l-xl border border-r-0 border-slate-200 bg-white shadow-card sm:rounded-none sm:border-0 sm:shadow-none",
-              index < ACTIONS.length && "sm:border-b sm:border-slate-100"
-            )}
+            className={cn(actionItemClass, index < ACTIONS.length && "border-b border-slate-100")}
             title={action.label}
           >
-            <span className="flex h-5 w-5 shrink-0 items-center justify-center text-brand [&>svg]:h-full [&>svg]:w-full">
-              {action.icon}
-            </span>
+            <span className={iconClass}>{action.icon}</span>
             <span className={labelClass}>
-              <span className="sm:hidden">{action.shortLabel}</span>
-              <span className="hidden sm:inline">{action.label}</span>
+              <span className="lg:hidden">{action.shortLabel}</span>
+              <span className="hidden lg:inline">{action.label}</span>
             </span>
           </Link>
         ))}
@@ -64,18 +66,13 @@ export function FloatingActionBar() {
         <button
           type="button"
           onClick={() => setCallbackOpen(true)}
-          className={cn(
-            actionItemClass,
-            "rounded-l-xl border border-r-0 border-slate-200 bg-white shadow-card sm:rounded-none sm:border-0 sm:shadow-none"
-          )}
+          className={actionItemClass}
           title="Instant Callback"
         >
-          <span className="flex h-5 w-5 shrink-0 items-center justify-center text-brand [&>svg]:h-full [&>svg]:w-full">
-            {Icons.phoneCall}
-          </span>
+          <span className={iconClass}>{Icons.phoneCall}</span>
           <span className={labelClass}>
-            <span className="sm:hidden">Callback</span>
-            <span className="hidden sm:inline">Instant Callback</span>
+            <span className="lg:hidden">Callback</span>
+            <span className="hidden lg:inline">Instant Callback</span>
           </span>
         </button>
       </aside>

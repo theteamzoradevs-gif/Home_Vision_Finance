@@ -106,7 +106,7 @@ export function SiteFooter() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={social.label}
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-slate-300 transition duration-200 hover:scale-110 hover:bg-brand hover:text-white"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-slate-300 transition duration-200 hover:scale-110 hover:bg-brand hover:text-white [&>svg]:h-[18px] [&>svg]:w-[18px]"
               >
                 {social.icon}
               </a>
@@ -119,11 +119,11 @@ export function SiteFooter() {
         <div className="container-site flex flex-wrap items-center justify-between gap-4 py-6 text-xs text-slate-500">
           <span>© {new Date().getFullYear()} {BRAND}. All rights reserved. | SBI Authorised Channel Partner</span>
           <span className="flex gap-3">
-            <Link href="#" className="hover:text-white">
+            <Link href="/privacy-policy" className="transition hover:text-white">
               Privacy Policy
             </Link>
-            <Link href="#" className="hover:text-white">
-              Terms
+            <Link href="/terms-and-conditions" className="transition hover:text-white">
+              Terms & Conditions
             </Link>
           </span>
         </div>

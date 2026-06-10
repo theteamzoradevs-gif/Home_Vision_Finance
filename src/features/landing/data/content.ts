@@ -81,32 +81,32 @@ export const WHY_CHOOSE_ITEMS = [
   {
     value: "01",
     label: "Fast File Login",
-    description: "Your loan file gets logged in within 24–48 hours of document submission.",
+    description: "File logged in within 24–48 hours of document submission.",
   },
   {
     value: "02",
     label: "Smooth Coordination",
-    description: "End-to-end coordination between you, the bank, and the builder.",
+    description: "Seamless coordination between you, the bank, and builder.",
   },
   {
     value: "03",
     label: "Regular Updates",
-    description: "Track your loan status at every stage with proactive communication.",
+    description: "Proactive status updates at every stage of your loan.",
   },
   {
     value: "04",
-    label: "Support Till Disbursement",
-    description: "Full support from application to final disbursement into your account.",
+    label: "Disbursement Support",
+    description: "End-to-end support from application to disbursement.",
   },
   {
     value: "05",
-    label: "Builder & Broker Assistance",
-    description: "Special support for real estate professionals with fast processing.",
+    label: "Builder & Broker Help",
+    description: "Dedicated support for builders and brokers.",
   },
   {
     value: "06",
     label: "Multi-Bank Access",
-    description: "Compare rates across SBI, HDFC, ICICI, PNB & Bank of Baroda.",
+    description: "Compare rates across SBI, HDFC, PNB & more.",
   },
 ] as const;
 
