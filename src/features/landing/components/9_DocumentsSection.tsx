@@ -42,9 +42,11 @@ export function DocumentsSection() {
               ))}
             </ul>
 
-            <Button href="/contact" size="sm" className="mt-6">
-              Apply Now
-            </Button>
+            <div className="flex justify-center">
+  <Button href="/contact" size="sm" className="mt-6">
+    Apply Now
+  </Button>
+</div>
           </div>
 
           {/* Right: consultation form */}

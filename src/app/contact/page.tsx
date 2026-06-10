@@ -2,7 +2,16 @@ import { PageHero } from "@/components/sections/PageHero";
 import { WhyChooseGrid } from "@/components/sections/WhyChooseGrid";
 import { ContactForm } from "@/features/forms/ContactForm";
 import { Icons } from "@/components/ui/icons";
-import { ADDRESS, CONSULTANT_ROLE, EMAIL, HOURS, PHONE, WHATSAPP_CONTACT } from "@/lib/constants";
+import {
+  ADDRESS,
+  CONSULTANT_ROLE,
+  EMAIL,
+  GOOGLE_MAPS_EMBED_URL,
+  GOOGLE_MAPS_URL,
+  HOURS,
+  PHONE,
+  WHATSAPP_CONTACT,
+} from "@/lib/constants";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata(
@@ -47,13 +56,21 @@ export default function ContactPage() {
                   </a>
                 </div>
               </li>
-              <li className="flex gap-4 rounded-xl border border-slate-200 bg-slate-50 p-5">
-                <span className="text-brand">{Icons.map}</span>
-                <div>
-                  <p className="text-xs font-semibold uppercase text-slate-500">Office</p>
-                  <p className="font-semibold text-navy">{ADDRESS}</p>
-                  <p className="mt-1 text-sm text-slate-500">{HOURS}</p>
-                </div>
+              <li>
+                <a
+                  href={GOOGLE_MAPS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex gap-4 rounded-xl border border-slate-200 bg-slate-50 p-5 transition hover:border-brand/30 hover:bg-brand-pale/40"
+                >
+                  <span className="text-brand">{Icons.map}</span>
+                  <div>
+                    <p className="text-xs font-semibold uppercase text-slate-500">Office</p>
+                    <p className="font-semibold text-navy">{ADDRESS}</p>
+                    <p className="mt-1 text-sm text-slate-500">{HOURS}</p>
+                    <p className="mt-2 text-xs font-semibold text-brand">Open in Google Maps →</p>
+                  </div>
+                </a>
               </li>
             </ul>
 
@@ -74,17 +91,25 @@ export default function ContactPage() {
       <section className="section-padding bg-slate-50 pt-0">
         <div className="container-site">
           <h2 className="mb-4 font-heading text-xl font-bold text-navy">Find Us</h2>
-          <div
-            className="flex h-64 items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white text-slate-400 sm:h-80"
-            role="img"
-            aria-label="Map placeholder"
-          >
-            <div className="text-center">
-              <span className="flex justify-center text-brand">{Icons.map}</span>
-              <p className="mt-2 text-sm">Google Map — Delhi NCR</p>
-              <p className="text-xs text-slate-400">Embed your map iframe here</p>
-            </div>
+          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-card">
+            <iframe
+              src={GOOGLE_MAPS_EMBED_URL}
+              title="Home Vision Finance office location"
+              className="h-64 w-full border-0 sm:h-80 lg:h-[450px]"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
+          <a
+            href={GOOGLE_MAPS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand transition hover:text-brand-light"
+          >
+            Open in Google Maps
+            {Icons.chevronRight}
+          </a>
         </div>
       </section>
 

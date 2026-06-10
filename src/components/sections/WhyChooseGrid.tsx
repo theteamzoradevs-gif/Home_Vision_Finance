@@ -52,7 +52,7 @@ export function WhyChooseGrid({ light = false }: { light?: boolean }) {
               {item.description && (
                 <p
                   className={cn(
-                    "mt-2 line-clamp-2 max-w-full flex-1 text-xs leading-snug sm:text-sm lg:line-clamp-1 lg:max-w-[280px]",
+                    "mt-2 line-clamp-2 max-w-full flex-1 text-xs leading-snug sm:text-sm lg:line-clamp-none lg:max-w-none",
                     light ? "text-white/70" : "text-slate-500"
                   )}
                 >

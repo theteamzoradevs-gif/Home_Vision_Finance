@@ -3,9 +3,9 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { Icons } from "@/components/ui/icons";
 import { calculateEmi } from "@/lib/emi";
 import { formatCurrency } from "@/lib/utils";
+import { EmiPieChart } from "./EmiPieChart";
 import { EmiRepaymentSchedule } from "./EmiRepaymentSchedule";
 
 interface EmiCalculatorWidgetProps {
@@ -23,9 +23,6 @@ export function EmiCalculatorWidget({
   const [rate, setRate] = useState(8.5);
   const [tenure, setTenure] = useState(20);
   const result = useMemo(() => calculateEmi(amount, rate, tenure), [amount, rate, tenure]);
-  const rad = 45;
-  const circ = 2 * Math.PI * rad;
-  const principalArc = (result.principalPercent / 100) * circ;
 
   return (
     <div className="space-y-0">
@@ -114,54 +111,13 @@ export function EmiCalculatorWidget({
           </div>
           <p className="mb-5 text-xs text-slate-400 sm:mb-6 sm:text-sm">Estimated EMI per month</p>
 
-          {/* Chart + Principal/Interest — horizontal on all breakpoints */}
-          <div className="mb-5 flex items-center gap-3 rounded-xl border border-slate-100 p-3 sm:mb-6 sm:gap-5 sm:p-5">
-            <div className="relative h-[88px] w-[88px] shrink-0 sm:h-[130px] sm:w-[130px]">
-              <svg
-                width="100%"
-                height="100%"
-                viewBox="0 0 120 120"
-                className="-rotate-90"
-                aria-hidden
-              >
-                <circle cx="60" cy="60" r={rad} fill="none" stroke="#e2e8f0" strokeWidth="10" />
-                <circle
-                  cx="60"
-                  cy="60"
-                  r={rad}
-                  fill="none"
-                  stroke="#1a4f9e"
-                  strokeWidth="10"
-                  strokeDasharray={`${principalArc} ${circ - principalArc}`}
-                  strokeLinecap="round"
-                />
-              </svg>
-            </div>
-
-            <div className="min-w-0 flex-1 space-y-2 sm:space-y-3">
-              <div className="flex items-center gap-2 rounded-lg bg-slate-50 p-2 sm:gap-3 sm:p-3">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand text-white sm:h-8 sm:w-8">
-                  {Icons.rupee}
-                </span>
-                <div className="min-w-0">
-                  <div className="text-xs font-semibold text-navy sm:text-sm">Principal</div>
-                  <div className="truncate text-[11px] text-slate-500 sm:text-sm">
-                    {formatCurrency(amount)} ({result.principalPercent}%)
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center gap-2 rounded-lg bg-slate-50 p-2 sm:gap-3 sm:p-3">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-slate-200 text-slate-600 sm:h-8 sm:w-8">
-                  {Icons.percent}
-                </span>
-                <div className="min-w-0">
-                  <div className="text-xs font-semibold text-navy sm:text-sm">Interest</div>
-                  <div className="truncate text-[11px] text-slate-500 sm:text-sm">
-                    {formatCurrency(result.totalInterest)} ({result.interestPercent}%)
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="mb-5 min-h-[148px] rounded-xl border border-slate-100 p-3 sm:mb-6 sm:min-h-[168px] sm:p-5">
+            <EmiPieChart
+              principal={amount}
+              interest={result.totalInterest}
+              principalPercent={result.principalPercent}
+              interestPercent={result.interestPercent}
+            />
           </div>
 
           {/* Bottom Breakdown Metric Grid */}
