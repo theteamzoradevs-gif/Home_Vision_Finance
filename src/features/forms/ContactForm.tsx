@@ -5,10 +5,8 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import { Textarea } from "@/components/ui/Textarea";
-// 🌟 Linked real integration handler from contactService
 import { submitContactForm } from "@/lib/api/contactService";
 
-// ─── DATABASE ALIGNED FORM STATE TYPE ───
 type FormState = {
   fullName: string;
   email: string;
@@ -19,7 +17,6 @@ type FormState = {
 
 type FormErrors = Partial<Record<keyof FormState, string>>;
 
-// 🌟 EXACT SCHEMA ENUM MATCHING OPTIONS
 const SERVICE_OPTIONS = [
   { value: "", label: "Select inquiry type" },
   { value: "home loan", label: "Home Loan" },
@@ -28,36 +25,39 @@ const SERVICE_OPTIONS = [
   { value: "other", label: "Other" },
 ];
 
+const NAME_PATTERN = /^[a-zA-Z\s]+$/;
+
 function validate(values: FormState): FormErrors {
   const errors: FormErrors = {};
-  
-  if (!values.fullName.trim()) errors.fullName = "Full name is required";
-  
+
+  if (!values.fullName.trim()) {
+    errors.fullName = "Full name is required.";
+  } else if (!NAME_PATTERN.test(values.fullName.trim())) {
+    errors.fullName = "Only alphabets are allowed in the name field.";
+  }
+
   if (!values.email.trim()) {
-    errors.email = "Email is required";
+    errors.email = "Email is required.";
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
-    errors.email = "Enter a valid email address";
+    errors.email = "Enter a valid email address.";
   }
-  
+
   if (!values.phone.trim()) {
-    errors.phone = "Phone number is required";
+    errors.phone = "Phone number is required.";
   } else if (!/^[0-9]{10}$/.test(values.phone)) {
-    errors.phone = "Enter a valid 10-digit mobile number";
+    errors.phone = "Enter a valid 10-digit mobile number.";
   }
-  
-  if (!values.serviceType) errors.serviceType = "Please select an inquiry type";
-  
-  if (!values.message.trim()) {
-    errors.message = "Message is required";
-  } else if (values.message.trim().length < 10) {
-    errors.message = "Message must be at least 10 characters";
+
+  if (!values.serviceType) errors.serviceType = "Please select an inquiry type.";
+
+  if (values.message.trim() && values.message.trim().length < 10) {
+    errors.message = "Message must be at least 10 characters.";
   }
-  
+
   return errors;
 }
 
 export function ContactForm() {
-  // 🌟 State initialized with real backend Mongoose keys
   const [values, setValues] = useState<FormState>({
     fullName: "",
     email: "",
@@ -65,7 +65,7 @@ export function ContactForm() {
     serviceType: "",
     message: "",
   });
-  
+
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -74,22 +74,22 @@ export function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitError("");
-    
+
     const nextErrors = validate(values);
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
 
     setLoading(true);
     try {
-      // 🚀 REST API LAYER CALL: Transmitting exact structured payload to /home/apply
       await submitContactForm(values);
-      
+
       setSubmitted(true);
       setValues({ fullName: "", email: "", phone: "", serviceType: "", message: "" });
       setTimeout(() => setSubmitted(false), 5000);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Form transmission failed:", err);
-      setSubmitError(err.message || "Failed to submit inquiry. Please try again.");
+      const message = err instanceof Error ? err.message : "Failed to submit inquiry. Please try again.";
+      setSubmitError(message);
     } finally {
       setLoading(false);
     }
@@ -122,11 +122,14 @@ export function ContactForm() {
       <Input
         label="Full Name"
         value={values.fullName}
-        onChange={(e) => setValues({ ...values, fullName: e.target.value })}
+        onChange={(e) => {
+          const onlyLetters = e.target.value.replace(/[^a-zA-Z\s]/g, "");
+          setValues({ ...values, fullName: onlyLetters });
+        }}
         error={errors.fullName}
         required
       />
-      
+
       <Input
         label="Email Address"
         type="email"
@@ -135,7 +138,7 @@ export function ContactForm() {
         error={errors.email}
         required
       />
-      
+
       <Input
         label="Mobile Number"
         type="tel"
@@ -145,7 +148,7 @@ export function ContactForm() {
         error={errors.phone}
         required
       />
-      
+
       <Select
         label="Inquiry Type"
         options={SERVICE_OPTIONS}
@@ -154,15 +157,14 @@ export function ContactForm() {
         error={errors.serviceType}
         required
       />
-      
+
       <Textarea
         label="Message"
         value={values.message}
         onChange={(e) => setValues({ ...values, message: e.target.value })}
         error={errors.message}
-        
       />
-      
+
       <Button type="submit" className="w-full justify-center" disabled={loading}>
         {loading ? "Sending..." : "Send Inquiry"}
       </Button>

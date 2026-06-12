@@ -13,15 +13,15 @@ export function WhatsAppFab() {
         href={WHATSAPP_HOME}
         target="_blank"
         rel="noopener noreferrer"
-        className="whatsapp-fab-link group/link relative flex items-center gap-2.5 focus-visible:outline-none"
+        className="whatsapp-fab-link group/link relative flex flex-row items-center gap-2.5 focus-visible:outline-none"
         aria-label="Chat on WhatsApp — Instant WhatsApp Reply"
       >
         <span
-          className="whatsapp-fab-bubble pointer-events-none hidden rounded-full bg-white px-3.5 py-2 text-xs font-semibold text-navy shadow-[0_4px_20px_rgba(11,29,53,0.15)] ring-1 ring-slate-200/80 sm:inline-flex sm:text-sm"
+          className="whatsapp-fab-bubble pointer-events-none inline-flex shrink-0 items-center whitespace-nowrap rounded-full bg-white px-3 py-2 text-[10px] font-semibold text-navy shadow-[0_4px_20px_rgba(11,29,53,0.15)] ring-1 ring-slate-200/80 sm:px-3.5 sm:text-sm"
           aria-hidden
         >
           Instant WhatsApp Reply
-          <span className="absolute -right-1.5 top-1/2 h-3 w-3 -translate-y-1/2 rotate-45 border-b border-r border-slate-200/80 bg-white" />
+          <span className="absolute -right-1.5 top-1/2 hidden h-3 w-3 -translate-y-1/2 rotate-45 border-b border-r border-slate-200/80 bg-white sm:block" />
         </span>
 
         <span className="relative flex shrink-0 items-center justify-center">
@@ -38,10 +38,6 @@ export function WhatsAppFab() {
           </span>
         </span>
       </a>
-
-      <span className="whatsapp-fab-bubble-mobile pointer-events-none absolute bottom-full right-0 mb-2 max-w-[calc(100vw-2rem)] rounded-lg bg-white px-2.5 py-1.5 text-[10px] font-semibold text-navy shadow-[0_4px_16px_rgba(11,29,53,0.12)] ring-1 ring-slate-200/80 sm:hidden">
-        Instant WhatsApp Reply
-      </span>
     </div>
   );
 }

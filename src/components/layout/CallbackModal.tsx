@@ -14,8 +14,8 @@ type CallbackModalProps = {
 };
 
 function validatePhone(phone: string) {
-  if (!phone.trim()) return "Phone number is required";
-  if (!/^[6-9][0-9]{9}$/.test(phone)) return "Enter a valid 10-digit mobile number";
+  if (!phone.trim()) return "Phone number is required.";
+  if (!/^[6-9][0-9]{9}$/.test(phone)) return "Enter a valid 10-digit mobile number.";
   return undefined;
 }
 

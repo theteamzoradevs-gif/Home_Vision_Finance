@@ -4,7 +4,7 @@ import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata(
   "Privacy Policy",
-  "Learn how Home Vision Finance collects, uses, and protects your personal information.",
+  "Learn how Vision Home Finance collects, uses, and protects your personal information.",
   "/privacy-policy"
 );
 

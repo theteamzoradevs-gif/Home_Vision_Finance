@@ -4,7 +4,7 @@ import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata(
   "Terms & Conditions",
-  "Read the terms and conditions governing your use of Home Vision Finance services and website.",
+  "Read the terms and conditions governing your use of Vision Home Finance services and website.",
   "/terms-and-conditions"
 );
 
@@ -13,7 +13,6 @@ export default function TermsAndConditionsPage() {
     <LegalPageLayout
       title="Terms & Conditions"
       description="Please read these terms carefully before using our website or availing our home loan consultancy services."
-      lastUpdated="June 10, 2026"
       sections={[
         {
           title: "1. Acceptance of Terms",

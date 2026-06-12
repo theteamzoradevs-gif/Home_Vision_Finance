@@ -18,6 +18,11 @@ const AMOUNT_OPTIONS = [
   { value: "30000001", label: "Above ₹3 Cr" },
 ];
 
+const FORM_BTN_CLASS =
+  "w-full min-h-[44px] justify-center rounded-xl px-4 py-2.5 text-sm font-semibold sm:px-5 sm:py-2.5 sm:text-sm";
+
+const NAME_PATTERN = /^[a-zA-Z\s]+$/;
+
 type LeadFormProps = {
   variant?: "default" | "compact";
   title?: string;
@@ -32,6 +37,34 @@ type FormState = {
   serviceType: string;
 };
 
+type FormErrors = Partial<Record<keyof FormState, string>>;
+
+function validate(form: FormState): FormErrors {
+  const errors: FormErrors = {};
+
+  if (!form.fullName.trim()) {
+    errors.fullName = "Full name is required.";
+  } else if (!NAME_PATTERN.test(form.fullName.trim())) {
+    errors.fullName = "Only alphabets are allowed in the name field.";
+  }
+
+  if (!form.phone.trim()) {
+    errors.phone = "Phone number is required.";
+  } else if (!/^[0-9]{10}$/.test(form.phone)) {
+    errors.phone = "Enter a valid 10-digit mobile number.";
+  }
+
+  if (!form.loanAmount) errors.loanAmount = "Please select a loan amount range.";
+
+  if (!form.city.trim()) {
+    errors.city = "City is required.";
+  } else if (form.city.trim().length < 3) {
+    errors.city = "City must be at least 3 characters.";
+  }
+
+  return errors;
+}
+
 export function LeadForm({
   variant = "default",
   title = "Get Free Consultation",
@@ -40,6 +73,7 @@ export function LeadForm({
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [errors, setErrors] = useState<FormErrors>({});
 
   const [form, setForm] = useState<FormState>({
     fullName: "",
@@ -55,7 +89,9 @@ export function LeadForm({
     e.preventDefault();
     setSubmitError("");
 
-    if (!form.fullName || form.phone.length !== 10 || !form.loanAmount || !form.city) return;
+    const nextErrors = validate(form);
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) return;
 
     setLoading(true);
     try {
@@ -128,18 +164,17 @@ export function LeadForm({
         </div>
       )}
 
-      <form onSubmit={submit} className={isCompact ? "space-y-0" : undefined}>
+      <form onSubmit={submit} className={isCompact ? "space-y-0" : undefined} noValidate>
         <Input
           label="Full Name"
           placeholder="Enter your name"
           value={form.fullName}
-          pattern="^[a-zA-Z\s]+$"
           onChange={(e) => {
             const onlyLetters = e.target.value.replace(/[^a-zA-Z\s]/g, "");
             setForm({ ...form, fullName: onlyLetters });
           }}
+          error={errors.fullName}
           required
-          minLength={3}
           compact={isCompact}
         />
 
@@ -148,9 +183,9 @@ export function LeadForm({
           type="tel"
           placeholder="10-digit mobile number"
           maxLength={10}
-          pattern="[0-9]{10}"
           value={form.phone}
           onChange={(e) => setForm({ ...form, phone: e.target.value.replace(/\D/g, "") })}
+          error={errors.phone}
           required
           compact={isCompact}
         />
@@ -162,6 +197,7 @@ export function LeadForm({
               options={AMOUNT_OPTIONS}
               value={form.loanAmount}
               onChange={(e) => setForm({ ...form, loanAmount: e.target.value })}
+              error={errors.loanAmount}
               required
               compact
             />
@@ -170,8 +206,8 @@ export function LeadForm({
               placeholder="e.g. Delhi"
               value={form.city}
               onChange={(e) => setForm({ ...form, city: e.target.value })}
+              error={errors.city}
               required
-              minLength={3}
               compact
             />
           </div>
@@ -182,6 +218,7 @@ export function LeadForm({
               options={AMOUNT_OPTIONS}
               value={form.loanAmount}
               onChange={(e) => setForm({ ...form, loanAmount: e.target.value })}
+              error={errors.loanAmount}
               required
             />
             <Input
@@ -189,6 +226,7 @@ export function LeadForm({
               placeholder="e.g. Delhi, Noida, Gurgaon"
               value={form.city}
               onChange={(e) => setForm({ ...form, city: e.target.value })}
+              error={errors.city}
               required
               minLength={3}
             />
@@ -198,8 +236,8 @@ export function LeadForm({
         <Button
           type="submit"
           variant="primary"
-          size={isCompact ? "sm" : "md"}
-          className={cn("w-full justify-center", isCompact && "py-2.5 text-xs sm:text-sm")}
+          size="sm"
+          className={FORM_BTN_CLASS}
           disabled={loading}
         >
           {loading ? "Processing..." : "Check Free Eligibility"}
@@ -208,7 +246,7 @@ export function LeadForm({
         <p
           className={cn(
             "text-center text-xs font-medium text-slate-400",
-            isCompact ? "my-1.5 text-[10px]" : "my-3"
+            isCompact ? "my-2 text-[10px]" : "my-4"
           )}
         >
           or
@@ -217,8 +255,8 @@ export function LeadForm({
         <Button
           href={WHATSAPP_HOME}
           variant="whatsappSolid"
-          size={isCompact ? "sm" : "md"}
-          className={cn("w-full justify-center", isCompact && "py-2.5 text-xs sm:text-sm")}
+          size="sm"
+          className={FORM_BTN_CLASS}
           external
         >
           {Icons.wa} WhatsApp Instant Response
@@ -227,7 +265,7 @@ export function LeadForm({
         <p
           className={cn(
             "flex items-center justify-center gap-1.5 text-slate-400",
-            isCompact ? "mt-2 text-[10px]" : "mt-3 text-xs"
+            isCompact ? "mt-5 text-[10px]" : "mt-5 text-xs"
           )}
         >
           {Icons.shield} Your information is 100% safe & secure

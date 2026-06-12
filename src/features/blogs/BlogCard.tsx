@@ -8,14 +8,12 @@ type BlogCardProps = {
 
 export function BlogCard({ post }: BlogCardProps) {
   return (
-    <Link href={`/blogs/${post.slug}`} className="block h-full">
-      <Card equalHeight className="blog-card-premium h-full">
-        <span className="w-fit rounded-full bg-brand-pale px-3 py-1 text-[11px] font-bold uppercase text-brand">
-          {post.tag}
-        </span>
-        <h3 className="mt-3 font-heading text-lg font-semibold leading-snug text-navy">{post.title}</h3>
+    <Link href={`/blogs/${post.slug}`} className="block h-full text-left">
+      <Card equalHeight className="blog-card-premium h-full text-left">
+        <h3 className="font-heading text-lg font-semibold leading-snug text-navy">{post.title}</h3>
+        <p className="mt-2 text-xs font-bold uppercase tracking-wide text-brand">{post.tag}</p>
         <p className="mt-2 flex-1 text-sm text-slate-500">{post.excerpt}</p>
-        <p className="mt-4 text-xs text-slate-400">
+        <p className="mt-4 text-left text-xs text-slate-400">
           {post.date} · {post.readTime}
         </p>
       </Card>

@@ -14,7 +14,7 @@ export function WhyChooseGrid({ light = false }: { light?: boolean }) {
       <div className="container-site">
         <SectionHeading
           label="Why Choose Us"
-          title="Why Families Trust Home Vision Finance"
+          title="Why Families Trust Vision Home Finance"
           description="With systematic banking networks and a customer-first approach, we expedite your loan pipeline efficiently."
           centered
           light={light}
@@ -25,8 +25,9 @@ export function WhyChooseGrid({ light = false }: { light?: boolean }) {
             <Card
               key={item.value}
               equalHeight
+              highlight={false}
               className={cn(
-                "p-4 sm:p-7",
+                "flex h-full min-h-[180px] flex-col p-4 sm:min-h-[220px] sm:p-7",
                 light &&
                   "border-white/10 bg-white/5 text-white ring-white/10 hover:border-brand-light/30 hover:bg-white/10 hover:ring-brand-light/20"
               )}
