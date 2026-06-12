@@ -13,11 +13,11 @@ export function BrandLogo({ height = 40, className, priority = false }: BrandLog
     <Link
       href="/"
       className={cn("inline-flex shrink-0 items-center", className)}
-      aria-label="Home Vision Finance — Home"
+      aria-label="Vision Home Finance — Home"
     >
       <Image
         src="/logo_HVF.png"
-        alt="Home Vision Finance"
+        alt="Vision Home Finance"
         width={Math.round(height * 3.2)}
         height={height}
         className="h-auto w-auto max-w-[240px] object-contain object-left sm:max-w-[280px]"

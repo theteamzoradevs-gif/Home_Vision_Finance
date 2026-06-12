@@ -184,13 +184,13 @@ export function BlogsPageClient() {
 
   return (
 
-    <section className="section-padding bg-white">
+    <section className="section-padding bg-white text-left">
 
-      <div className="container-site">
+      <div className="container-site text-left">
 
         {blogs.length === 0 ? (
 
-          <div className="py-16 text-center text-sm font-medium text-slate-400">
+          <div className="py-16 text-left text-sm font-medium text-slate-400">
 
             No published blogs found. Please check back soon.
 
@@ -214,21 +214,21 @@ export function BlogsPageClient() {
 
                   href={`/blogs/${post.slug}`}
 
-                  className="blog-card-premium group flex h-full flex-col p-5 sm:p-6"
+                  className="blog-card-premium group flex h-full flex-col p-5 text-left sm:p-6"
 
                 >
 
-                  <span className="w-fit rounded-full bg-brand-pale px-3 py-1 text-xs font-bold uppercase tracking-wide text-brand">
-
-                    {post.subtitle}
-
-                  </span>
-
-                  <h3 className="mt-3 font-heading text-lg font-semibold leading-snug text-navy group-hover:text-brand line-clamp-2">
+                  <h3 className="font-heading text-lg font-semibold leading-snug text-navy line-clamp-2 group-hover:text-brand">
 
                     {post.title}
 
                   </h3>
+
+                  <p className="mt-2 text-xs font-bold uppercase tracking-wide text-brand">
+
+                    {post.subtitle}
+
+                  </p>
 
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500 line-clamp-3">{post.excerpt}</p>
 

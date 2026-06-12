@@ -8,7 +8,7 @@ import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata(
   "About Us",
-  "Learn about Home Vision Finance — SBI Authorised Channel Partner helping families secure stress-free home loans.",
+  "Learn about Vision Home Finance — SBI Authorised Channel Partner helping families secure stress-free home loans.",
   "/about"
 );
 
@@ -18,7 +18,7 @@ export default function AboutPage() {
       <PageHero
         label="Who We Are"
         title="Making Your Home Loan Journey Stress-Free"
-        description="Home Vision Finance is a certified premium financial consultancy specializing in retail mortgages. As an authorised channel partner of SBI, we help families lock down dream homes with expert coordination and ₹0 processing fee charges."
+        description="Vision Home Finance is a certified premium financial consultancy specializing in retail mortgages. As an authorised channel partner of SBI, we help families lock down dream homes with expert coordination and ₹0 processing fee charges."
       />
 
       <MissionVisionCards />

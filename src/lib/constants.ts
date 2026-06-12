@@ -1,4 +1,4 @@
-export const BRAND = "Home Vision Finance";
+export const BRAND = "Vision Home Finance";
 export const PHONE = "9911396575";
 export const PHONE_DISPLAY = `+91 ${PHONE}`;
 export const EMAIL = "contact@homevisionfinance.com";

@@ -77,7 +77,6 @@ export function SiteFooter() {
             SBI Authorised Channel Partner
           </p>
 
-          {/* Contact Icons */}
           <div className="mt-4 flex gap-3">
             {SOCIAL.map((s) => (
               <a
@@ -100,27 +99,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        {/* Services */}
-        <div>
-          <h4 className="mb-4 font-heading text-sm font-semibold text-white">
-            Services
-          </h4>
-
-          <ul className="space-y-2.5">
-            {FOOTER_SERVICES.map((item) => (
-              <li key={item}>
-                <Link
-                  href="/services"
-                  className="text-sm text-slate-400 transition hover:text-white"
-                >
-                  {item}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Quick Links */}
+        {/* Quick Links (swapped with Services) */}
         <div>
           <h4 className="mb-4 font-heading text-sm font-semibold text-white">
             Quick Links
@@ -134,6 +113,26 @@ export function SiteFooter() {
                   className="text-sm text-slate-400 transition hover:text-white"
                 >
                   {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Services (swapped with Quick Links) */}
+        <div>
+          <h4 className="mb-4 font-heading text-sm font-semibold text-white">
+            Services
+          </h4>
+
+          <ul className="space-y-2.5">
+            {FOOTER_SERVICES.map((item) => (
+              <li key={item}>
+                <Link
+                  href="/services"
+                  className="text-sm text-slate-400 transition hover:text-white"
+                >
+                  {item}
                 </Link>
               </li>
             ))}
@@ -177,7 +176,6 @@ export function SiteFooter() {
             </li>
           </ul>
 
-          {/* Social Media Icons */}
           <div className="mt-4 flex gap-3">
             {SOCIAL_MEDIA.map((social) => (
               <a
@@ -201,7 +199,6 @@ export function SiteFooter() {
         </div>
       </div>
 
-      {/* Bottom Footer */}
       <div className="border-t border-white/10">
         <div className="container-site flex flex-wrap items-center justify-between gap-4 py-6 text-xs text-slate-500">
           <span>

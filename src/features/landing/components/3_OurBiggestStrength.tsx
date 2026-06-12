@@ -43,8 +43,8 @@ export function UspSection() {
       <div className="container-site">
         <SectionHeadingHighlight
           label="Our Biggest Strength"
-          title="Why Choose Home Vision Finance"
-          highlightText="Home Vision Finance"
+          title="Why Choose Vision Home Finance"
+          highlightText="Vision Home Finance"
           description="We provide a complete support system from your first call to final disbursement."
           centered
         />
@@ -52,7 +52,6 @@ export function UspSection() {
           {USPS.map((usp, i) => (
             <Card
               key={usp.title}
-              highlight={usp.highlight}
               equalHeight
               className="group flex h-full min-h-[180px] flex-col p-4 sm:min-h-[220px] sm:p-7"
             >

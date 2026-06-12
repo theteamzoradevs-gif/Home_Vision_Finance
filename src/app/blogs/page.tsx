@@ -5,7 +5,7 @@ import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata(
   "Blog",
-  "Home loan tips, interest rate guides, balance transfer insights, and document checklists from Home Vision Finance.",
+  "Home loan tips, interest rate guides, balance transfer insights, and document checklists from Vision Home Finance.",
   "/blogs"
 );
 

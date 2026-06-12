@@ -32,7 +32,7 @@ function mapApiToPost(apiPost: NonNullable<Awaited<ReturnType<typeof getBlogBySl
     readTime: "5 min read",
     featured: false,
     excerpt: apiPost.excerpt || "",
-    author: "Home Vision Finance",
+    author: "Vision Home Finance",
     image: apiPost.image || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200",
     content: paragraphs,
   };
@@ -76,7 +76,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
   return (
     <>
-      <PageHero label={post.tag} title={post.title} description={post.excerpt} />
+      <PageHero layout="blog" label={post.tag} title={post.title} description={post.excerpt} />
       <BlogDetailContent post={post} featuredImage={apiPost?.image || post.image} />
       <CtaBanner
         title="Have Questions About Your Home Loan?"

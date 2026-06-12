@@ -16,7 +16,7 @@ import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata(
   "Contact Us",
-  "Get in touch with Home Vision Finance for home loan inquiries. Call, WhatsApp, or send us a message.",
+  "Get in touch with Vision Home Finance for home loan inquiries. Call, WhatsApp, or send us a message.",
   "/contact"
 );
 
@@ -74,14 +74,16 @@ export default function ContactPage() {
               </li>
             </ul>
 
-            <a
-              href={WHATSAPP_CONTACT}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-6 inline-flex items-center gap-2 rounded-xl bg-whatsapp px-6 py-3 text-sm font-semibold text-white transition duration-200 hover:bg-whatsapp-dark sm:text-base"
-            >
-              {Icons.wa} Chat on WhatsApp
-            </a>
+            <div className="mt-6 flex justify-center sm:justify-start">
+              <a
+                href={WHATSAPP_CONTACT}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl bg-whatsapp px-6 py-3 text-sm font-semibold text-white transition duration-200 hover:bg-whatsapp-dark sm:text-base"
+              >
+                {Icons.wa} Chat on WhatsApp
+              </a>
+            </div>
           </div>
 
           <ContactForm />
@@ -94,7 +96,7 @@ export default function ContactPage() {
           <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-card">
             <iframe
               src={GOOGLE_MAPS_EMBED_URL}
-              title="Home Vision Finance office location"
+              title="Vision Home Finance office location"
               className="h-64 w-full border-0 sm:h-80 lg:h-[450px]"
               allowFullScreen
               loading="lazy"
