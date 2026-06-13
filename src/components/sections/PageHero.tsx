@@ -15,7 +15,7 @@ export function PageHero({ label, title, description, className, layout = "defau
   return (
     <section
       className={cn(
-        "flex min-h-[260px]  items-center border-b border-slate-200 bg-gradient-to-br from-slate-50 via-brand-pale/50 to-white pb-12 pt-24 text-left sm:min-h-[300px] sm:pb-16 sm:pt-28 lg:min-h-[340px]",
+        "border-b border-slate-200 bg-gradient-to-br from-slate-50 via-brand-pale/50 to-white pb-5 pt-24 text-left sm:pb-6 sm:pt-28",
         className
       )}
     >

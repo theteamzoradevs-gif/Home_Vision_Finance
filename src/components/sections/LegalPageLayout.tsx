@@ -18,7 +18,8 @@ export function LegalPageLayout({ title, description, lastUpdated, sections }: L
     <>
       <PageHero label="Legal" title={title} description={description} />
       <section className="section-padding section-gradient-light pt-8 text-left">
-        <div className="container-site max-w-3xl text-left">
+        <div className="container-site text-left">
+          <div className="max-w-3xl">
           {lastUpdated && (
             <p className="mb-10 text-left text-sm text-slate-500">Last updated: {lastUpdated}</p>
           )}
@@ -33,6 +34,7 @@ export function LegalPageLayout({ title, description, lastUpdated, sections }: L
                 </div>
               </article>
             ))}
+          </div>
           </div>
         </div>
       </section>
