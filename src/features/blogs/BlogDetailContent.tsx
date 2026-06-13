@@ -15,7 +15,8 @@ export function BlogDetailContent({ post, featuredImage }: BlogDetailContentProp
 
   return (
     <article className="section-padding bg-white pt-5 text-left">
-      <div className="container-site max-w-3xl text-left">
+      <div className="container-site text-left">
+        <div className="max-w-3xl">
         <Link
           href="/blogs"
           className="text-left text-sm font-semibold text-brand transition hover:text-brand-light"
@@ -57,10 +58,11 @@ export function BlogDetailContent({ post, featuredImage }: BlogDetailContentProp
             </p>
           ))}
         </div>
+        </div>
       </div>
 
       {related.length > 0 && (
-        <section className="container-site mt-14 max-w-5xl border-t border-slate-200 pt-10 text-left sm:mt-16 sm:pt-12">
+        <section className="container-site mt-14 border-t border-slate-200 pt-10 text-left sm:mt-16 sm:pt-12">
           <h2 className="mb-6 text-left font-heading text-xl font-bold text-navy sm:mb-8 sm:text-2xl">
             Related Articles
           </h2>
