@@ -26,7 +26,7 @@ function MissionVisionCard({ label, title, description, tilt = "left" }: Mission
     <div
       className={cn(
         "flex h-full flex-col rounded-2xl border border-brand/20 bg-white/70 p-8 shadow-card ring-1 ring-brand/10 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:bg-brand-pale hover:shadow-card-lg hover:rotate-0",
-        tilt === "left" ? "-rotate-1" : "rotate-1"
+        tilt === "left" ? "sm:-rotate-1" : "sm:rotate-1"
       )}
     >
       <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">{label}</p>

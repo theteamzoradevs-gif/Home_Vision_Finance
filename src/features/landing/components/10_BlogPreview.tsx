@@ -40,7 +40,7 @@ function BlogCard({ post }: { post: BlogItem }) {
       <h3 className="line-clamp-2 font-heading text-base font-semibold leading-snug text-navy group-hover:text-brand">
         {post.title}
       </h3>
-      <p className="mt-2 text-xs font-bold uppercase tracking-wide text-brand">{post.subtitle}</p>
+      <p className="mt-2 line-clamp-1 text-xs font-bold uppercase tracking-wide text-brand">{post.subtitle}</p>
       <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500 line-clamp-3">{post.excerpt}</p>
       <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-3">
         {dateLabel ? <span className="text-xs text-slate-400">{dateLabel}</span> : <span />}

@@ -19,7 +19,7 @@ export default function EmiCalculatorPage() {
         title="Home Loan EMI Calculator"
         description="Get instant estimates for monthly EMI, total interest, and total repayment. Make informed decisions before you apply."
       />
-      <section className="section-padding section-gradient-light pt-5">
+      <section className="section-gradient-light py-5">
         <div className="container-site">
           <EmiCalculatorWidget showScheduleInline={true} />
         </div>
