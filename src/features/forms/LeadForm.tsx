@@ -141,7 +141,9 @@ export function LeadForm({
     <div
       className={cn(
         "form-card",
-        isCompact ? "bg-white/95 p-4 backdrop-blur-sm sm:p-5" : "p-8"
+        isCompact
+          ? "bg-white/95 px-4 pt-4 pb-0 backdrop-blur-sm sm:px-5 sm:pt-5"
+          : "px-8 pt-8 pb-0"
       )}
     >
       <div className="form-card-accent" />
@@ -262,14 +264,21 @@ export function LeadForm({
           {Icons.wa} WhatsApp Instant Response
         </Button>
 
-        <p
+        <div
           className={cn(
-            "flex items-center justify-center gap-1.5 text-slate-400",
-            isCompact ? "mt-5 text-[10px]" : "mt-5 text-xs"
+            "flex items-center justify-center",
+            isCompact ? "mt-3 py-4 sm:mt-4 sm:py-5" : "mt-4 py-5"
           )}
         >
-          {Icons.shield} Your information is 100% safe & secure
-        </p>
+          <p
+            className={cn(
+              "flex items-center justify-center gap-2.5 text-slate-400 leading-tight",
+              isCompact ? "text-[10px]" : "text-xs"
+            )}
+          >
+            {Icons.shield} Your information is 100% safe & secure
+          </p>
+        </div>
       </form>
     </div>
   );

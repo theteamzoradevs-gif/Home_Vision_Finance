@@ -93,12 +93,12 @@ export function HeroSection() {
             ))}
           </div>
 
-          <div className="mt-8 flex flex-wrap items-end gap-3">
+          <div className="mt-8 flex flex-wrap items-center gap-3">
             <Button href="/contact" size="sm" className="shadow-md">
               Get Free Consultation
             </Button>
 
-            <div className="group/call relative inline-block translate-y-0.5">
+            <div className="group/call relative inline-flex">
               <span className="pointer-events-none absolute bottom-full left-1/2 z-30 mb-2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-brand px-3 py-1.5 text-sm font-semibold text-white opacity-0 shadow-md transition-all duration-200 group-hover/call:translate-y-0 group-hover/call:opacity-100">
                 Call Now
                 <span className="absolute left-1/2 top-full -mt-1 -translate-x-1/2 border-4 border-transparent border-t-brand" />
@@ -108,9 +108,9 @@ export function HeroSection() {
                 href={`tel:${PHONE}`}
                 variant="white"
                 aria-label="Call now"
-                className="flex h-11 w-11 items-center justify-center rounded-full p-0 text-brand transition-transform duration-200 group-hover/call:scale-105"
+                className="flex h-10 w-10 items-center justify-center rounded-full p-0 text-brand transition-transform duration-200 group-hover/call:scale-105 sm:h-11 sm:w-11"
               >
-                <span className="text-brand [&_svg]:h-6 [&_svg]:w-6 [&_svg]:stroke-brand [&_svg]:text-brand">
+                <span className="text-brand [&_svg]:h-5 [&_svg]:w-5 [&_svg]:stroke-brand [&_svg]:text-brand sm:[&_svg]:h-6 sm:[&_svg]:w-6">
                   {Icons.phone}
                 </span>
               </Button>
