@@ -16,7 +16,6 @@ export function BlogDetailContent({ post, featuredImage }: BlogDetailContentProp
   return (
     <article className="section-padding bg-white pt-5 text-left">
       <div className="container-site text-left">
-        <div className="max-w-3xl">
         <Link
           href="/blogs"
           className="text-left text-sm font-semibold text-brand transition hover:text-brand-light"
@@ -25,39 +24,40 @@ export function BlogDetailContent({ post, featuredImage }: BlogDetailContentProp
         </Link>
 
         {imageSrc && (
-          <div className="relative mt-6 aspect-[16/9] overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-card">
+          <div className="relative mt-6 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-card">
             <Image
               src={imageSrc}
               alt={post.title}
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 100vw, 768px"
+              sizes="(max-width: 768px) 100vw, 1200px"
               priority
             />
           </div>
         )}
 
-        <div className="mt-8 text-left">
-          <h2 className="text-left font-heading text-xl font-bold text-navy sm:text-2xl">{post.title}</h2>
-          <p className="mt-2 text-left text-sm font-semibold uppercase tracking-wide text-brand">{post.tag}</p>
-          <p className="mt-3 text-left text-base leading-relaxed text-slate-600">{post.excerpt}</p>
-        </div>
+        <div className="max-w-3xl">
+          <div className="mt-8 text-left">
+            <h2 className="text-left font-heading text-xl font-bold text-navy sm:text-2xl">{post.title}</h2>
+            <p className="mt-2 text-left text-sm font-semibold uppercase tracking-wide text-brand">{post.tag}</p>
+            <p className="mt-3 text-left text-base leading-relaxed text-slate-600">{post.excerpt}</p>
+          </div>
 
-        <div className="mt-6 flex flex-wrap items-center gap-3 border-b border-slate-200 pb-6 text-left text-sm text-slate-500">
-          <span className="font-medium text-navy">{post.author}</span>
-          <span aria-hidden>·</span>
-          <time dateTime={post.date}>{post.date}</time>
-          <span aria-hidden>·</span>
-          <span>{post.readTime}</span>
-        </div>
+          <div className="mt-6 flex flex-wrap items-center gap-3 border-b border-slate-200 pb-6 text-left text-sm text-slate-500">
+            <span className="font-medium text-navy">{post.author}</span>
+            <span aria-hidden>·</span>
+            <time dateTime={post.date}>{post.date}</time>
+            <span aria-hidden>·</span>
+            <span>{post.readTime}</span>
+          </div>
 
-        <div className="prose-blog mt-8 space-y-6 text-left text-base leading-[1.8] text-slate-700 sm:text-lg">
-          {post.content.map((paragraph, index) => (
-            <p key={index} className="text-left">
-              {paragraph}
-            </p>
-          ))}
-        </div>
+          <div className="prose-blog mt-8 space-y-6 text-left text-base leading-[1.8] text-slate-700 sm:text-lg">
+            {post.content.map((paragraph, index) => (
+              <p key={index} className="text-left">
+                {paragraph}
+              </p>
+            ))}
+          </div>
         </div>
       </div>
 

@@ -162,7 +162,7 @@ export function BlogsPageClient() {
 
         <div className="container-site">
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="card-grid-equal grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 
             {[1, 2, 3, 4, 5, 6].map((n) => (
 
@@ -198,7 +198,7 @@ export function BlogsPageClient() {
 
         ) : (
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="card-grid-equal grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 
             {blogs.map((post) => {
 
@@ -224,7 +224,7 @@ export function BlogsPageClient() {
 
                   </h3>
 
-                  <p className="mt-2 text-xs font-bold uppercase tracking-wide text-brand">
+                  <p className="mt-2 line-clamp-1 text-xs font-bold uppercase tracking-wide text-brand">
 
                     {post.subtitle}
 
