@@ -19,8 +19,8 @@ export default function ServicesPage() {
         description="From fresh purchases to balance transfers — we compare top banks and deliver ₹0 processing fee support end to end."
       />
       
-      {/* section-padding ke sath pt-0 add kiya hai top margin/padding zero karne ke liye */}
-      <section className="bg-white pb-5 pt-5 sm:pb-8">
+      {/* Equal top and bottom spacing for the service list */}
+      <section className="bg-white py-8 sm:py-10">
         <div className="container-site space-y-16 sm:space-y-20">
           {PAGE_SERVICES.map((service, i) => (
             <ServiceDetailBlock key={service.slug} service={service} reverse={i % 2 === 1} />

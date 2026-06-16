@@ -16,7 +16,7 @@ export function BlogDetailContent({ post, featuredImage }: BlogDetailContentProp
   const dateLabel = formatBlogMonthYear(post.date) ?? post.date;
 
   return (
-    <article className="section-padding bg-white pt-5 text-left">
+    <article className="section-padding bg-white pt-5 pb-14 text-left">
       <div className="container-site text-left">
         <Link
           href="/blogs"
