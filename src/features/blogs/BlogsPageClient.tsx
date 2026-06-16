@@ -7,8 +7,8 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 import { getAllBlogs, normalizeBlogArray } from "@/lib/api/blogService";
-
 import { BLOG_POSTS } from "@/features/landing/data/content";
+import { formatBlogMonthYear } from "@/lib/utils";
 
 
 
@@ -31,19 +31,7 @@ interface BlogItem {
 
 
 function formatDate(isoString?: string): string | null {
-
-  if (!isoString) return null;
-
-  return new Date(isoString).toLocaleDateString("en-IN", {
-
-    day: "numeric",
-
-    month: "short",
-
-    year: "numeric",
-
-  });
-
+  return formatBlogMonthYear(isoString);
 }
 
 
@@ -214,7 +202,7 @@ export function BlogsPageClient() {
 
                   href={`/blogs/${post.slug}`}
 
-                  className="blog-card-premium group flex h-full flex-col p-5 text-left sm:p-6"
+                  className="blog-card-premium group flex h-full min-h-[220px] flex-col p-5 text-left sm:min-h-[240px] sm:p-6"
 
                 >
 
@@ -230,7 +218,7 @@ export function BlogsPageClient() {
 
                   </p>
 
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500 line-clamp-3">{post.excerpt}</p>
+                  <p className="mt-2 line-clamp-2 flex-1 text-sm leading-relaxed text-slate-500">{post.excerpt}</p>
 
                   <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-3">
 

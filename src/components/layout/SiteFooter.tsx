@@ -59,10 +59,10 @@ export function SiteFooter() {
       <div className="container-site grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         {/* Company Info */}
         <div>
-          <div className="mb-4">
+          <div className="-ml-2.5 mb-4 sm:-ml-3.5">
             <BrandLogo
               height={56}
-              className="brightness-0 invert max-w-[420px]"
+              className="max-w-[420px] brightness-0 invert"
             />
           </div>
 

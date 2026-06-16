@@ -23,7 +23,7 @@ export function EmiRepaymentSchedule({
       id="repayment-schedule"
       className={cn(
         "scroll-mt-28",
-        integrated ? "mt-14 sm:mt-16" : "mt-12 rounded-[20px] border border-slate-200 bg-white p-6 shadow-card sm:p-8"
+        integrated ? "mt-20 border-t border-slate-100 pt-10 sm:mt-24 sm:pt-12" : "mt-12 rounded-[20px] border border-slate-200 bg-white p-6 shadow-card sm:p-8"
       )}
     >
       <div className="mb-6">

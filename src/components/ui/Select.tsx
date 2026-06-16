@@ -7,14 +7,15 @@ type SelectProps = SelectHTMLAttributes<HTMLSelectElement> & {
   error?: string;
   options: { value: string; label: string }[];
   compact?: boolean;
+  containerClassName?: string;
 };
 
-export function Select({ label, error, options, compact = false, className, id, ...props }: SelectProps) {
+export function Select({ label, error, options, compact = false, containerClassName, className, id, ...props }: SelectProps) {
   const generatedId = useId();
   const selectId = id ?? `${generatedId}-${label.toLowerCase().replace(/\s+/g, "-")}`;
 
   return (
-    <div className={cn("mb-4", compact && "mb-2.5")}>
+    <div className={cn(containerClassName ?? (compact ? "mb-2.5" : "mb-4"))}>
       <label
         htmlFor={selectId}
         className={cn(

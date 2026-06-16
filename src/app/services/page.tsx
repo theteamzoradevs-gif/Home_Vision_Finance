@@ -20,8 +20,8 @@ export default function ServicesPage() {
       />
       
       {/* section-padding ke sath pt-0 add kiya hai top margin/padding zero karne ke liye */}
-      <section className="section-padding pt-5 bg-white">
-        <div className="container-site space-y-20 sm:space-y-24">
+      <section className="bg-white pb-5 pt-5 sm:pb-8">
+        <div className="container-site space-y-16 sm:space-y-20">
           {PAGE_SERVICES.map((service, i) => (
             <ServiceDetailBlock key={service.slug} service={service} reverse={i % 2 === 1} />
           ))}

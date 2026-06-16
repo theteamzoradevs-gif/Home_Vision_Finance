@@ -29,7 +29,7 @@ export default function ContactPage() {
         description="Reach out for home loan assistance, eligibility checks, or partnership inquiries. Our team responds within 24 hours."
       />
 
-      <section className="section-padding bg-white pt-5">
+      <section className="bg-white py-10 sm:py-12">
         <div className="container-site grid gap-12 lg:grid-cols-[1fr_1fr]">
           <div>
             <h2 className="font-heading text-2xl font-bold text-navy">Contact Information</h2>
@@ -90,7 +90,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="section-padding bg-slate-50 pt-0">
+      <section className="bg-slate-50 py-10 sm:py-12">
         <div className="container-site">
           <h2 className="mb-4 font-heading text-xl font-bold text-navy">Find Us</h2>
           <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-card">
