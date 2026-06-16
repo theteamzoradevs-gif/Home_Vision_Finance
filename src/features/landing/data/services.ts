@@ -83,7 +83,7 @@ export const PAGE_SERVICES: ServiceItem[] = [
       "Mitigate your recurring debt liabilities by transitioning your asset portfolio to premium, lower-yield lenders.",
     icon: Icons.transfer,
     slug: "balance-transfer",
-    imageUrl: "/ services_images/BT.jpeg",
+    imageUrl: "/services_images/BT.jpeg",
     highlights: ["Significant interest yield reduction", "White-glove portfolio transfer", "Bespoke bank negotiation"],
   },
   {

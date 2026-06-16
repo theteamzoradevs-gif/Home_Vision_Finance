@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { CallbackModal } from "@/components/layout/CallbackModal";
 import { Icons } from "@/components/ui/icons";
 import { PHONE } from "@/lib/constants";
@@ -25,7 +26,47 @@ const ACTIONS = [
 ] as const;
 
 export function FloatingActionBar() {
+  const pathname = usePathname();
   const [callbackOpen, setCallbackOpen] = useState(false);
+
+  // Refs to manage timers and first-load detection
+  const initialTimerRef = useRef<number | null>(null);
+  const navTimerRef = useRef<number | null>(null);
+  const isInitialLoadRef = useRef(true);
+
+  // Show popup 10s after the initial page load
+  useEffect(() => {
+    initialTimerRef.current = window.setTimeout(() => {
+      setCallbackOpen(true);
+      // mark that initial load popup has been scheduled/shown
+      isInitialLoadRef.current = false;
+    }, 10000);
+
+    return () => {
+      if (initialTimerRef.current) window.clearTimeout(initialTimerRef.current);
+    };
+  }, []);
+
+  // On every pathname change after initial load, show popup after 30s
+  useEffect(() => {
+    // ignore the very first pathname effect if initial load hasn't completed
+    if (isInitialLoadRef.current) {
+      isInitialLoadRef.current = false;
+      return;
+    }
+
+    if (navTimerRef.current) window.clearTimeout(navTimerRef.current);
+    navTimerRef.current = window.setTimeout(() => {
+      setCallbackOpen(true);
+    }, 30000);
+
+    return () => {
+      if (navTimerRef.current) {
+        window.clearTimeout(navTimerRef.current);
+        navTimerRef.current = null;
+      }
+    };
+  }, [pathname]);
 
   const actionItemClass = cn(
     "flex min-h-[44px] flex-col items-center justify-center transition-colors duration-200 hover:bg-brand-pale hover:text-brand",

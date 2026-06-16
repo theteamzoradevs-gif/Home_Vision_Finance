@@ -108,9 +108,9 @@ export function HeroSection() {
                 href={`tel:${PHONE}`}
                 variant="white"
                 aria-label="Call now"
-                className="flex h-10 items-center justify-center rounded-full px-4 py-0 text-brand transition-transform duration-200 group-hover/call:scale-105 sm:h-11 sm:px-5"
+                className="flex h-9 w-12 items-center justify-center rounded-full px-0 py-0 text-brand transition-transform duration-200 group-hover/call:scale-105 sm:h-10 sm:w-12"
               >
-                <span className="text-brand [&_svg]:h-5 [&_svg]:w-5 [&_svg]:stroke-brand [&_svg]:text-brand sm:[&_svg]:h-6 sm:[&_svg]:w-6">
+                <span className="text-brand [&_svg]:h-4 [&_svg]:w-4 [&_svg]:stroke-brand [&_svg]:text-brand sm:[&_svg]:h-5 sm:[&_svg]:w-5">
                   {Icons.phone}
                 </span>
               </Button>
