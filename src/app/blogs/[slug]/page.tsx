@@ -29,7 +29,7 @@ function mapApiToPost(apiPost: NonNullable<Awaited<ReturnType<typeof getBlogBySl
     date: apiPost.createdAt
       ? new Date(apiPost.createdAt).toLocaleDateString("en-IN", { month: "short", year: "numeric" })
       : "Recent",
-    readTime: "5 min read",
+    readTime: "",
     featured: false,
     excerpt: apiPost.excerpt || "",
     author: "Vision Home Finance",

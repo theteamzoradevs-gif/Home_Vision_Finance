@@ -190,10 +190,11 @@ export function LeadForm({
           error={errors.phone}
           required
           compact={isCompact}
+          containerClassName={isCompact ? "mb-2.5" : undefined}
         />
 
         {isCompact ? (
-          <div className="grid grid-cols-2 gap-2.5">
+          <div className="grid grid-cols-2 gap-2.5 pb-6 pt-4">
             <Select
               label="Loan Amount"
               options={AMOUNT_OPTIONS}
@@ -202,6 +203,7 @@ export function LeadForm({
               error={errors.loanAmount}
               required
               compact
+              containerClassName="mb-0"
             />
             <Input
               label="City"
@@ -211,6 +213,7 @@ export function LeadForm({
               error={errors.city}
               required
               compact
+              containerClassName="mb-0"
             />
           </div>
         ) : (

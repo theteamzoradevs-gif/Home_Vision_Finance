@@ -6,14 +6,15 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
   error?: string;
   compact?: boolean;
+  containerClassName?: string;
 };
 
-export function Input({ label, error, compact = false, className, id, ...props }: InputProps) {
+export function Input({ label, error, compact = false, containerClassName, className, id, ...props }: InputProps) {
   const generatedId = useId();
   const inputId = id ?? `${generatedId}-${label.toLowerCase().replace(/\s+/g, "-")}`;
 
   return (
-    <div className={cn("mb-4", compact && "mb-2.5")}>
+    <div className={cn(containerClassName ?? (compact ? "mb-2.5" : "mb-4"))}>
       <label
         htmlFor={inputId}
         className={cn(

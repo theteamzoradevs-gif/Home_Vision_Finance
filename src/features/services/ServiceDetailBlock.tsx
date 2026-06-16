@@ -36,7 +36,7 @@ export function ServiceDetailBlock({ service, reverse = false }: ServiceDetailBl
       <Card 
         hover={false} 
         className={cn(
-          "flex h-full flex-col rounded-2xl p-8 shadow-card",
+          "flex h-full flex-col items-start rounded-2xl p-8 shadow-card",
           reverse ? "lg:order-1" : "lg:order-2" // If reverse, move content to the left/first on desktop
         )}
       >
@@ -57,7 +57,7 @@ export function ServiceDetailBlock({ service, reverse = false }: ServiceDetailBl
           </ul>
         )}
         
-        <Button href="/contact" variant="primary" size="lg" className="mt-8 w-fit">
+        <Button href="/contact" variant="primary" size="lg" className="mt-8 w-fit self-start">
           Apply Now
         </Button>
       </Card>

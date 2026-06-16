@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BlogCard } from "@/features/blogs/BlogCard";
 import type { BlogPost } from "@/features/landing/data/content";
 import { BLOG_POSTS } from "@/features/landing/data/content";
+import { formatBlogMonthYear } from "@/lib/utils";
 
 type BlogDetailContentProps = {
   post: BlogPost;
@@ -12,6 +13,7 @@ type BlogDetailContentProps = {
 export function BlogDetailContent({ post, featuredImage }: BlogDetailContentProps) {
   const related = BLOG_POSTS.filter((p) => p.slug !== post.slug).slice(0, 3);
   const imageSrc = featuredImage || post.image;
+  const dateLabel = formatBlogMonthYear(post.date) ?? post.date;
 
   return (
     <article className="section-padding bg-white pt-5 text-left">
@@ -46,9 +48,7 @@ export function BlogDetailContent({ post, featuredImage }: BlogDetailContentProp
           <div className="mt-6 flex flex-wrap items-center gap-3 border-b border-slate-200 pb-6 text-left text-sm text-slate-500">
             <span className="font-medium text-navy">{post.author}</span>
             <span aria-hidden>·</span>
-            <time dateTime={post.date}>{post.date}</time>
-            <span aria-hidden>·</span>
-            <span>{post.readTime}</span>
+            <time dateTime={post.date}>{dateLabel}</time>
           </div>
 
           <div className="prose-blog mt-8 space-y-6 text-left text-base leading-[1.8] text-slate-700 sm:text-lg">

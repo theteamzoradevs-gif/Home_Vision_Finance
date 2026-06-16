@@ -12,3 +12,13 @@ export function formatCurrency(amount: number): string {
 export function buildWhatsAppUrl(phone: string, message: string): string {
   return `https://wa.me/91${phone}?text=${encodeURIComponent(message)}`;
 }
+
+export function formatBlogMonthYear(isoString?: string): string | null {
+  if (!isoString) return null;
+  const parsed = new Date(isoString);
+  if (Number.isNaN(parsed.getTime())) return isoString;
+  return parsed.toLocaleDateString("en-IN", {
+    month: "short",
+    year: "numeric",
+  });
+}
