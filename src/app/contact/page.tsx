@@ -16,7 +16,7 @@ import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata(
   "Contact Us",
-  "Get in touch with Vision Home Finance for home loan inquiries. Call, WhatsApp, or send us a message.",
+  "Get in touch with Vision Homes Finance for home loan inquiries. Call, WhatsApp, or send us a message.",
   "/contact"
 );
 
@@ -96,7 +96,7 @@ export default function ContactPage() {
           <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-card">
             <iframe
               src={GOOGLE_MAPS_EMBED_URL}
-              title="Vision Home Finance office location"
+              title="Vision Homes Finance office location"
               className="h-64 w-full border-0 sm:h-80 lg:h-[450px]"
               allowFullScreen
               loading="lazy"

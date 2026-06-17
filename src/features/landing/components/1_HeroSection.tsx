@@ -28,7 +28,7 @@ export function HeroSection() {
       <div className="pointer-events-none absolute inset-0 z-0">
         <Image
           src={heroData.backgroundImage}
-          alt="Vision Home Finance"
+          alt="Vision Homes Finance"
           fill
           priority
           sizes="100vw"

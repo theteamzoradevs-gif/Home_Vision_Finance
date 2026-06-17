@@ -43,8 +43,8 @@ export function UspSection() {
       <div className="container-site">
         <SectionHeadingHighlight
           label="Our Biggest Strength"
-          title="Why Choose Vision Home Finance"
-          highlightText="Vision Home Finance"
+          title="Why Choose Vision Homes Finance"
+          highlightText="Vision Homes Finance"
           description="We provide a complete support system from your first call to final disbursement."
           centered
         />
