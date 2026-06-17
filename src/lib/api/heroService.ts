@@ -47,7 +47,7 @@ export const getHeroSection = cache(async (): Promise<HeroSectionData> => {
       bulletPoints: data.bulletPoints?.length ? data.bulletPoints : DEFAULT_HERO_DATA.bulletPoints,
     };
   } catch (error) {
-    console.error("Hero section fetch failed, using defaults:", error);
+    console.error("Hero section fetch failed:", error);
     return DEFAULT_HERO_DATA;
   }
 });
