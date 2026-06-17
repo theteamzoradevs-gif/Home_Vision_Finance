@@ -5,7 +5,8 @@ import { Card } from "@/components/ui/Card";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Icons } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
-import type { Testimonial } from "@/lib/api/testimonials";
+import { getTestimonialsClient, type Testimonial } from "@/lib/api/testimonials";
+import { useFreshAdminData } from "@/hooks/useFreshAdminData";
 
 const AUTO_INTERVAL = 3000;
 const PAUSE_AFTER_MANUAL = 7000;
@@ -42,7 +43,8 @@ type TestimonialsSectionProps = {
 };
 
 export function TestimonialsSection({ initialReviews = [] }: TestimonialsSectionProps) {
-  const reviews = initialReviews;
+  const fetchReviews = useCallback(() => getTestimonialsClient(), []);
+  const reviews = useFreshAdminData(initialReviews, fetchReviews);
   const [activeIndex, setActiveIndex] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
   const pauseUntilRef = useRef(0);

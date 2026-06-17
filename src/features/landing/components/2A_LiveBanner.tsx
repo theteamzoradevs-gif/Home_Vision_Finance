@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo } from "react";
-import { DEFAULT_LIVE_BANNER, type LiveBannerData } from "@/lib/api/bannerService";
+import { useCallback, useMemo } from "react";
+import { DEFAULT_LIVE_BANNER, getActiveBannerClient, type LiveBannerData } from "@/lib/api/bannerService";
+import { useFreshAdminData } from "@/hooks/useFreshAdminData";
 import Link from "next/link";
 
 function splitDiscountHighlight(text: string) {
@@ -62,7 +63,8 @@ type LiveBannerProps = {
 };
 
 export function LiveBanner({ initialBanner = DEFAULT_LIVE_BANNER }: LiveBannerProps) {
-  const banner = initialBanner;
+  const fetchBanner = useCallback(() => getActiveBannerClient(), []);
+  const banner = useFreshAdminData(initialBanner, fetchBanner);
 
   const shouldShow = useMemo(() => {
     if (!banner.isVisible) return false;
