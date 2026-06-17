@@ -1,5 +1,6 @@
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { StatsGrid } from "@/components/sections/StatsGrid";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { WhyChooseGrid } from "@/components/sections/WhyChooseGrid";
 import { HeroSection } from "./components/1_HeroSection";
 import { LiveBanner } from "./components/2A_LiveBanner";
@@ -23,8 +24,9 @@ export function LandingPage() {
       <ServicesPreview />
       <ProcessSection />
       <EmiPreview />
-      <section className="section-padding bg-white pt-0">
+      <section className="section-padding bg-slate-50">
         <div className="container-site">
+          <SectionHeading label="Our Impact" title="Numbers That Speak for Us" centered />
           <StatsGrid />
         </div>
       </section>

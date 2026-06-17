@@ -1,12 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { BlogCard } from "@/features/blogs/BlogCard";
 import { getAllBlogs, normalizeBlogArray } from "@/lib/api/blogService";
 import { BLOG_POSTS } from "@/features/landing/data/content";
-import { cn, formatBlogMonthYear } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 const AUTO_INTERVAL = 3000;
 const PAUSE_AFTER_MANUAL = 7000;
@@ -18,33 +18,6 @@ interface BlogItem {
   slug: string;
   excerpt: string;
   createdAt?: string;
-}
-
-function formatDate(isoString?: string): string | null {
-  return formatBlogMonthYear(isoString);
-}
-
-function BlogCard({ post }: { post: BlogItem }) {
-  const dateLabel = formatDate(post.createdAt);
-
-  return (
-    <Link
-      href={`/blogs/${post.slug}`}
-      className="blog-card-premium group flex h-full min-h-[220px] flex-col p-5 sm:min-h-[240px] sm:p-6"
-    >
-      <h3 className="line-clamp-2 font-heading text-base font-semibold leading-snug text-navy group-hover:text-brand">
-        {post.title}
-      </h3>
-      <p className="mt-2 line-clamp-1 text-xs font-bold uppercase tracking-wide text-brand">{post.subtitle}</p>
-      <p className="mt-2 line-clamp-2 flex-1 text-sm leading-relaxed text-slate-500">{post.excerpt}</p>
-      <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-3">
-        {dateLabel ? <span className="text-xs text-slate-400">{dateLabel}</span> : <span />}
-        <span className="rounded-lg bg-slate-100 px-3.5 py-1.5 text-xs font-semibold text-navy transition-colors group-hover:bg-slate-200">
-          Read Article
-        </span>
-      </div>
-    </Link>
-  );
 }
 
 export function BlogPreview() {
