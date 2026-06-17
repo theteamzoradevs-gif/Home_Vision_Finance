@@ -10,6 +10,7 @@ export type LiveBannerData = {
   expiryText: string;
   discountHighlight: string;
   discountSubtext: string;
+  ctaText: string;
   backgroundImage: string;
 };
 
@@ -21,6 +22,7 @@ export const DEFAULT_LIVE_BANNER: LiveBannerData = {
   expiryText: "",
   discountHighlight: "",
   discountSubtext: "",
+  ctaText: "BOOK A FREE CONSULTATION",
   backgroundImage: "",
 };
 
@@ -57,6 +59,7 @@ const normalizeBanner = (payload: RawBannerResponse): LiveBannerData => ({
   expiryText: pickFirstString(payload, ["expiryText", "validTill", "expiry", "expiresOn"]),
   discountHighlight: pickFirstString(payload, ["discountHighlight", "highlightText", "discountText"]),
   discountSubtext: pickFirstString(payload, ["discountSubtext", "subtext", "offerSubtext"]),
+  ctaText: pickFirstString(payload, ["ctaText", "buttonText", "ctaLabel"]) || DEFAULT_LIVE_BANNER.ctaText,
   backgroundImage: pickFirstString(payload, ["backgroundImage", "image", "bannerImage", "imageUrl"]),
 });
 
