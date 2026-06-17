@@ -32,7 +32,7 @@ function mapApiToPost(apiPost: NonNullable<Awaited<ReturnType<typeof getBlogBySl
     readTime: "",
     featured: false,
     excerpt: apiPost.excerpt || "",
-    author: "Vision Home Finance",
+    author: "Vision Homes Finance",
     image: apiPost.image || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200",
     content: paragraphs,
   };

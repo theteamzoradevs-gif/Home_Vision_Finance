@@ -2,6 +2,7 @@ import { CtaBanner } from "@/components/sections/CtaBanner";
 import { StatsGrid } from "@/components/sections/StatsGrid";
 import { WhyChooseGrid } from "@/components/sections/WhyChooseGrid";
 import { HeroSection } from "./components/1_HeroSection";
+import { LiveBanner } from "./components/2A_LiveBanner";
 import { SbiBanner } from "./components/2_SbiBanner";
 import { UspSection } from "./components/3_OurBiggestStrength";
 import { ServicesPreview } from "./components/4_OurServices";
@@ -16,6 +17,7 @@ export function LandingPage() {
   return (
     <>
       <HeroSection />
+      <LiveBanner />
       <SbiBanner />
       <UspSection />
       <ServicesPreview />

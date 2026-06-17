@@ -14,7 +14,7 @@ export function WhyChooseGrid({ light = false }: { light?: boolean }) {
       <div className="container-site">
         <SectionHeading
           label="Why Choose Us"
-          title="Why Families Trust Vision Home Finance"
+          title="Why Families Trust Vision Homes Finance"
           description="With systematic banking networks and a customer-first approach, we expedite your loan pipeline efficiently."
           centered
           light={light}

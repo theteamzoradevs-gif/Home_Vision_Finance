@@ -4,7 +4,7 @@ import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata(
   "Terms & Conditions",
-  "Read the terms and conditions governing your use of Vision Home Finance services and website.",
+  "Read the terms and conditions governing your use of Vision Homes Finance services and website.",
   "/terms-and-conditions"
 );
 
