@@ -1,4 +1,5 @@
-const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000/api";
+import { cache } from "react";
+import { apiFetch } from "@/lib/api/apiClient";
 
 type RawBannerResponse = Record<string, any>;
 
@@ -89,12 +90,9 @@ const normalizeBanner = (payload: RawBannerResponse): LiveBannerData => ({
   backgroundImage: pickFirstString(payload, ["backgroundImage", "image", "bannerImage", "imageUrl"]),
 });
 
-export const getActiveBanner = async (): Promise<LiveBannerData> => {
+export const getActiveBanner = cache(async (): Promise<LiveBannerData> => {
   try {
-    const response = await fetch(`${BASE_URL}/banner/getbanner`, {
-      method: "GET",
-      credentials: "include",
-    });
+    const response = await apiFetch("/banner/getbanner", { method: "GET" });
 
     const contentType = response.headers.get("content-type");
     if (contentType?.includes("text/html")) return DEFAULT_LIVE_BANNER;
@@ -111,4 +109,4 @@ export const getActiveBanner = async (): Promise<LiveBannerData> => {
     console.error("Banner fetch failed, skipping live banner:", error);
     return DEFAULT_LIVE_BANNER;
   }
-};
+});

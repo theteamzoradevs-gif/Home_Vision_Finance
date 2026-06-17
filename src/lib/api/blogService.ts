@@ -1,41 +1,5 @@
-
-const DEFAULT_DEV_BASE_URL = "http://localhost:5000/api";
-
-function getBaseUrl() {
-  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL || DEFAULT_DEV_BASE_URL;
-  if (process.env.NODE_ENV === "production" && baseUrl === DEFAULT_DEV_BASE_URL) {
-    return null;
-  }
-  return baseUrl;
-}
-
-
-export const getAllBlogs = async () => {
-  try {
-    const baseUrl = getBaseUrl();
-    if (!baseUrl) return [];
-
-    const res = await fetch(`${baseUrl}/blog/all`, {
-      method: "GET",
-      credentials: "include",
-    });
-
-    const contentType = res.headers.get("content-type");
-    if (contentType && contentType.includes("text/html")) {
-      const htmlError = await res.text();
-      console.error("Backend returned HTML instead of JSON! Full HTML Response:", htmlError);
-      throw new Error("Backend ne HTML error page bheja hai bhai, endpoints check karo!");
-    }
-
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.message || "Failed to fetch blogs.");
-    
-    return data;
-  } catch (error: any) {
-    console.error("BLOG_SERVICE_FETCH_ERROR:", error);
-    throw error;
-  }
-};
+import { cache } from "react";
+import { apiFetch } from "@/lib/api/apiClient";
 
 export type ApiBlogItem = {
   _id: string;
@@ -58,8 +22,31 @@ export function normalizeBlogArray(payload: unknown): ApiBlogItem[] {
   return [];
 }
 
-export async function getBlogBySlug(slug: string): Promise<ApiBlogItem | null> {
-  const all = await getAllBlogs();
+export const getAllBlogs = cache(async () => {
+  const res = await apiFetch("/blog/all", { method: "GET" });
+
+  const contentType = res.headers.get("content-type");
+  if (contentType?.includes("text/html")) {
+    throw new Error("Backend returned HTML instead of JSON.");
+  }
+
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.message || "Failed to fetch blogs.");
+
+  return data;
+});
+
+export async function getAllBlogsSafe() {
+  try {
+    return await getAllBlogs();
+  } catch (error) {
+    console.error("BLOG_SERVICE_FETCH_ERROR:", error);
+    return [];
+  }
+}
+
+export const getBlogBySlug = cache(async (slug: string): Promise<ApiBlogItem | null> => {
+  const all = await getAllBlogsSafe();
   const blogs = normalizeBlogArray(all);
   return blogs.find((post) => post.slug === slug) ?? null;
-}
+});

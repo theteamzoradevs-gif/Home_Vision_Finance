@@ -5,12 +5,12 @@ import { Card } from "@/components/ui/Card";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Icons } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
-import { getAllTestimonials } from "@/lib/api/testimonials";
+import type { Testimonial } from "@/lib/api/testimonials";
 
 const AUTO_INTERVAL = 3000;
 const PAUSE_AFTER_MANUAL = 7000;
 
-function ReviewCard({ review }: { review: any }) {
+function ReviewCard({ review }: { review: Testimonial }) {
   return (
     <Card equalHeight hover={false} className="h-full border-slate-200 shadow-card">
       {/* 1. Name */}
@@ -37,28 +37,18 @@ function ReviewCard({ review }: { review: any }) {
   );
 }
 
-export function TestimonialsSection() {
-  const [reviews, setReviews] = useState<any[]>([]);
+type TestimonialsSectionProps = {
+  initialReviews?: Testimonial[];
+};
+
+export function TestimonialsSection({ initialReviews = [] }: TestimonialsSectionProps) {
+  const reviews = initialReviews;
   const [activeIndex, setActiveIndex] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
   const pauseUntilRef = useRef(0);
   const isScrollingRef = useRef(false);
   const activeIndexRef = useRef(0);
   const isInViewRef = useRef(false);
-
-  // API se data fetch karna
-  useEffect(() => {
-    const fetchReviews = async () => {
-      try {
-        const res = await getAllTestimonials();
-        const data = res.data || (Array.isArray(res) ? res : []);
-        setReviews(data);
-      } catch (err) {
-        console.error("Error fetching testimonials:", err);
-      }
-    };
-    fetchReviews();
-  }, []);
 
   activeIndexRef.current = activeIndex;
 
@@ -91,6 +81,21 @@ export function TestimonialsSection() {
     };
     track.addEventListener("scroll", onScroll, { passive: true });
     return () => track.removeEventListener("scroll", onScroll);
+  }, [reviews.length]);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isInViewRef.current = entry.isIntersecting;
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(track);
+    return () => observer.disconnect();
   }, [reviews.length]);
 
   useEffect(() => {

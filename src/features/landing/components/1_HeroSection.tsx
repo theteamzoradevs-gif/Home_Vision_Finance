@@ -1,24 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Icons } from "@/components/ui/icons";
 import { LeadForm } from "@/features/forms/LeadForm";
 import { useTypewriter } from "@/hooks/useTypewriter";
 import { PHONE } from "@/lib/constants";
-import { DEFAULT_HERO_DATA, getHeroSection, type HeroSectionData } from "@/lib/api/heroService";
+import { DEFAULT_HERO_DATA, type HeroSectionData } from "@/lib/api/heroService";
 
 const TAGS = ["Fresh Purchase", "Resale", "Balance Transfer", "Plot Loan", "Construction"];
 
-export function HeroSection() {
-  const [heroData, setHeroData] = useState<HeroSectionData>(DEFAULT_HERO_DATA);
+type HeroSectionProps = {
+  initialData?: HeroSectionData;
+};
 
-  useEffect(() => {
-    getHeroSection().then(setHeroData).catch(() => {
-      /* defaults already in state */
-    });
-  }, []);
+export function HeroSection({ initialData = DEFAULT_HERO_DATA }: HeroSectionProps) {
+  const heroData = initialData;
 
   const words = heroData.animatingTexts;
   const currentWord = useTypewriter(words);

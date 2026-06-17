@@ -1,4 +1,5 @@
-const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000/api";
+import { cache } from "react";
+import { apiFetch } from "@/lib/api/apiClient";
 
 export type HeroBulletPoint = {
   title: string;
@@ -29,9 +30,9 @@ export const DEFAULT_HERO_DATA: HeroSectionData = {
   ],
 };
 
-export const getHeroSection = async (): Promise<HeroSectionData> => {
+export const getHeroSection = cache(async (): Promise<HeroSectionData> => {
   try {
-    const response = await fetch(`${BASE_URL}/hero/get`);
+    const response = await apiFetch("/hero/get");
     if (!response.ok) throw new Error(`Hero API responded with ${response.status}`);
 
     const json = await response.json();
@@ -49,4 +50,4 @@ export const getHeroSection = async (): Promise<HeroSectionData> => {
     console.error("Hero section fetch failed, using defaults:", error);
     return DEFAULT_HERO_DATA;
   }
-};
+});
