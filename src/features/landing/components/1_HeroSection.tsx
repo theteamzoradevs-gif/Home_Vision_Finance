@@ -7,56 +7,82 @@ import { Icons } from "@/components/ui/icons";
 import { LeadForm } from "@/features/forms/LeadForm";
 import { useTypewriter } from "@/hooks/useTypewriter";
 import { PHONE } from "@/lib/constants";
-import { DEFAULT_HERO_DATA, getHeroSection, type HeroSectionData } from "@/lib/api/heroService";
+import { getHeroSection, type HeroSectionData } from "@/lib/api/heroService";
 
 const TAGS = ["Fresh Purchase", "Resale", "Balance Transfer", "Plot Loan", "Construction"];
 
 export function HeroSection() {
-  const [heroData, setHeroData] = useState<HeroSectionData>(DEFAULT_HERO_DATA);
+  const [heroData, setHeroData] = useState<HeroSectionData>({
+    animatingTexts: [],
+    backgroundImage: "",
+    badgeText: "",
+    mainHeading: "",
+    subHeading: "",
+    bulletPoints: []
+  });
+
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    getHeroSection().then(setHeroData).catch(() => {
-      /* defaults already in state */
-    });
+    getHeroSection()
+      .then((data) => {
+        if (data) {
+          setHeroData(data);
+          setIsLoaded(true); // Data aane ke baad hi pure system ko run signal milega
+        }
+      })
+      .catch((err) => {
+        console.error("Hero section mounting error:", err);
+      });
   }, []);
 
-  const words = heroData.animatingTexts;
-  const currentWord = useTypewriter(words);
+  const words = heroData.animatingTexts || [];
+  
+  // 🌟 FIX: Agar words empty hain ya data load nahi hua, toh hook ko khali string array do taaki hook crash na ho
+  const currentWord = useTypewriter(words.length > 0 ? words : [""]);
 
   return (
     <section className="relative flex min-h-[480px] w-full items-center overflow-x-hidden border-b border-slate-200 pb-12 pt-24 sm:min-h-[560px] sm:pb-16 sm:pt-28 lg:min-h-[600px]">
-      <div className="pointer-events-none absolute inset-0 z-0">
-        <Image
-          src={heroData.backgroundImage}
-          alt="Vision Homes Finance"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-      </div>
+      {heroData.backgroundImage && (
+        <div className="pointer-events-none absolute inset-0 z-0">
+          <Image
+            src={heroData.backgroundImage}
+            alt="Vision Homes Finance"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </div>
+      )}
 
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-white/70 via-brand-pale/60 to-transparent" />
-      <div className="absolute inset-0 z-10 overflow-hidden" aria-hidden>
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-hidden="true">
         <div className="hero-blue-slide absolute inset-y-0 left-0 w-[200%]" />
       </div>
       <div className="absolute inset-0 z-10 bg-gradient-to-t from-white via-transparent to-transparent opacity-90" />
 
       <div className="container-site relative z-20 grid w-full items-center gap-10 lg:grid-cols-[1fr_360px] lg:gap-16">
         <div>
-          <div className="mb-4 inline-flex items-center gap-2 rounded-xl bg-brand px-5 py-2.5 text-sm font-bold text-white shadow-sm">
-            {Icons.shield} {heroData.badgeText}
-          </div>
+          {heroData.badgeText && (
+            <div className="mb-4 inline-flex items-center gap-2 rounded-xl bg-brand px-5 py-2.5 text-sm font-bold text-white shadow-sm">
+              {Icons.shield} {heroData.badgeText}
+            </div>
+          )}
 
           <h1 className="font-heading text-2xl font-extrabold leading-tight text-navy sm:text-3xl lg:text-4xl">
             <span className="block bg-gradient-to-r from-navy to-brand bg-clip-text text-transparent sm:inline">
               {heroData.mainHeading}
             </span>
-            <br />
-            <span className="mt-1 block italic text-brand">
-              {currentWord}
-              <span className="ml-0.5 inline-block w-0.5 animate-pulse bg-brand align-middle" aria-hidden />
-            </span>
+            {isLoaded && words.length > 0 && (
+              <>
+                <br />
+                <span className="mt-1 block italic text-brand">
+                  {currentWord}
+                  <span className="ml-0.5 inline-block w-0.5 animate-pulse bg-brand align-middle" aria-hidden="true" />
+                </span>
+              </>
+            )}
           </h1>
 
           <p className="mt-4 max-w-lg text-base font-semibold leading-relaxed text-slate-700 sm:text-lg">
@@ -74,24 +100,26 @@ export function HeroSection() {
             ))}
           </div>
 
-          <div className="mt-8 grid grid-cols-1 gap-3.5 sm:grid-cols-2">
-            {heroData.bulletPoints.map((item, idx) => (
-              <div
-                key={idx}
-                className="flex items-center gap-3 rounded-xl border border-slate-200/60 bg-white/95 p-3.5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-md"
-              >
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-pale text-brand">
-                  <span className="flex h-3.5 w-3.5 items-center justify-center [&>svg]:h-full [&>svg]:w-full">
-                    {Icons.check}
-                  </span>
+          {heroData.bulletPoints && heroData.bulletPoints.length > 0 && (
+            <div className="mt-8 grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+              {heroData.bulletPoints.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-center gap-3 rounded-xl border border-slate-200/60 bg-white/95 p-3.5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-md"
+                >
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-pale text-brand">
+                    <span className="flex h-3.5 w-3.5 items-center justify-center [&>svg]:h-full [&>svg]:w-full">
+                      {Icons.check}
+                    </span>
+                  </div>
+                  <div>
+                    <h4 className="text-[13px] font-bold leading-tight text-navy">{item.title}</h4>
+                    <p className="mt-0.5 text-[11px] text-slate-500">{item.subTitle}</p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-[13px] font-bold leading-tight text-navy">{item.title}</h4>
-                  <p className="mt-0.5 text-[11px] text-slate-500">{item.subTitle}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Button href="/contact" size="sm" className="shadow-md">
