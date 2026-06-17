@@ -1,5 +1,5 @@
 import { cache } from "react";
-import { apiFetch } from "@/lib/api/apiClient";
+import { apiFetch, clientApiFetch } from "@/lib/api/apiClient";
 
 export type HeroBulletPoint = {
   title: string;
@@ -30,9 +30,11 @@ export const DEFAULT_HERO_DATA: HeroSectionData = {
   ],
 };
 
-async function fetchHeroSection(): Promise<HeroSectionData> {
+async function fetchHeroSection(
+  fetchFn: (path: string, init?: RequestInit) => Promise<Response> = apiFetch
+): Promise<HeroSectionData> {
   try {
-    const response = await apiFetch("/hero/get");
+    const response = await fetchFn("/hero/get");
     if (!response.ok) throw new Error(`Hero API responded with ${response.status}`);
 
     const json = await response.json();
@@ -52,5 +54,5 @@ async function fetchHeroSection(): Promise<HeroSectionData> {
   }
 }
 
-export const getHeroSection = cache(fetchHeroSection);
-export const getHeroSectionClient = fetchHeroSection;
+export const getHeroSection = cache(() => fetchHeroSection(apiFetch));
+export const getHeroSectionClient = () => fetchHeroSection(clientApiFetch);
