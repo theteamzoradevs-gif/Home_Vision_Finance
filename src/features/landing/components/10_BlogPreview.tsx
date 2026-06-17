@@ -4,25 +4,18 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { BlogCard } from "@/features/blogs/BlogCard";
-import { getAllBlogs, normalizeBlogArray } from "@/lib/api/blogService";
-import { BLOG_POSTS } from "@/features/landing/data/content";
+import type { LandingBlogItem } from "@/lib/api/landingData";
 import { cn } from "@/lib/utils";
 
 const AUTO_INTERVAL = 3000;
 const PAUSE_AFTER_MANUAL = 7000;
 
-interface BlogItem {
-  _id: string;
-  title: string;
-  subtitle: string;
-  slug: string;
-  excerpt: string;
-  createdAt?: string;
-}
+type BlogPreviewProps = {
+  initialPosts?: LandingBlogItem[];
+};
 
-export function BlogPreview() {
-  const [posts, setPosts] = useState<BlogItem[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+export function BlogPreview({ initialPosts = [] }: BlogPreviewProps) {
+  const posts = initialPosts;
   const [activeIndex, setActiveIndex] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef(0);
@@ -68,55 +61,6 @@ export function BlogPreview() {
   );
 
   useEffect(() => {
-    const fetchTopBlogs = async () => {
-      try {
-        setLoading(true);
-        const data = await getAllBlogs();
-        const apiBlogs = normalizeBlogArray(data);
-
-        if (apiBlogs.length > 0) {
-          setPosts(
-            apiBlogs.slice(0, 3).map((post) => ({
-              _id: post._id,
-              title: post.title,
-              subtitle: post.subtitle || "Guide",
-              slug: post.slug,
-              excerpt: post.excerpt || "",
-              createdAt: post.createdAt,
-            }))
-          );
-        } else {
-          setPosts(
-            BLOG_POSTS.slice(0, 3).map((post) => ({
-              _id: post.slug,
-              title: post.title,
-              subtitle: post.tag,
-              slug: post.slug,
-              excerpt: post.excerpt,
-              createdAt: post.date,
-            }))
-          );
-        }
-      } catch {
-        setPosts(
-          BLOG_POSTS.slice(0, 3).map((post) => ({
-            _id: post.slug,
-            title: post.title,
-            subtitle: post.tag,
-            slug: post.slug,
-            excerpt: post.excerpt,
-            createdAt: post.date,
-          }))
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchTopBlogs();
-  }, []);
-
-  useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
 
@@ -145,7 +89,7 @@ export function BlogPreview() {
 
     observer.observe(track);
     return () => observer.disconnect();
-  }, [loading, posts.length]);
+  }, [posts.length]);
 
   useEffect(() => {
     if (posts.length <= 1) return;
@@ -188,18 +132,7 @@ export function BlogPreview() {
           centered
         />
 
-        {loading ? (
-          <>
-            <div className="card-grid-equal hidden gap-4 md:grid md:grid-cols-3">
-              {[1, 2, 3].map((n) => (
-                <div key={n} className="h-40 animate-pulse rounded-2xl border border-slate-200 bg-white" />
-              ))}
-            </div>
-            <div className="md:hidden">
-              <div className="h-40 animate-pulse rounded-2xl border border-slate-200 bg-white" />
-            </div>
-          </>
-        ) : posts.length === 0 ? (
+        {posts.length === 0 ? (
           <div className="py-6 text-center text-sm text-slate-400">No blog posts available yet.</div>
         ) : (
           <>

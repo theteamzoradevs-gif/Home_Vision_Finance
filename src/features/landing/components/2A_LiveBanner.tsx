@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { DEFAULT_LIVE_BANNER, getActiveBanner, type LiveBannerData } from "@/lib/api/bannerService";
+import { useMemo } from "react";
+import { DEFAULT_LIVE_BANNER, type LiveBannerData } from "@/lib/api/bannerService";
 import Link from "next/link";
 
 function splitDiscountHighlight(text: string) {
@@ -57,14 +57,12 @@ function OfferCard({ banner }: { banner: LiveBannerData }) {
   );
 }
 
-export function LiveBanner() {
-  const [banner, setBanner] = useState<LiveBannerData>(DEFAULT_LIVE_BANNER);
+type LiveBannerProps = {
+  initialBanner?: LiveBannerData;
+};
 
-  useEffect(() => {
-    getActiveBanner().then(setBanner).catch(() => {
-      /* hidden by default when fetch fails */
-    });
-  }, []);
+export function LiveBanner({ initialBanner = DEFAULT_LIVE_BANNER }: LiveBannerProps) {
+  const banner = initialBanner;
 
   const shouldShow = useMemo(() => {
     if (!banner.isVisible) return false;

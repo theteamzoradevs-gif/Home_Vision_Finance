@@ -2,6 +2,7 @@ import { CtaBanner } from "@/components/sections/CtaBanner";
 import { StatsGrid } from "@/components/sections/StatsGrid";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { WhyChooseGrid } from "@/components/sections/WhyChooseGrid";
+import type { LandingPageData } from "@/lib/api/landingData";
 import { HeroSection } from "./components/1_HeroSection";
 import { LiveBanner } from "./components/2A_LiveBanner";
 import { SbiBanner } from "./components/2_SbiBanner";
@@ -14,11 +15,15 @@ import { DocumentsSection } from "./components/9_DocumentsSection";
 import { BlogPreview } from "./components/10_BlogPreview";
 import { BrokerSection } from "./components/7_BrokerSection";
 
-export function LandingPage() {
+type LandingPageProps = {
+  data: LandingPageData;
+};
+
+export function LandingPage({ data }: LandingPageProps) {
   return (
     <>
-      <HeroSection />
-      <LiveBanner />
+      <HeroSection initialData={data.heroData} />
+      <LiveBanner initialBanner={data.bannerData} />
       <SbiBanner />
       <UspSection />
       <ServicesPreview />
@@ -31,9 +36,9 @@ export function LandingPage() {
         </div>
       </section>
       <BrokerSection />
-      <TestimonialsSection />
+      <TestimonialsSection initialReviews={data.testimonials} />
       <DocumentsSection />
-      <BlogPreview />
+      <BlogPreview initialPosts={data.blogPosts} />
       <WhyChooseGrid />
       <CtaBanner />
     </>

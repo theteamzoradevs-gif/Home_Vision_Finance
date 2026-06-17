@@ -1,44 +1,23 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Icons } from "@/components/ui/icons";
 import { LeadForm } from "@/features/forms/LeadForm";
 import { useTypewriter } from "@/hooks/useTypewriter";
 import { PHONE } from "@/lib/constants";
-import { getHeroSection, type HeroSectionData } from "@/lib/api/heroService";
+import { DEFAULT_HERO_DATA, type HeroSectionData } from "@/lib/api/heroService";
 
 const TAGS = ["Fresh Purchase", "Resale", "Balance Transfer", "Plot Loan", "Construction"];
 
-export function HeroSection() {
-  const [heroData, setHeroData] = useState<HeroSectionData>({
-    animatingTexts: [],
-    backgroundImage: "",
-    badgeText: "",
-    mainHeading: "",
-    subHeading: "",
-    bulletPoints: []
-  });
+type HeroSectionProps = {
+  initialData?: HeroSectionData;
+};
 
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    getHeroSection()
-      .then((data) => {
-        if (data) {
-          setHeroData(data);
-          setIsLoaded(true); // Data aane ke baad hi pure system ko run signal milega
-        }
-      })
-      .catch((err) => {
-        console.error("Hero section mounting error:", err);
-      });
-  }, []);
-
+export function HeroSection({ initialData = DEFAULT_HERO_DATA }: HeroSectionProps) {
+  const heroData = initialData;
   const words = heroData.animatingTexts || [];
-  
-  // 🌟 FIX: Agar words empty hain ya data load nahi hua, toh hook ko khali string array do taaki hook crash na ho
+  const isLoaded = words.length > 0 || Boolean(heroData.mainHeading);
   const currentWord = useTypewriter(words.length > 0 ? words : [""]);
 
   return (
