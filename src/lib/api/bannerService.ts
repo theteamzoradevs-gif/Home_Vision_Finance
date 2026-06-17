@@ -90,7 +90,7 @@ const normalizeBanner = (payload: RawBannerResponse): LiveBannerData => ({
   backgroundImage: pickFirstString(payload, ["backgroundImage", "image", "bannerImage", "imageUrl"]),
 });
 
-export const getActiveBanner = cache(async (): Promise<LiveBannerData> => {
+async function fetchActiveBanner(): Promise<LiveBannerData> {
   try {
     const response = await apiFetch("/banner/getbanner", { method: "GET" });
 
@@ -109,4 +109,7 @@ export const getActiveBanner = cache(async (): Promise<LiveBannerData> => {
     console.error("Banner fetch failed, skipping live banner:", error);
     return DEFAULT_LIVE_BANNER;
   }
-});
+}
+
+export const getActiveBanner = cache(fetchActiveBanner);
+export const getActiveBannerClient = fetchActiveBanner;

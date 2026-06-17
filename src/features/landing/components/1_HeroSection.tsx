@@ -1,12 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import { useCallback } from "react";
 import { Button } from "@/components/ui/Button";
 import { Icons } from "@/components/ui/icons";
 import { LeadForm } from "@/features/forms/LeadForm";
 import { useTypewriter } from "@/hooks/useTypewriter";
+import { useFreshAdminData } from "@/hooks/useFreshAdminData";
 import { PHONE } from "@/lib/constants";
-import { DEFAULT_HERO_DATA, type HeroSectionData } from "@/lib/api/heroService";
+import { DEFAULT_HERO_DATA, getHeroSectionClient, type HeroSectionData } from "@/lib/api/heroService";
 
 const TAGS = ["Fresh Purchase", "Resale", "Balance Transfer", "Plot Loan", "Construction"];
 
@@ -15,7 +17,8 @@ type HeroSectionProps = {
 };
 
 export function HeroSection({ initialData = DEFAULT_HERO_DATA }: HeroSectionProps) {
-  const heroData = initialData;
+  const fetchHero = useCallback(() => getHeroSectionClient(), []);
+  const heroData = useFreshAdminData(initialData, fetchHero);
   const words = heroData.animatingTexts || [];
   const isLoaded = words.length > 0 || Boolean(heroData.mainHeading);
   const currentWord = useTypewriter(words.length > 0 ? words : [""]);

@@ -19,7 +19,7 @@ export function normalizeTestimonials(payload: unknown): Testimonial[] {
   return [];
 }
 
-export const getTestimonials = cache(async (): Promise<Testimonial[]> => {
+async function fetchTestimonials(): Promise<Testimonial[]> {
   try {
     const response = await apiFetch("/testimonials/gettestimonials", { method: "GET" });
     const data = await response.json();
@@ -33,7 +33,10 @@ export const getTestimonials = cache(async (): Promise<Testimonial[]> => {
     console.error("TESTIMONIAL_SERVICE_FETCH_ERROR:", error);
     return [];
   }
-});
+}
+
+export const getTestimonials = cache(fetchTestimonials);
+export const getTestimonialsClient = fetchTestimonials;
 
 /** @deprecated Use getTestimonials instead */
 export const getAllTestimonials = getTestimonials;

@@ -1,12 +1,15 @@
-export const API_REVALIDATE_SECONDS = 300;
+export const API_REVALIDATE_SECONDS = 60;
 
 const DEFAULT_DEV_BASE_URL = "http://localhost:5000/api";
 
 export function getApiBaseUrl(): string | null {
-  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL || DEFAULT_DEV_BASE_URL;
+  const baseUrl =
+    process.env.BACKEND_URL || process.env.NEXT_PUBLIC_BACKEND_URL || DEFAULT_DEV_BASE_URL;
+
   if (process.env.NODE_ENV === "production" && baseUrl === DEFAULT_DEV_BASE_URL) {
     return null;
   }
+
   return baseUrl;
 }
 
@@ -18,6 +21,8 @@ export async function apiFetch(path: string, init?: RequestInit): Promise<Respon
 
   return fetch(`${baseUrl}${path}`, {
     ...init,
-    ...(isServer ? { next: { revalidate: API_REVALIDATE_SECONDS } } : {}),
+    ...(isServer
+      ? { next: { revalidate: API_REVALIDATE_SECONDS } }
+      : { cache: "no-store" }),
   });
 }

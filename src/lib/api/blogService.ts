@@ -22,7 +22,7 @@ export function normalizeBlogArray(payload: unknown): ApiBlogItem[] {
   return [];
 }
 
-export const getAllBlogs = cache(async () => {
+async function fetchAllBlogs() {
   const res = await apiFetch("/blog/all", { method: "GET" });
 
   const contentType = res.headers.get("content-type");
@@ -34,11 +34,23 @@ export const getAllBlogs = cache(async () => {
   if (!res.ok) throw new Error(data.message || "Failed to fetch blogs.");
 
   return data;
-});
+}
+
+export const getAllBlogs = cache(fetchAllBlogs);
+export const getAllBlogsClient = fetchAllBlogs;
 
 export async function getAllBlogsSafe() {
   try {
     return await getAllBlogs();
+  } catch (error) {
+    console.error("BLOG_SERVICE_FETCH_ERROR:", error);
+    return [];
+  }
+}
+
+export async function getAllBlogsSafeClient() {
+  try {
+    return await getAllBlogsClient();
   } catch (error) {
     console.error("BLOG_SERVICE_FETCH_ERROR:", error);
     return [];

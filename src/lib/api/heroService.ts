@@ -30,7 +30,7 @@ export const DEFAULT_HERO_DATA: HeroSectionData = {
   ],
 };
 
-export const getHeroSection = cache(async (): Promise<HeroSectionData> => {
+async function fetchHeroSection(): Promise<HeroSectionData> {
   try {
     const response = await apiFetch("/hero/get");
     if (!response.ok) throw new Error(`Hero API responded with ${response.status}`);
@@ -50,4 +50,7 @@ export const getHeroSection = cache(async (): Promise<HeroSectionData> => {
     console.error("Hero section fetch failed:", error);
     return DEFAULT_HERO_DATA;
   }
-});
+}
+
+export const getHeroSection = cache(fetchHeroSection);
+export const getHeroSectionClient = fetchHeroSection;
