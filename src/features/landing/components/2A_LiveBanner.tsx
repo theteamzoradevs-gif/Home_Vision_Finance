@@ -15,7 +15,7 @@ function OfferCard({ banner }: { banner: LiveBannerData }) {
   const { primary, secondary } = splitDiscountHighlight(banner.discountHighlight);
 
   return (
-    <div className="relative mx-auto w-full max-w-[230px] shrink-0 pt-3 lg:mx-0 lg:mr-4">
+    <div className="relative mx-auto w-full max-w-[270px] shrink-0 pt-3 lg:mx-0 lg:mr-12">
       {banner.badgeText && (
         <div className="absolute left-1/2 top-0 z-20 -translate-x-1/2">
           <span className="inline-block whitespace-nowrap rounded-md bg-[#07142e] px-2.5 py-0.5 text-[8px] font-black uppercase tracking-[0.12em] text-[#e8b800] sm:text-[9px]">
@@ -24,7 +24,7 @@ function OfferCard({ banner }: { banner: LiveBannerData }) {
         </div>
       )}
 
-      <div className="rotate-[-3.5deg] rounded-[18px] border-[4px] border-white bg-[#e8b800] px-4 pb-4 pt-5 text-center text-[#07142e] shadow-[0_18px_42px_rgba(0,0,0,0.32)]">
+      <div className="rotate-[-3.5deg] rounded-[20px] border-[4px] border-white bg-[#e8b800] px-5 pb-5 pt-6 text-center text-[#07142e] shadow-[0_18px_42px_rgba(0,0,0,0.32)]">
         {banner.discountHighlight && (
           <div className="leading-[0.95]">
             <p className="text-[26px] font-black uppercase tracking-tight sm:text-[28px]" style={{ fontWeight: 900 }}>
@@ -46,7 +46,7 @@ function OfferCard({ banner }: { banner: LiveBannerData }) {
 
         {banner.expiryText && (
           <>
-            <div className="mx-auto my-3 h-px w-[85%] bg-[#07142e]/35" />
+            <div className="mx-auto my-3.5 h-px w-[82%] bg-[#07142e]/55" />
             <p className="px-1 text-[7px] font-semibold uppercase italic leading-tight tracking-wide text-[#07142e]/90 sm:text-[8px]">
               {banner.expiryText}
             </p>
@@ -99,7 +99,7 @@ export function LiveBanner() {
             )}
 
             {banner.subHeading && (
-              <p className="mt-5 text-base font-semibold text-white/95 sm:text-xl lg:text-2xl">{banner.subHeading}</p>
+              <p className="mt-5 text-sm font-semibold text-white/95 sm:text-lg lg:text-xl">{banner.subHeading}</p>
             )}
 
             <Link
