@@ -26,11 +26,24 @@ export const DEFAULT_LIVE_BANNER: LiveBannerData = {
   backgroundImage: "",
 };
 
+const normalizeKey = (value: string) => value.toLowerCase().replace(/[^a-z0-9]/g, "");
+
 const pickFirstString = (source: RawBannerResponse, keys: string[]) => {
+  const sourceEntries = Object.entries(source ?? {});
+
   for (const key of keys) {
     const value = source?.[key];
     if (typeof value === "string" && value.trim()) return value.trim();
+    if (value != null && typeof value !== "object" && String(value).trim()) return String(value).trim();
   }
+
+  const desired = new Set(keys.map((key) => normalizeKey(key)));
+  for (const [rawKey, rawValue] of sourceEntries) {
+    if (!desired.has(normalizeKey(rawKey))) continue;
+    if (typeof rawValue === "string" && rawValue.trim()) return rawValue.trim();
+    if (rawValue != null && typeof rawValue !== "object" && String(rawValue).trim()) return String(rawValue).trim();
+  }
+
   return "";
 };
 
@@ -56,7 +69,20 @@ const normalizeBanner = (payload: RawBannerResponse): LiveBannerData => ({
   mainHeading: pickFirstString(payload, ["mainHeading", "title", "heading"]),
   subHeading: pickFirstString(payload, ["subHeading", "subtitle", "description"]),
   badgeText: pickFirstString(payload, ["badgeText", "labelText", "offerLabel"]),
-  expiryText: pickFirstString(payload, ["expiryText", "validTill", "expiry", "expiresOn"]),
+  expiryText: pickFirstString(payload, [
+    "expiryText",
+    "expireText",
+    "expiry",
+    "expiryDate",
+    "expiry_date",
+    "validTill",
+    "validUntil",
+    "valid_until",
+    "offerValidText",
+    "offerValidTill",
+    "expiresOn",
+    "expires_at",
+  ]),
   discountHighlight: pickFirstString(payload, ["discountHighlight", "highlightText", "discountText"]),
   discountSubtext: pickFirstString(payload, ["discountSubtext", "subtext", "offerSubtext"]),
   ctaText: pickFirstString(payload, ["ctaText", "buttonText", "ctaLabel"]) || DEFAULT_LIVE_BANNER.ctaText,
