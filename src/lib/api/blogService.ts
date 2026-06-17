@@ -1,5 +1,5 @@
 import { cache } from "react";
-import { apiFetch } from "@/lib/api/apiClient";
+import { apiFetch, clientApiFetch } from "@/lib/api/apiClient";
 
 export type ApiBlogItem = {
   _id: string;
@@ -22,8 +22,10 @@ export function normalizeBlogArray(payload: unknown): ApiBlogItem[] {
   return [];
 }
 
-async function fetchAllBlogs() {
-  const res = await apiFetch("/blog/all", { method: "GET" });
+async function fetchAllBlogs(
+  fetchFn: (path: string, init?: RequestInit) => Promise<Response> = apiFetch
+) {
+  const res = await fetchFn("/blog/all", { method: "GET" });
 
   const contentType = res.headers.get("content-type");
   if (contentType?.includes("text/html")) {
@@ -36,8 +38,8 @@ async function fetchAllBlogs() {
   return data;
 }
 
-export const getAllBlogs = cache(fetchAllBlogs);
-export const getAllBlogsClient = fetchAllBlogs;
+export const getAllBlogs = cache(() => fetchAllBlogs(apiFetch));
+export const getAllBlogsClient = () => fetchAllBlogs(clientApiFetch);
 
 export async function getAllBlogsSafe() {
   try {

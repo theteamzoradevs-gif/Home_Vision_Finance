@@ -1,5 +1,5 @@
 import { cache } from "react";
-import { apiFetch } from "@/lib/api/apiClient";
+import { apiFetch, clientApiFetch } from "@/lib/api/apiClient";
 
 export type Testimonial = {
   _id: string;
@@ -19,9 +19,11 @@ export function normalizeTestimonials(payload: unknown): Testimonial[] {
   return [];
 }
 
-async function fetchTestimonials(): Promise<Testimonial[]> {
+async function fetchTestimonials(
+  fetchFn: (path: string, init?: RequestInit) => Promise<Response> = apiFetch
+): Promise<Testimonial[]> {
   try {
-    const response = await apiFetch("/testimonials/gettestimonials", { method: "GET" });
+    const response = await fetchFn("/testimonials/gettestimonials", { method: "GET" });
     const data = await response.json();
 
     if (!response.ok) {
@@ -35,8 +37,8 @@ async function fetchTestimonials(): Promise<Testimonial[]> {
   }
 }
 
-export const getTestimonials = cache(fetchTestimonials);
-export const getTestimonialsClient = fetchTestimonials;
+export const getTestimonials = cache(() => fetchTestimonials(apiFetch));
+export const getTestimonialsClient = () => fetchTestimonials(clientApiFetch);
 
 /** @deprecated Use getTestimonials instead */
 export const getAllTestimonials = getTestimonials;

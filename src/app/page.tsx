@@ -1,7 +1,7 @@
 import { getLandingPageData } from "@/lib/api/landingData";
 import { LandingPage } from "@/features/landing/LandingPage";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const data = await getLandingPageData();

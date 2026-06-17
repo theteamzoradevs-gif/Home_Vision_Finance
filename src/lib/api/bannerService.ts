@@ -1,5 +1,5 @@
 import { cache } from "react";
-import { apiFetch } from "@/lib/api/apiClient";
+import { apiFetch, clientApiFetch } from "@/lib/api/apiClient";
 
 type RawBannerResponse = Record<string, any>;
 
@@ -90,9 +90,11 @@ const normalizeBanner = (payload: RawBannerResponse): LiveBannerData => ({
   backgroundImage: pickFirstString(payload, ["backgroundImage", "image", "bannerImage", "imageUrl"]),
 });
 
-async function fetchActiveBanner(): Promise<LiveBannerData> {
+async function fetchActiveBanner(
+  fetchFn: (path: string, init?: RequestInit) => Promise<Response> = apiFetch
+): Promise<LiveBannerData> {
   try {
-    const response = await apiFetch("/banner/getbanner", { method: "GET" });
+    const response = await fetchFn("/banner/getbanner", { method: "GET" });
 
     const contentType = response.headers.get("content-type");
     if (contentType?.includes("text/html")) return DEFAULT_LIVE_BANNER;
@@ -111,5 +113,5 @@ async function fetchActiveBanner(): Promise<LiveBannerData> {
   }
 }
 
-export const getActiveBanner = cache(fetchActiveBanner);
-export const getActiveBannerClient = fetchActiveBanner;
+export const getActiveBanner = cache(() => fetchActiveBanner(apiFetch));
+export const getActiveBannerClient = () => fetchActiveBanner(clientApiFetch);
