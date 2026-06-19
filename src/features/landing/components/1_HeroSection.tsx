@@ -24,7 +24,7 @@ export function HeroSection({ initialData = DEFAULT_HERO_DATA }: HeroSectionProp
   const currentWord = useTypewriter(words.length > 0 ? words : [""]);
 
   return (
-    <section className="relative flex min-h-[480px] w-full items-center overflow-x-hidden border-b border-slate-200 pb-12 pt-24 sm:min-h-[560px] sm:pb-16 sm:pt-28 lg:min-h-[600px]">
+    <section className="relative flex min-h-0 w-full items-center overflow-x-hidden border-b border-slate-200 pb-8 pt-20 sm:min-h-[560px] sm:pb-16 sm:pt-28 lg:min-h-[600px]">
       {heroData.backgroundImage && (
         <div className="pointer-events-none absolute inset-0 z-0">
           <Image
@@ -44,38 +44,35 @@ export function HeroSection({ initialData = DEFAULT_HERO_DATA }: HeroSectionProp
       </div>
       <div className="absolute inset-0 z-10 bg-gradient-to-t from-white via-transparent to-transparent opacity-90" />
 
-      <div className="container-site relative z-20 grid w-full items-center gap-10 lg:grid-cols-[1fr_360px] lg:gap-16">
+      <div className="container-site relative z-20 grid w-full items-center gap-6 sm:gap-10 lg:grid-cols-[1fr_360px] lg:gap-16">
         <div>
           {heroData.badgeText && (
-            <div className="mb-4 inline-flex items-center gap-2 rounded-xl bg-brand px-5 py-2.5 text-sm font-bold text-white shadow-sm">
+            <div className="mb-2.5 inline-flex items-center gap-1.5 rounded-lg bg-brand px-3 py-1.5 text-[11px] font-bold text-white shadow-sm sm:mb-4 sm:gap-2 sm:rounded-xl sm:px-5 sm:py-2.5 sm:text-sm [&_svg]:h-3.5 [&_svg]:w-3.5 sm:[&_svg]:h-4 sm:[&_svg]:w-4">
               {Icons.shield} {heroData.badgeText}
             </div>
           )}
 
-          <h1 className="font-heading text-2xl font-extrabold leading-tight text-navy sm:text-3xl lg:text-4xl">
-            <span className="block bg-gradient-to-r from-navy to-brand bg-clip-text text-transparent sm:inline">
+          <h1 className="font-heading text-[1.3rem] font-extrabold leading-[1.12] text-navy sm:text-3xl sm:leading-tight lg:text-4xl">
+            <span className="bg-gradient-to-r from-navy to-brand bg-clip-text text-transparent">
               {heroData.mainHeading}
             </span>
             {isLoaded && words.length > 0 && (
-              <>
-                <br />
-                <span className="mt-1 block italic text-brand">
-                  {currentWord}
-                  <span className="ml-0.5 inline-block w-0.5 animate-pulse bg-brand align-middle" aria-hidden="true" />
-                </span>
-              </>
+              <span className="mt-0.5 block text-[1.125rem] italic leading-[1.12] text-brand sm:mt-1 sm:text-2xl lg:text-3xl">
+                {currentWord}
+                <span className="ml-0.5 inline-block w-0.5 animate-pulse bg-brand align-middle" aria-hidden="true" />
+              </span>
             )}
           </h1>
 
-          <p className="mt-4 max-w-lg text-base font-semibold leading-relaxed text-slate-700 sm:text-lg">
+          <p className="mt-2 max-w-lg text-sm font-semibold leading-snug text-slate-700 sm:mt-4 sm:text-lg sm:leading-relaxed">
             {heroData.subHeading}
           </p>
 
-          <div className="mt-6 flex flex-wrap gap-2">
+          <div className="mt-3 flex flex-wrap gap-1.5 sm:mt-6 sm:gap-2">
             {TAGS.map((tag) => (
               <span
                 key={tag}
-                className="cursor-pointer rounded-full bg-brand px-3 py-1 text-xs font-bold text-white shadow-[0_4px_10px_rgba(26,79,158,0.25)] transition-all duration-200 ease-in-out hover:bg-brand-light hover:shadow-[0_4px_12px_rgba(37,99,235,0.4)]"
+                className="cursor-pointer rounded-full bg-brand px-2.5 py-0.5 text-[10px] font-bold text-white shadow-[0_4px_10px_rgba(26,79,158,0.25)] transition-all duration-200 ease-in-out hover:bg-brand-light hover:shadow-[0_4px_12px_rgba(37,99,235,0.4)] sm:px-3 sm:py-1 sm:text-xs"
               >
                 {tag}
               </span>
@@ -83,14 +80,14 @@ export function HeroSection({ initialData = DEFAULT_HERO_DATA }: HeroSectionProp
           </div>
 
           {heroData.bulletPoints && heroData.bulletPoints.length > 0 && (
-            <div className="mt-8 grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+            <div className="mt-4 grid grid-cols-1 gap-2.5 sm:mt-8 sm:grid-cols-2 sm:gap-3.5">
               {heroData.bulletPoints.map((item, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center gap-3 rounded-xl border border-slate-200/60 bg-white/95 p-3.5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-md"
+                  className="flex items-center gap-2.5 rounded-xl border border-slate-200/60 bg-white/95 p-2.5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-md sm:gap-3 sm:p-3.5"
                 >
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-pale text-brand">
-                    <span className="flex h-3.5 w-3.5 items-center justify-center [&>svg]:h-full [&>svg]:w-full">
+                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand-pale text-brand sm:h-8 sm:w-8">
+                    <span className="flex h-3 w-3 items-center justify-center [&>svg]:h-full [&>svg]:w-full sm:h-3.5 sm:w-3.5">
                       {Icons.check}
                     </span>
                   </div>
@@ -103,7 +100,7 @@ export function HeroSection({ initialData = DEFAULT_HERO_DATA }: HeroSectionProp
             </div>
           )}
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <div className="mt-4 flex flex-wrap items-center gap-3 sm:mt-8">
             <Button href="/contact" size="sm" className="shadow-md">
               Get Free Consultation
             </Button>

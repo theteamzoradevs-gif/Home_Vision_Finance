@@ -1,7 +1,7 @@
 export const BRAND = "Vision Homes Finance";
 export const PHONE = "9911396575";
 export const PHONE_DISPLAY = `+91 ${PHONE}`;
-export const EMAIL = "contact@homevisionfinance.com";
+export const EMAIL = "contact@visionhomesfinance.com";
 export const CONSULTANT_ROLE = "Home Loan Consultant";
 export const ADDRESS = "Delhi NCR, India";
 export const HOURS = "Mon–Sat: 10 AM – 7 PM | Sunday: By Appointment";
