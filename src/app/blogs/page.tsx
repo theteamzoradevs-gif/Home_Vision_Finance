@@ -11,6 +11,7 @@ export const metadata = createPageMetadata(
 );
 
 export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
 
 export default async function BlogsPage() {
   const initialBlogs = await BlogsGrid();

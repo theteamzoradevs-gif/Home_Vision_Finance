@@ -1,5 +1,5 @@
 import { cache } from "react";
-import { apiFetch, clientApiFetch } from "@/lib/api/apiClient";
+import { apiFetch } from "@/lib/api/apiClient";
 
 export type HeroBulletPoint = {
   title: string;
@@ -30,11 +30,38 @@ export const DEFAULT_HERO_DATA: HeroSectionData = {
   ],
 };
 
-async function fetchHeroSection(
-  fetchFn: (path: string, init?: RequestInit) => Promise<Response> = apiFetch
-): Promise<HeroSectionData> {
+function normalizeHeroData(raw: Record<string, unknown>): HeroSectionData {
+  return {
+    animatingTexts:
+      Array.isArray(raw.animatingTexts) && raw.animatingTexts.length > 0
+        ? (raw.animatingTexts as string[])
+        : DEFAULT_HERO_DATA.animatingTexts,
+    backgroundImage:
+      typeof raw.backgroundImage === "string" && raw.backgroundImage.trim()
+        ? raw.backgroundImage
+        : DEFAULT_HERO_DATA.backgroundImage,
+    badgeText:
+      typeof raw.badgeText === "string" && raw.badgeText.trim()
+        ? raw.badgeText
+        : DEFAULT_HERO_DATA.badgeText,
+    mainHeading:
+      typeof raw.mainHeading === "string" && raw.mainHeading.trim()
+        ? raw.mainHeading
+        : DEFAULT_HERO_DATA.mainHeading,
+    subHeading:
+      typeof raw.subHeading === "string" && raw.subHeading.trim()
+        ? raw.subHeading
+        : DEFAULT_HERO_DATA.subHeading,
+    bulletPoints:
+      Array.isArray(raw.bulletPoints) && raw.bulletPoints.length > 0
+        ? (raw.bulletPoints as HeroBulletPoint[])
+        : DEFAULT_HERO_DATA.bulletPoints,
+  };
+}
+
+async function fetchHeroSection(): Promise<HeroSectionData> {
   try {
-    const response = await fetchFn("/hero/get");
+    const response = await apiFetch("/hero/get");
     if (!response.ok) throw new Error(`Hero API responded with ${response.status}`);
 
     const json = await response.json();
@@ -42,17 +69,11 @@ async function fetchHeroSection(
 
     if (!data || typeof data !== "object") return DEFAULT_HERO_DATA;
 
-    return {
-      ...DEFAULT_HERO_DATA,
-      ...data,
-      animatingTexts: data.animatingTexts?.length ? data.animatingTexts : DEFAULT_HERO_DATA.animatingTexts,
-      bulletPoints: data.bulletPoints?.length ? data.bulletPoints : DEFAULT_HERO_DATA.bulletPoints,
-    };
+    return normalizeHeroData(data as Record<string, unknown>);
   } catch (error) {
     console.error("Hero section fetch failed:", error);
     return DEFAULT_HERO_DATA;
   }
 }
 
-export const getHeroSection = cache(() => fetchHeroSection(apiFetch));
-export const getHeroSectionClient = () => fetchHeroSection(clientApiFetch);
+export const getHeroSection = cache(fetchHeroSection);
