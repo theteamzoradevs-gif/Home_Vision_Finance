@@ -4,9 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { BlogCard } from "@/features/blogs/BlogCard";
-import { getLandingBlogPreviewClient } from "@/lib/api/blogList";
 import type { LandingBlogItem } from "@/lib/api/landingData";
-import { useFreshAdminData } from "@/hooks/useFreshAdminData";
 import { cn } from "@/lib/utils";
 
 const AUTO_INTERVAL = 3000;
@@ -17,8 +15,7 @@ type BlogPreviewProps = {
 };
 
 export function BlogPreview({ initialPosts = [] }: BlogPreviewProps) {
-  const fetchPosts = useCallback(() => getLandingBlogPreviewClient(), []);
-  const posts = useFreshAdminData(initialPosts, fetchPosts);
+  const posts = initialPosts;
   const [activeIndex, setActiveIndex] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef(0);

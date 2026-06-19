@@ -9,6 +9,12 @@ export function useTypewriter(words: string[], typingSpeed = 100) {
   const [speed, setSpeed] = useState(typingSpeed);
 
   useEffect(() => {
+    setIndex(0);
+    setCurrentWord("");
+    setIsDeleting(false);
+  }, [words]);
+
+  useEffect(() => {
     const fullWord = words[index];
 
     const timer = setTimeout(() => {
