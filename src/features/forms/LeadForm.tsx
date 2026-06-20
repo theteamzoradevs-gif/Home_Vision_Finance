@@ -130,7 +130,7 @@ export function LeadForm({
           ✓
         </div>
         <h3 className={cn("font-heading font-bold text-navy", isCompact ? "text-base" : "text-xl")}>
-          Thank You!
+          Thank You
         </h3>
         <p className="mt-1 text-xs text-slate-500 sm:text-sm">Our loan expert will call you within 30 minutes.</p>
       </div>

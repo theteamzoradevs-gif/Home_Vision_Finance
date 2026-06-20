@@ -13,7 +13,7 @@ export const submitContactForm = async (plainFormDataObject: any) => {
 
     const contentType = res.headers.get("content-type");
     if (contentType && contentType.includes("text/html")) {
-      throw new Error("Backend returned an HTML error page. Please check your endpoints!");
+      throw new Error("Backend returned an HTML error page. Please check your endpoints");
     }
 
     const data = await res.json();

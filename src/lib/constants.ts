@@ -22,7 +22,7 @@ export const NAV_LINKS = [
   { href: "/services", label: "Services" },
   { href: "/about", label: "About" },
   { href: "/emi-calculator", label: "EMI Calculator" },
-  { href: "/blogs", label: "Blogs" },
+  { href: "/blogs", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ] as const;
 

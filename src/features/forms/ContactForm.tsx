@@ -101,7 +101,7 @@ export function ContactForm() {
         <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-brand text-2xl text-white">
           ✓
         </div>
-        <h3 className="font-heading text-xl font-bold text-navy">Message Sent!</h3>
+        <h3 className="font-heading text-xl font-bold text-navy">Message Sent</h3>
         <p className="mt-2 text-slate-600">We will get back to you within 24 hours.</p>
       </div>
     );

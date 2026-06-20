@@ -182,7 +182,7 @@ export function BlogPreview({ initialPosts = [] }: BlogPreviewProps) {
 
         <div className="mt-8 text-center">
           <Button href="/blogs" size="md">
-            View All Blogs
+            View All Blog
           </Button>
         </div>
       </div>

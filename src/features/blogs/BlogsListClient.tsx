@@ -9,7 +9,7 @@ export function BlogsListClient({ initialBlogs }: BlogsListClientProps) {
   if (initialBlogs.length === 0) {
     return (
       <div className="py-16 text-left text-sm font-medium text-slate-400">
-        No published blogs found. Please check back soon.
+        No published blog found. Please check back soon.
       </div>
     );
   }
