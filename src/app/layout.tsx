@@ -27,10 +27,6 @@ export const metadata: Metadata = {
   description:
     "SBI Authorised Channel Partner offering home loans with ₹0 processing fees, fast approval, and multi-bank comparison.",
   metadataBase: new URL("https://visionhomesfinance.com"),
-  icons: {
-    icon: "/icon.svg",
-    apple: "/apple-icon.svg",
-  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

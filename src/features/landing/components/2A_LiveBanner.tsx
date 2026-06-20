@@ -15,7 +15,7 @@ function OfferCard({ banner }: { banner: LiveBannerData }) {
   const { primary, secondary } = splitDiscountHighlight(banner.discountHighlight);
 
   return (
-    <div className="relative mx-auto w-full max-w-[250px] shrink-0 pt-3 lg:mx-0 lg:mr-6">
+    <div className="relative mx-auto w-full max-w-[270px] shrink-0 pt-3 lg:mx-0 lg:mr-12">
       {banner.badgeText && (
         <div className="absolute left-1/2 top-0 z-20 -translate-x-1/2">
           <span className="inline-block whitespace-nowrap rounded-md bg-[#07142e] px-2.5 py-0.5 text-[8px] font-black uppercase tracking-[0.12em] text-[#e8b800] sm:text-[9px]">
@@ -83,7 +83,7 @@ export function LiveBanner({ initialBanner = DEFAULT_LIVE_BANNER }: LiveBannerPr
     <section className="bg-white py-6 lg:py-8">
       <div className="container-site">
         <div
-          className="relative isolate mx-auto w-full max-w-[94%] overflow-hidden rounded-[28px] border border-slate-200/70 px-5 text-white shadow-lg sm:max-w-[92%] sm:px-8 lg:max-w-[900px] lg:min-h-[400px] lg:px-10 xl:max-w-[940px]"
+          className="relative isolate w-full overflow-hidden rounded-[28px] border border-slate-200/70 px-5 text-white shadow-lg sm:px-8 lg:min-h-[400px] lg:px-10"
           style={sectionStyle}
         >
         {!banner.backgroundImage && <div className="absolute inset-0 bg-gradient-to-r from-[#0a1632] via-[#17366b] to-brand" aria-hidden />}
