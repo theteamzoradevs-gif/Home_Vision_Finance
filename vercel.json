@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/admin",
+      "destination": "https://vision-homes-finance-admin-frontend.vercel.app/admin"
+    },
+    {
+      "source": "/admin/:path*",
+      "destination": "https://vision-homes-finance-admin-frontend.vercel.app/admin/:path*"
+    }
+  ]
+}
