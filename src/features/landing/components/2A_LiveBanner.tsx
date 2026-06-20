@@ -80,9 +80,9 @@ export function LiveBanner({ initialBanner = DEFAULT_LIVE_BANNER }: LiveBannerPr
     : undefined;
 
   return (
-    <section className="section-padding bg-white py-6 lg:py-7">
+    <section className="section-padding bg-white py-6 lg:py-8">
       <div
-        className="container-site relative isolate mx-auto max-w-[calc(100%-1.5rem)] overflow-hidden rounded-[28px] border border-slate-200/70 px-5 text-white shadow-lg sm:px-8 lg:max-w-[calc(100%-3rem)] lg:min-h-[400px] lg:px-10"
+        className="container-site relative isolate overflow-hidden rounded-[28px] border border-slate-200/70 px-5 text-white shadow-lg sm:px-8 lg:min-h-[400px] lg:px-10"
         style={sectionStyle}
       >
         {!banner.backgroundImage && <div className="absolute inset-0 bg-gradient-to-r from-[#0a1632] via-[#17366b] to-brand" aria-hidden />}
