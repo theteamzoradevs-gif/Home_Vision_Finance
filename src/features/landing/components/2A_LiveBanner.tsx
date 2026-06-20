@@ -24,7 +24,7 @@ function OfferCard({ banner }: { banner: LiveBannerData }) {
         </div>
       )}
 
-      <div className="rotate-[-3.5deg] rounded-[20px] border-[4px] border-white bg-[#e8b800] px-5 pb-5 pt-6 text-center text-[#07142e] shadow-[0_18px_42px_rgba(0,0,0,0.32)]">
+      <div className="rotate-0 rounded-[20px] border-[4px] border-white bg-[#e8b800] px-5 pb-5 pt-6 text-center text-[#07142e] shadow-[0_18px_42px_rgba(0,0,0,0.32)] lg:rotate-[-3.5deg]">
         {banner.discountHighlight && (
           <div className="leading-[0.95]">
             <p className="text-[26px] font-black uppercase tracking-tight sm:text-[28px]" style={{ fontWeight: 900 }}>
@@ -80,15 +80,15 @@ export function LiveBanner({ initialBanner = DEFAULT_LIVE_BANNER }: LiveBannerPr
     : undefined;
 
   return (
-    <section className="section-padding bg-white py-8">
+    <section className="section-padding bg-white py-6 lg:py-8">
       <div
-        className="container-site relative isolate overflow-hidden rounded-[28px] border border-slate-200/70 px-5 text-white shadow-lg sm:px-8 lg:min-h-[440px] lg:px-12"
+        className="container-site relative isolate overflow-hidden rounded-[28px] border border-slate-200/70 px-5 text-white shadow-lg sm:px-8 lg:min-h-[400px] lg:px-10"
         style={sectionStyle}
       >
         {!banner.backgroundImage && <div className="absolute inset-0 bg-gradient-to-r from-[#0a1632] via-[#17366b] to-brand" aria-hidden />}
         <div className="absolute inset-0 bg-black/22" aria-hidden />
 
-        <div className="relative z-10 flex min-h-[360px] flex-col items-stretch justify-center gap-8 py-10 sm:py-12 lg:min-h-[440px] lg:flex-row lg:items-center lg:justify-between lg:gap-10 lg:py-14">
+        <div className="relative z-10 flex min-h-[360px] flex-col items-stretch justify-center gap-8 py-8 sm:py-10 lg:min-h-[400px] lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:py-10">
           <div className="max-w-2xl">
             {banner.mainHeading && (
               <h2 className="font-heading text-3xl font-extrabold leading-[1.08] text-white sm:text-4xl lg:text-5xl">

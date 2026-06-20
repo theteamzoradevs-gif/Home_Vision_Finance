@@ -22,7 +22,7 @@ export function BlogDetailContent({ post, featuredImage }: BlogDetailContentProp
           href="/blogs"
           className="text-left text-sm font-semibold text-brand transition hover:text-brand-light"
         >
-          Back to Blogs
+          Back to Blog
         </Link>
 
         {imageSrc && (

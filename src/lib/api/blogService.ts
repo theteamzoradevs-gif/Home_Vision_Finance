@@ -33,7 +33,7 @@ async function fetchAllBlogs(
   }
 
   const data = await res.json();
-  if (!res.ok) throw new Error(data.message || "Failed to fetch blogs.");
+  if (!res.ok) throw new Error(data.message || "Failed to fetch blog.");
 
   return data;
 }
