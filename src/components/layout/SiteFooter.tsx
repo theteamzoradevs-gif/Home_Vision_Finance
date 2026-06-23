@@ -199,6 +199,11 @@ export function SiteFooter() {
         </div>
       </div>
 
+      <div className="container-site border-t border-white/10 py-5 text-center text-sm text-slate-400 sm:text-left">
+        <p>Legal Name :- Alpana singh</p>
+        <p className="mt-1">Trade Name :- Vision Homes Finance</p>
+      </div>
+
       <div className="border-t border-white/10">
         <div className="container-site flex flex-wrap items-center justify-between gap-4 py-6 text-xs text-slate-500">
           <span>
